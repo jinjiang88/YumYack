@@ -21,7 +21,7 @@ export class AppComponent {
     console.log('Initializing Facebook');
 
     fb.init({
-      appId: '159866857897079',
+      appId: '**',
       version: 'v2.9'
     });
 
