@@ -10,19 +10,25 @@ import { RegisterComponent } from './register/register.component';
 
 import {LoginService } from './login.service'
 import { RegisterService } from './register/register.service';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LandingPageService } from './landing-page/landing-page.service'
+import { UserHomeService } from './user-home/user-home.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserHomeComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule, FormsModule,
   ],
-  providers: [RegisterService, LoginService],
+  providers: [RegisterService, LoginService, LandingPageService, UserHomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

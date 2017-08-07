@@ -1,20 +1,28 @@
 {
-  "name": "k",
+  "name": "yumyack",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
+  "description": "",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-session": "^1.15.4",
     "mongoose": "^4.11.5",
+    "ngx-facebook": "^2.4.0"
   },
   "devDependencies": {},
-  "keywords": [],
-  "description": ""
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinjiang88/YumYack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinjiang88/YumYack/issues"
+  },
+  "homepage": "https://github.com/jinjiang88/YumYack#readme"
 }
