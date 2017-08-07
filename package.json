@@ -1,13 +1,12 @@
 {
   "name": "yumyack",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "express-session": "^1.15.4",
-    "mongoose": "^4.11.5",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.6",
     "ngx-facebook": "^2.4.0"
   },
   "devDependencies": {},
@@ -24,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/jinjiang88/YumYack/issues"
   },
-  "homepage": "https://github.com/jinjiang88/YumYack#readme"
+  "homepage": "https://github.com/jinjiang88/YumYack#readme",
+  "description": ""
 }
