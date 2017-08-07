@@ -15,6 +15,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
+//carousel stuff
+import { CarouselModule } from 'angular4-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,7 @@ import { UserHomeService } from './user-home/user-home.service'
     BrowserModule,
     AppRoutingModule,
     HttpModule, FormsModule,
+    CarouselModule,
   ],
   providers: [RegisterService, LoginService, LandingPageService, UserHomeService],
   bootstrap: [AppComponent]
