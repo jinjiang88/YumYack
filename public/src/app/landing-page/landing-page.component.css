@@ -7,12 +7,13 @@
   background:grey;
   transition: .5s;
   opacity: 0;
-  padding: 0px;
+  /*padding: 1%;*/
 }
 .overlay:hover{
   opacity: 0.9;
-  padding: 0px;
+  /*padding: 0%;*/
   margin:0px;
+
 
 }
 .thesec{
@@ -25,8 +26,21 @@
   width: 100%;
 }
 .thesection{
-margin-top: 2%;
+
+padding: 0;
+
+
 }
 .contribtitle{
+  text-align: center;
+}
+.topusername{
+  text-align: center;
+  margin-top: 10%;
+}
+.topcount{
+  text-align: center;
+}
+.topscore{
   text-align: center;
 }
