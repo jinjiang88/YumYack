@@ -50,13 +50,13 @@
 .footers{
   bottom: 0;
   width: 100%;
-  height: 200px;
+  height: 300px;
   background-color: #151e35;
 }
-.row{
+.therow{
   margin-left: 7%;
-  opacity:0.9;
-  background-color: white;
+  opacity:1;
+  background-color: grey;
 
 }
 .footerheader{
@@ -78,58 +78,45 @@
   height: 45px;
   margin-left: 3%;
 }
-.welcomebox{
-  display: inline;
-  width: 80%;
-
-  margin-left: 40%;
-  position: relative;
-  top: 50%;
-}
-.therow{
-  border:1px solid black;
-  height: 400px;
-  opacity: 0.9;
-  background-color: #151e35;
-}
 .appstorestuff{
   background-color: #151e35
 }
-.thecontainer{
-  background-color: #151e35
+.profilepic{
+  width: 70%;
+  border: solid grey;
 }
-.container{
 
+.rightside{
+  text-align: center;
 }
-.activities{
-  display: inline;
-}
-.topsection{
-  display: inline;
-  height: 50%;
-  border: 1px solid red;
 
-}
-.activity{
-  border: solid;
-  border-color: #F8F8F8;
-  height: 100%;
-}
-.activity-item{
+.profilenavbutt{
   display: block;
-  margin-bottom: 10%;
+  border: solid;
 }
-.leftsec{
-  height:100%;
-  background-color: white;
-  opacity: 0.9;
+.rightpost{
+  border: solid;
+  display: inline;
 }
-.rightsec{
-  height: 100%;
-  background-color: white!important;
-  opacity: 0.9;
-  margin-bottom: 10%;
+.postimage{
+  display: inline-block;
+  width:20%;
+}
+.posttext{
+  display: inline-block;
+}
+.accountdeets{
+  margin: 4%;
+}
+.rightside{
+  margin-top: 2px;
 }
 .background{
-  background: url(../../assets/images/foodimage.jpg) 100% fixed
+  background: url("../../assets/images/ladybugs.jpg") 80% fixed;
+}
+.allcont{
+  background-color: grey;
+  opacity: 1;
+  width: 80%;
+  margin-left: 15%;
 }
