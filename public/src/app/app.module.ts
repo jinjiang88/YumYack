@@ -16,12 +16,16 @@ import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
 import { CarouselModule } from 'angular4-carousel';
+
 import { ProfileComponent } from './profile/profile.component';
 
 
 
-// import { FileUploadModule } from "ng2-file-upload";
-// import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+
+import { TestComponent } from './test/test.component';
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -32,18 +36,27 @@ import { ProfileComponent } from './profile/profile.component';
     LandingPageComponent,
     ProfileComponent,
 
+
    
     
    
+
+    TestComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule, FormsModule,
     CarouselModule,
-    // FileUploadModule,
+
+
    
     
+
+
+    FileUploadModule,
+
   ],
   providers: [RegisterService, LandingPageService, UserHomeService],
   bootstrap: [AppComponent]
