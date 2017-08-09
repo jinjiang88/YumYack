@@ -62,7 +62,7 @@ module.exports =  {
             }else{
                 console.log(user);
                 if(user.username==undefined){
-                    console.log('=======================================')
+                    console.log('=======================================', user)
                     let newuser = new Users();
                     newuser.email = req.body.email;
                     newuser.username = req.body.username;
@@ -84,5 +84,13 @@ module.exports =  {
             }
         })
    },
+
+   ratePost: (req, res)=>{
+       console.log(req.body._id, req.body.rating);
+       Posts.find()
+   }
+
+
+
 
 }
