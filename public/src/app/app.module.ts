@@ -5,13 +5,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './../../login/login.component';
 import { RegisterComponent } from './register/register.component';
-
-import {LoginService } from './login.service'
-import { RegisterService } from './register/register.service';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { RegisterService } from './register/register.service';
 import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
@@ -20,10 +19,10 @@ import { CarouselModule } from 'angular4-carousel';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RegisterComponent,
     UserHomeComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +30,7 @@ import { CarouselModule } from 'angular4-carousel';
     HttpModule, FormsModule,
     CarouselModule,
   ],
-  providers: [RegisterService, LoginService, LandingPageService, UserHomeService],
+  providers: [RegisterService, LandingPageService, UserHomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
