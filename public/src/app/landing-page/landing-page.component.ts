@@ -13,10 +13,9 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
   }
 public imageSources: string[] = [
-     'http://lorempixel.com/400/200/',
- 'http://lorempixel.com/400/200/sports/',
-   'http://lorempixel.com/400/200/',
- 'http://lorempixel.com/400/200/sports/'
+     'http://www.visiontimes.com/uploads/2016/06/6797591200_8da957f3e8_k-950x550.jpg',
+ 'http://balay.ph/wp-content/uploads/2016/11/418.jpg',
+ 'https://s-media-cache-ak0.pinimg.com/736x/f7/e5/12/f7e512fb1f402c8713c784212c76904c--no-never-never-again.jpg'
   ];
   
   public config: ICarouselConfig = {

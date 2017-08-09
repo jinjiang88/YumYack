@@ -8,6 +8,7 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "mongoose": "^4.11.6",
+    "ng2-file-upload": "^1.2.1",
     "ngx-facebook": "^2.4.0"
   },
   "devDependencies": {},
