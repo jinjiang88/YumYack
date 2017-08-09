@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { UserHomeComponent } from './user-home/user-home.component'
 import { ProfileComponent } from './profile/profile.component'
+import { TestComponent } from './test/test.component'
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'landing', component: LandingPageComponent},
   {path: 'home', component: UserHomeComponent },
   {path: 'profile', component:ProfileComponent},
+  {path: 'test', component:TestComponent},
 ];
 
 @NgModule({
