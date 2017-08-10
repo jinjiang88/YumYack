@@ -16,6 +16,7 @@ import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
 import { CarouselModule } from 'angular4-carousel';
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
 import { ProfileComponent } from './profile/profile.component';
 
@@ -37,11 +38,13 @@ import { FileUploadModule } from 'ng2-file-upload';
     ProfileComponent,
 
 
+
    
     
    
 
     TestComponent
+
 
   ],
   imports: [
