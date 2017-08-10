@@ -6,7 +6,6 @@ module.exports = app => {
     app.post('/api/register', controller.register);
 
     app.post('/api/createPost', controller.createPost);
-}
 
 		app.get('/api/grossest', controller.grossest);
 		app.get('/api/averagin', controller.averaging);

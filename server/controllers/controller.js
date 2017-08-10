@@ -85,40 +85,8 @@ module.exports =  {
            }
          }
        })
+      },
 
-    
-   register: (req, res)=>{
-       console.log(req.body.email, req.body.username, req.body.password);
-        Users.find({email: req.body.email, username:req.body.username, password: req.body.password}, (err, user)=>{
-            if(err){
-                console.log('*********************************************', user)
-                res.status(500).send(err);
-            }else{
-                console.log(user);
-                if(user.username==undefined){
-                    console.log('=======================================', user)
-                    let newuser = new Users();
-                    newuser.email = req.body.email;
-                    newuser.username = req.body.username;
-                    newuser.password = req.body.password;
-                    newuser.fname = req.body.fname;
-                    newuser.lname = req.body.lname;
-                    newuser.save((err, newerUser)=>{
-                        if(err){
-                            console.log(err);
-                            return res.status(300).send(err);
-                        }else{
-                            console.log(newerUser);
-                            return res.json(newerUser);
-                        }
-                    })
-                }else{
-                    return res.status(402).send("this user already exists");
-                }
-            }
-        })
-
-   },
    grossest:(request, response)=>{
     //  ProjectModel.find({projectName: 'name'}).sort({viewCount: -1}).limit(5).exec(
     // function(err, projects) {
@@ -152,10 +120,8 @@ module.exports =  {
           // }
         }
     })
-  }
-
-
-}
+  
+},
 
    createPost: (req, res) => {
        console.log(req.body.name,req.body.description,req.body.origin);
