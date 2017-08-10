@@ -16,6 +16,7 @@ import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
 import { CarouselModule } from 'angular4-carousel';
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
 import { ProfileComponent } from './profile/profile.component';
 
@@ -26,6 +27,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { TestService } from './test/test.service';
+
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     UserHomeComponent,
     LandingPageComponent,
     ProfileComponent,
+  
+
 
 
    
@@ -42,6 +47,7 @@ import { FileUploadModule } from 'ng2-file-upload';
    
 
     TestComponent
+
 
   ],
   imports: [
@@ -58,7 +64,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     FileUploadModule,
 
   ],
-  providers: [RegisterService, LandingPageService, UserHomeService],
+  providers: [RegisterService, LandingPageService, UserHomeService, TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

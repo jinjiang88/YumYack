@@ -1,11 +1,30 @@
+
+<h1>Register</h1>
+<p *ngIf='error'>{{ error }}</p>
+<form (submit)="register()" method="post">
+  Username:<input type="text" name="username" [(ngModel)]="username"/><br/>
+  Email:<input type='text' name='email' [(ngModel)]="email"/><br/>
+  First Name: <input type='text' name='fname' [(ngModel)]="fname"/><br/>
+  Last Name: <input type='text' name='lname' [(ngModel)]="lname"/><br/>
+  Password: <input type='password' name='password' [(ngModel)]="password"/>
+  Confirm Password: <input type='password' name='passwordConfirm' [(ngModel)]="passwordConfirm"/>
+
 	<div class="container">
+<<<<<<< HEAD
 		<div class="row main">
 			<div class="main-login main-center" style="display: inline-block; vertical-align: top;">
 				<h5>Sign up once and watch any of our free demos.</h5>
+=======
+			<div class="row main">
+				<div class="main-login main-center">
+        <h5>Sign up once and watch any of our free demos.</h5>
+        
+>>>>>>> 5fb5a0f4da9ae2776f83a2e4f55061efe65486fe
 
 
 
 
+<<<<<<< HEAD
 				<form class="" method="post" action="#">
 
 					<div class="form-group">
@@ -14,6 +33,19 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 								<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+=======
+
+
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+>>>>>>> 5fb5a0f4da9ae2776f83a2e4f55061efe65486fe
 							</div>
 						</div>
 					</div>
@@ -85,6 +117,7 @@
 
 	</div>
 </div>
+
 
 
 

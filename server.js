@@ -65,11 +65,13 @@ app.get('*', function (req, res) {
     /** API path that will upload the files */
     app.post('/upload', function(req, res) {
         upload(req,res,function(err){
+
 			console.log(req.file);
             if(err){
                  res.json({error_code:1,err_desc:err});
                  return;
             }
+             req.session.filename = req.file.filename; 
              res.json({error_code:0,err_desc:null});
         });
     });
