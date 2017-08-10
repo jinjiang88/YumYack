@@ -130,6 +130,21 @@ module.exports =  {
         newPost.name = req.body.name;
         newPost.description = req.body.description;
         newPost.origin = req.body.origin;
+        Users.findOne({-_id: req.session.user._id},(err, user)=>{ 
+              if(err){
+                console.log(err);
+                return res.sendStatus(500);
+              }else{
+                user.posts++
+                user.save((err, savedPosts)=>{
+                      if(err){
+                        console.log(err);
+                        return;
+                      }
+                      return res.json(savedPosts);
+                })
+              }
+            })
         newPost.save((err, savedPost)=>{
             if(err){
                 let errors = '';
@@ -143,7 +158,17 @@ module.exports =  {
             }
         })
    },
-
+  current: (req, res) => {
+    if(!req.session.users){
+      return res.status(401).send("Nice try")
+    }else{
+      return res.json(req.session.users);
+    }
+  },
+  logout: (req, res)=> {
+    req.session.destroy();
+    res.redirect('/')
+  },
 
 
 
