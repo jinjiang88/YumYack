@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { TestService } from './test.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -8,9 +10,19 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class TestComponent implements OnInit {
 	public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
-  constructor() { }
-
+  constructor(private _testService: TestService, private _router: Router) { }
+  name='';
+  description='';
+  origin='';
   ngOnInit() {
   }
+
+  hello(){
+   	this._testService.createPost({name:this.name,description:this.description,origin:this.origin})
+  	.then( (polls) => this._router.navigate(['/landing']))
+  	.catch( (response) => console.log(response) ) 
+  }
+
+  
 
 }

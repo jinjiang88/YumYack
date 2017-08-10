@@ -24,8 +24,9 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 import { TestComponent } from './test/test.component';
-
 import { FileUploadModule } from 'ng2-file-upload';
+import { TestService } from './test/test.service';
+
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     UserHomeComponent,
     LandingPageComponent,
     ProfileComponent,
+  
 
 
    
@@ -58,7 +60,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     FileUploadModule,
 
   ],
-  providers: [RegisterService, LandingPageService, UserHomeService],
+  providers: [RegisterService, LandingPageService, UserHomeService, TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -85,10 +85,26 @@ module.exports =  {
         })
    },
 
-   ratePost: (req, res)=>{
-       console.log(req.body._id, req.body.rating);
-       Posts.find()
-   }
+   createPost: (req, res) => {
+       console.log(req.body.name,req.body.description,req.body.origin);
+        let newPost = new Posts();
+        newPost.user = req.session.user._id;
+        newPost.name = req.body.name;
+        newPost.description = req.body.description;
+        newPost.origin = req.body.origin;
+        newPost.save((err, savedPost)=>{
+            if(err){
+                let errors = '';
+                for(let i in err.errors){
+                    errors += err.errors[i].message + ","
+                }
+                return res.status(500).send(errors);
+            }else{
+                console.log("this is the saved newPost", savedPost);
+                return res.json(savedPost);
+            }
+        })
+   },
 
 
 
