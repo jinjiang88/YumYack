@@ -1,5 +1,5 @@
 <h1>Register</h1>
-<p *ngIf='error'>{{error | json}}</p>
+<p *ngIf='error'>{{ error }}</p>
 <form (submit)="register()" method="post">
   Username:<input type="text" name="username" [(ngModel)]="username"/><br/>
   Email:<input type='text' name='email' [(ngModel)]="email"/><br/>
@@ -12,9 +12,4 @@
 </form>
 
 
-{{error.errors.email| json}}
-
-
-
-
-
+{{error| json}}

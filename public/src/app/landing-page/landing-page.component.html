@@ -13,12 +13,12 @@
       <div id="navbar" class="collapse navbar-collapse" style="background-color: #FFFFFF;">
         <h3 style="color:#18233E; vertical-align:top; display:inline-block;">YumYack</h3>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" style="color:#18233E;">How it works</a></li>
-          <li><a href="/meetups" style="color:#18233E;">Explore</a></li>
-          <li><a href="/messageboard" style="color:#18233E;">How it work</a></li>
-          <li><a href="/social" style="color:#18233E;">Social Mention</a></li>
+          <li><A HREF="#howitworks" style="color:#18233E;">How it works</A></li>
+          <li><a href="#mostgross" style="color:#18233E;">Most gross</a></li>
+          <li><a href="#recentposts" style="color:#18233E;">Recent posts</a></li>
+          <li><a href="#topcontributors" style="color:#18233E;">Top contributors</a></li>
           <li><a href="/deals" style="color:#18233E;">Community</a></li>
-          <li><a class="join" href="/register"><span class="jointext">Join</span></a></li>
+          <li class="joinbutton"><a class="join" href="/register"><span class="jointext">Join</span></a></li>
         </ul>
       </div>
     </div>
@@ -26,14 +26,17 @@
 </div>
 <!-- ================================================================================= -->
 <!-- top image ============================================================================= -->
+<button (click)="checkingaverage()">Checking Average</button>
 <div class="">
-  <img  style="width:100%;" class="img-fluid max" src="http://nourishedkitchen.com/wp-content/uploads/2009/11/chickenfoot-1024x639.jpg" alt="">
+  <img  style="width:100%; height:650px" class="img-fluid max" src="http://nourishedkitchen.com/wp-content/uploads/2009/11/chickenfoot-1024x639.jpg" alt="">
 </div>
 <!-- how it works======================================================================================= -->
+<A NAME="howitworks"></A>
 <div class="container" style=" display: block;
     margin: auto;
     width: 50%;">
   <div class="row pagination-centered">
+    <h3 class="howitworks">How it works!</h3>
     <div class="col-md-4">
       <img class="rounded float-left" style="width:30%; display:block; margin:0 auto;" src="https://blog.addthiscdn.com/wp-content/uploads/2015/11/share.png" alt="">
       <h4 style="font-weight:bold; text-align:center;">Share</h4>
@@ -49,19 +52,23 @@
       <h4 style="font-weight:bold; text-align:center;">Share</h4>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
     </div>
+    <A NAME="mostgross"></A>
   </div>
 </div>
 <!-- ============================================================================================== -->
 <!-- ================================= MOST GROSS ======================================================== -->
+
+  <h3 class="mostgrossheader">Most Gross!</h3>
 <div style="display: block;
     margin: auto;
     width: 40%; height: 400px; text-align:center;">
   <carousel [sources]="imageSources" [config]="config"></carousel>
+  <A NAME="recentposts"></A>
 </div>
 <!-- ================================= recent posts ======================================================== -->
 <div class="container" style="margin-top:5%">
   <div class="row">
-    <h4 style="text-align:center;">Most Recent</h4>
+    <h4 class="mostrecentheader" style="text-align:center;">Most Recent</h4>
     <!-- this is where the for loop would go -->
     <div class="container" >
       <div class="row" >
@@ -110,6 +117,7 @@
       </div>
     </div>
     <br>
+    <A NAME="topcontributors"></A>
   </div>
 </div>
 
@@ -192,6 +200,9 @@
 
   </div>
 
+</div>
+<div class="loginform">
+  
 </div>
 
 <div class="footers" style="background-color:#151e35">

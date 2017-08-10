@@ -15,6 +15,7 @@ import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 
 import { CarouselModule } from 'angular4-carousel';
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CarouselModule } from 'angular4-carousel';
     RegisterComponent,
     UserHomeComponent,
     LandingPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    // PostcreationComponent
   ],
   imports: [
     BrowserModule,
