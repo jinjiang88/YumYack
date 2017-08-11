@@ -45,7 +45,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
     TestComponent,
     LoginComponent,
     FriendslistComponent,
-    FindfriendsComponent
+    FindfriendsComponent,
 
   
 

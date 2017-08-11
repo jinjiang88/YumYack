@@ -199,7 +199,7 @@ module.exports =  {
 
 
   getPosts: (req, res) => {
-    Posts.find({}).populate('_users').exec( (err, posts)=>
+    Posts.find({}).populate('userscores').('user').exec( (err, posts)=>
     {
       if(err){
         console.log(err);

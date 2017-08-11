@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
           .catch( (err) => console.log(err) )
 
 
-      )
+      
   }
   public imageSources: string[] = [
    'http://thewoksoflife.com/wp-content/uploads/2015/03/cantonese-roast-pork-belly-13.jpg',
@@ -49,4 +49,4 @@ export class RegisterComponent implements OnInit {
 
 
   }
-}
+
