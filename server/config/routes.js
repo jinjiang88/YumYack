@@ -13,6 +13,8 @@ module.exports = app => {
 	app.get('/logout', controller.logout);
 	app.get('/api/current', controller.current);
 	app.get('/api/posts', controller.getAllPosts);
+	app.post('/api/getuser', controller.getUser);
+	app.post('/api/addfriend', controller.addFriend);
 
 }
 

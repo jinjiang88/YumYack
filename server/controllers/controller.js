@@ -17,7 +17,7 @@ module.exports =  {
     },
 
     getAllPosts: (req, res) => {
-        Posts.find({user: req.session.user._id}, (err, posts)=>{
+        Posts.find({}, (err, posts)=>{
             if(err){
                 return res.status(500).send(err);
             }else{
@@ -161,7 +161,7 @@ module.exports =  {
                 for(let i in err.errors){
                     errors += err.errors[i].message + ","
                 }
-                return res.status(500).send(errors="something went wrong");
+                return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
                 return res.json(savedPost);
@@ -210,6 +210,48 @@ module.exports =  {
       }
     })
   },
+
+  getUser: (req, res)=>{
+      
+      Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
+        if(err){
+            res.status(500).send(err);
+        }else{
+            console.log(user);
+            res.json(user);
+        }
+      })
+  },
+
+  addFriend: (req, res)=>{
+      Users.findOne({_id:req.session.user._id}, (err,user)=>{
+          if(err){
+              res.status(500).send(err);
+          }else{
+              console.log(user);
+              let check = false;
+              for(let x=0;x<user.friends.length; x++){
+                if(user.friends[x] == req.body.id){
+                    check = true;
+                }
+              }
+              if(check){
+                  res.sendStatus(500);
+              }else{
+                  user.friends.push(req.body.id);
+                  user.save((err, savedUser)=>{
+                    if(err){
+                        console.log(err);
+                        res.sendStatus(500);
+                    }else{
+                        console.log(savedUser);
+                        res.json(savedUser);
+                    }
+                  })
+              }
+          }
+      })
+  }
 
 
 

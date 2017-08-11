@@ -10,6 +10,7 @@ import { TestComponent } from './test/test.component';
 import { LoginComponent } from './login/login.component';
 import { FriendslistComponent} from './friendslist/friendslist.component'
 import { FindfriendsComponent } from './findfriends/findfriends.component';
+import { ViewComponent } from './view/view.component';
 
 
 
@@ -31,6 +32,7 @@ const routes: Routes = [
 
   {path: 'test', component:TestComponent},
   {path: 'posts', component:UserPostsComponent},
+  {path: 'view/:id', component:ViewComponent},
 
 ];
 
