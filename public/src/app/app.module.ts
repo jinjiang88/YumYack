@@ -28,6 +28,7 @@ import { TestComponent } from './test/test.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
+import { UserPostsComponent } from './user-posts/user-posts.component';
 
 
 
@@ -46,7 +47,16 @@ import { TestService } from './test/test.service';
     
    
 
-    TestComponent
+    TestComponent,
+  
+
+
+
+   
+    
+   
+
+    UserPostsComponent
 
 
   ],
