@@ -30,6 +30,7 @@ import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
 
 import { UserPostsComponent } from './user-posts/user-posts.component';
+import { UserPostsService } from './user-posts/user-posts.service';
 
 
 
@@ -41,32 +42,11 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
     UserHomeComponent,
     LandingPageComponent,
     ProfileComponent,
-
     TestComponent,
     LoginComponent,
     FriendslistComponent,
-    FindfriendsComponent
-
-  
-
-
-
-   
-    
-   
-
-
-
-
-
-   
-    
-   
-
+    FindfriendsComponent,
     UserPostsComponent
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -75,7 +55,10 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
     CarouselModule,
     FileUploadModule,
   ],
-  providers: [RegisterService, LandingPageService, UserHomeService, TestService, FriendslistService, LoginService, FindfriendsService],
+  providers: [RegisterService, LandingPageService, UserHomeService, TestService,
+     FriendslistService, LoginService, FindfriendsService,
+     UserPostsService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
