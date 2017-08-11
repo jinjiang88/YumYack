@@ -1,0 +1,31 @@
+<form>
+  First Name:<input type='text' name="fname"/>
+  <br/>
+  <input type='submit' value='Search'/>
+
+</form>
+<br/>
+
+
+<div class="container">
+  <div *ngFor='let user of users'>
+      
+    
+    <div style="border:1px solid black;">
+        <img src='./../assets/images/file-1502355578835.jpg'>
+        <br/>
+        <p>{{user.fname}}</p>
+        <p>{{user.lname}}</p>
+      </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+</div>

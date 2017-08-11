@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class TestComponent implements OnInit {
 	public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
   constructor(private _testService: TestService, private _router: Router) { }
+  error='';
   name='';
   description='';
   origin='';
@@ -19,8 +20,8 @@ export class TestComponent implements OnInit {
 
   hello(){
    	this._testService.createPost({name:this.name,description:this.description,origin:this.origin})
-  	.then( (polls) => this._router.navigate(['/landing']))
-  	.catch( (response) => console.log(response) ) 
+  	.then( (user) => this._router.navigate(['/landing']))
+  	.catch( (error) => this.error=error ) 
   }
 
   

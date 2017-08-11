@@ -17,7 +17,7 @@ var whateverWeWant = {
   httpOnly:false, // Forces cookies to only be used over http
   maxAge: 3600000
  }
-}
+};
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -30,7 +30,7 @@ app.use(session(whateverWeWant));
 
 app.use(express.static(path.join(__dirname, 'public', 'dist')));
 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 require('./server/config/mongoose');
@@ -40,7 +40,7 @@ require('./server/config/routes')(app);
 
 app.get('*', function (req, res) {
     res.sendFile(path.resolve('public/dist/index.html'));
-}) 	
+});
 
 	/** Code for upload
     /** Serving from the same express Server
@@ -50,7 +50,7 @@ app.get('*', function (req, res) {
 
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
-            cb(null, './uploads/');
+            cb(null, './public/src/assets/images');
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
@@ -76,4 +76,4 @@ app.get('*', function (req, res) {
         });
     });
 
-app.listen(8000, ()=> console.log("Server listening on port 8000."))
+app.listen(8000, ()=> console.log("Server listening on port 8000."));
