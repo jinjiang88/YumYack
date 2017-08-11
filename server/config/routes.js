@@ -11,6 +11,7 @@ module.exports = app => {
 		app.get('/api/averagin', controller.averaging);
 	app.get('/logout', controller.logout);
 		app.get('/api/current', controller.current);
-	app.get('/api/posts', controller.getPosts);
+	app.get('/api/posts', controller.getAllPosts);
+	app.get('/api/recentposts', controller.getRecentPosts);
 }
 
