@@ -130,7 +130,7 @@ module.exports =  {
         newPost.name = req.body.name;
         newPost.description = req.body.description;
         newPost.origin = req.body.origin;
-        Users.findOne({-_id: req.session.user._id},(err, user)=>{ 
+        Users.findOne({_id: req.session.user._id},(err, user)=>{ 
               if(err){
                 console.log(err);
                 return res.sendStatus(500);
@@ -170,7 +170,17 @@ module.exports =  {
     res.redirect('/')
   },
 
-
+  getPosts: (req, res) => {
+    Posts.find({}).populate('_users').exec( (err, posts)=>
+    {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(posts);
+      }
+    })
+  },
 
 }
 
