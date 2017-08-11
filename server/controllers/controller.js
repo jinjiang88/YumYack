@@ -27,7 +27,7 @@ module.exports =  {
         })
     },
     getRecentPosts: (req, res) => {
-        Posts.find({timestamp:{'$lte':new Date(),'$gte':new Date(Date()-7)}}}, (err, posts)=>{
+        Posts.find({timestamp:{'$lte':new Date(),'$gte':new Date(Date()-7)}}, (err, posts)=>{
             if(err){
                 return res.status(500).send(err);
             }else{
