@@ -21,14 +21,12 @@ export class RegisterComponent implements OnInit {
   passwordConfirm='';
 
   register(){
-    console.log(this.username, this.lname, this.fname, this.email, this.password);
+    console.log(this.username, this.lname, this.fname, this.email,this.password);
     	this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname})
   		.then( (user) => this._router.navigate(['/home']))
-  		.catch( (err) => {
-        this.error=err;
-      }
+  		.catch( (err) =>
+        this.error=err)
 
-      )
+    }
+
   }
-
-}
