@@ -18,6 +18,16 @@ module.exports =  {
 
     getAllPosts: (req, res) => {
         Posts.find({user: req.session.user._id}, (err, posts)=>{
+
+            if(err){
+                return res.status(500).send(err);
+            }else{
+                return res.json(posts)
+            }
+        })
+    },
+    getRecentPosts: (req, res) => {
+        Posts.find({timestamp:{'$lte':new Date(),'$gte':new Date(Date()-7)}}}, (err, posts)=>{
             if(err){
                 return res.status(500).send(err);
             }else{
