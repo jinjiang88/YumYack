@@ -90,8 +90,46 @@ module.exports =  {
              })
            }
          }
-      })
-     },
+
+       })
+      },
+
+   grossest:(request, response)=>{
+    //  ProjectModel.find({projectName: 'name'}).sort({viewCount: -1}).limit(5).exec(
+    // function(err, projects) {
+    //     ...
+    // }
+
+    Posts.find({}).sort(average({average:-1}).limit(6).exec(
+      function(err, posts){
+        if(err){
+          console.log(err);
+          response.json(err);
+        }else{
+          console.log("something didnt go wrong");
+          response.json(posts);
+        }
+      }
+    )
+  )
+  },
+  averaging: (request,response)=>{
+    Posts.find({}, (err,posts)=>{
+        if(err){
+          response.json(err)
+        }else{
+          console.log(posts)
+          // var sum=0;
+          // for(var i=0; i>posts.length; i++){
+          //   for(var x=0; x>posts.score.length;x++){
+          //     posts[i].score[x]
+          //   }
+          // }
+        }
+    })
+  
+},
+
 
    createPost: (req, res) => {
        console.log(req.session.filename);
@@ -102,6 +140,21 @@ module.exports =  {
         newPost.name = req.body.name;
         newPost.description = req.body.description;
         newPost.origin = req.body.origin;
+        Users.findOne({_id: req.session.user._id},(err, user)=>{ 
+              if(err){
+                console.log(err);
+                return res.sendStatus(500);
+              }else{
+                user.posts++
+                user.save((err, savedPosts)=>{
+                      if(err){
+                        console.log(err);
+                        return;
+                      }
+                      return res.json(savedPosts);
+                })
+              }
+            })
         newPost.save((err, savedPost)=>{
             if(err){
                 let errors = '';
@@ -115,6 +168,18 @@ module.exports =  {
             }
         })
    },
+  current: (req, res) => {
+    if(!req.session.users){
+      return res.status(401).send("Nice try")
+    }else{
+      return res.json(req.session.users);
+    }
+  },
+  logout: (req, res)=> {
+    req.session.destroy();
+    res.redirect('/')
+  },
+
 
    getAllFriends: (req,res)=> {
         Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
@@ -131,6 +196,19 @@ module.exports =  {
    },
 
 
+
+
+  getPosts: (req, res) => {
+    Posts.find({}).populate('_users').exec( (err, posts)=>
+    {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(posts);
+      }
+    })
+  },
 
 
 

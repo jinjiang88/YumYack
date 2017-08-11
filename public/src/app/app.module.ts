@@ -18,14 +18,20 @@ import { UserHomeService } from './user-home/user-home.service'
 import { CarouselModule } from 'angular4-carousel';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
+
 import { LoginComponent } from './login/login.component';
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { FriendslistService } from './friendslist/friendslist.service';
 import { LoginService } from './login/login.service';
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
+
+import { UserPostsComponent } from './user-posts/user-posts.component';
+
+
 
 
 @NgModule({
@@ -35,10 +41,32 @@ import { FindfriendsService } from './findfriends/findfriends.service';
     UserHomeComponent,
     LandingPageComponent,
     ProfileComponent,
+
     TestComponent,
     LoginComponent,
     FriendslistComponent,
     FindfriendsComponent
+
+  
+
+
+
+   
+    
+   
+
+
+
+
+
+   
+    
+   
+
+    UserPostsComponent
+
+
+
   ],
   imports: [
     BrowserModule,
