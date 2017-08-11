@@ -38,32 +38,38 @@ module.exports =  {
 
 
 	login: (req, res) => {
-        Users.findOne({email: req.body.email}, (err, user)=>{
+        console.log(req.body.email,req.body.password)
+        Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
             if(err){
                 res.status(500).send(err);
             }else{
                 //check what user shows
                 console.log(user);
-                if(user==null){
-                    res.json({user: "empty"});
-                }else{
+                if(user){
+                      req.session.user=user;
+                    console.log("user was found");
                     res.json({user: "found"});
+
+
+                   
+                }else{
+                    console.log("user was not found");
+                    res.sendStatus(500);
                 }
             }
         })
     },
-
-
-   register: (request, response)=>{
+    
+ register: (request, response)=>{
        Users.findOne({email:request.body.email}, (err, user)=>{
          if(err){
-           console.log("**********************")
+           console.log('**********************')
            return response.json(err)
          }else{
-           console.log("_______________________")
+           console.log('_______________________')
            if(user){
-             console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^")
-             return response.json("this email has been used")
+             console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^')
+             return response.json('this email has been used')
            }else{
              var newuser = new Users();
              newuser.fname =request.body.fname;
@@ -71,19 +77,20 @@ module.exports =  {
              newuser.email = request.body.email;
              newuser.password = request.body.password;
              newuser.username = request.body.username;
-             console.log("asdfasdfasdfasdfsfd")
+             console.log('asdfasdfasdfasdfsfd')
              newuser.save(function(err,saveduser){
                if(err){
-                 console.log("something went wrong saving new user")
+                 console.log('something went wrong saving new user')
                  response.status(500).send(err);
                }else{
-                 console.log("something didnt go wrong")
+                 console.log('everything went right')
                  request.session.user= saveduser;
                  response.json(saveduser)
                }
              })
            }
          }
+
        })
       },
 
@@ -123,9 +130,12 @@ module.exports =  {
   
 },
 
+
    createPost: (req, res) => {
-       console.log(req.body.name,req.body.description,req.body.origin);
+       console.log(req.session.filename);
+       console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
         let newPost = new Posts();
+        newPost.filename = req.session.filename;
         newPost.user = req.session.user._id;
         newPost.name = req.body.name;
         newPost.description = req.body.description;
@@ -151,7 +161,7 @@ module.exports =  {
                 for(let i in err.errors){
                     errors += err.errors[i].message + ","
                 }
-                return res.status(500).send(errors);
+                return res.status(500).send(errors="something went wrong");
             }else{
                 console.log("this is the saved newPost", savedPost);
                 return res.json(savedPost);
@@ -170,6 +180,24 @@ module.exports =  {
     res.redirect('/')
   },
 
+
+   getAllFriends: (req,res)=> {
+        Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
+            if(err){
+                console.log("************this is the error***************",err, "**********************************")
+                res.status(500).send(err);
+            }else{
+                console.log(user);
+                return res.json(user);
+            }
+        })
+
+
+   },
+
+
+
+
   getPosts: (req, res) => {
     Posts.find({}).populate('_users').exec( (err, posts)=>
     {
@@ -182,5 +210,6 @@ module.exports =  {
     })
   },
 
-}
 
+
+}

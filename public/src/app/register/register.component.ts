@@ -10,7 +10,7 @@ import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private _registerService:RegisterService, private _router: Router) { }
+ constructor(private _registerService:RegisterService, private _router: Router) { }
  error='';
   ngOnInit() {
   }
@@ -21,13 +21,12 @@ export class RegisterComponent implements OnInit {
   password='';
   passwordConfirm='';
 
-  register(){
-    console.log(this.username, this.lname, this.fname, this.email, this.password);
-    	this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname})
-  		.then( (user) => this._router.navigate(['/home']))
-  		.catch( (err) => {
-        this.error=err;
-      }
+ register(){
+    console.log(this.username, this.lname, this.fname, this.email,this.password);
+        this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname})
+          .then( (user) => {this._router.navigate(['/home'])})
+          .catch( (err) => console.log(err) )
+
 
       )
   }
@@ -49,4 +48,5 @@ export class RegisterComponent implements OnInit {
   };
 
 
+  }
 }
