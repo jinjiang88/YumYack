@@ -17,7 +17,7 @@ module.exports =  {
     },
 
     getAllPosts: (req, res) => {
-        Posts.find({}, (err, posts)=>{
+
             if(err){
                 return res.status(500).send(err);
             }else{
