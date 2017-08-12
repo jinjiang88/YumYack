@@ -1,10 +1,10 @@
-
 <!-- this is the navbar ==============================================================================-->
 <div class="navbar" style="background-color:#FFFFFF; border:none; margin-bottom:0px;">
   <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFFFFF; color:#e4e4e4;">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -14,7 +14,9 @@
       <div id="navbar" class="collapse navbar-collapse" style="background-color: #FFFFFF;">
         <h3 style="color:#18233E; vertical-align:top; display:inline-block;">YumYack</h3>
         <ul class="nav navbar-nav navbar-right">
-          <li><A HREF="#howitworks" style="color:#18233E;">How it works</A></li>
+          <li>
+            <A HREF="#howitworks" style="color:#18233E;">How it works</A>
+          </li>
           <li><a href="#mostgross" style="color:#18233E;">Most gross</a></li>
           <li><a href="#recentposts" style="color:#18233E;">Recent posts</a></li>
           <li><a href="#topcontributors" style="color:#18233E;">Top contributors</a></li>
@@ -27,88 +29,99 @@
     </div>
   </nav>
 </div>
+<!-- validations -->
+<p class="err" *ngIf="FirstName.errors">First name must at least be 2 characters long</p>
+<p class="err" *ngIf="LastName.errors">Last name must at least be 2 characters long</p>
+<p class="err" *ngIf="Email.errors">Email must at least be 2 characters long</p>
+<p class="err" *ngIf="Username.errors">Username must at least be 2 characters long</p>
+<p class="err" *ngIf="Password.errors">Password must at least be 2 characters long</p>
+<p class="err" *ngIf="password!=passwordConfirm">Password Confirmation must match Password</p>
 
-    <div class="container">
-            <div class="row main">
-                <div class="main-login main-center" style="display: inline-block; vertical-align: top;">
-       <h5>Sign up once and watch any of our free demos.</h5>
-       
+<div class="container">
+  <div class="row main">
+    <div class="main-login main-center" style="display: inline-block; vertical-align: top;">
+      <h5>Already Registered? <a [routerLink]="['/login']">Logina</a></h5>
 
 
 
 
 
 
-                    <form method="post">
-                        <div class="form-group">
-                            <label for="fname" class="cols-sm-2 control-label">Your First Name</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="fname" id="name" [(ngModel)]="fname" placeholder="Enter your First name"/>
-                                </div>
-                            </div>
-                        </div>
-            <div class="form-group">
-              <label for="lname" class="cols-sm-2 control-label">Your Last Name</label>
-              <div class="cols-sm-10">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                  <input type="text" class="form-control" name="lname" id="name" [(ngModel)]="lname" placeholder="Enter your Last name"/>
-                </div>
-              </div>
+
+      <form method="post">
+        <div class="form-group">
+          <label for="fname" class="cols-sm-2 control-label">Your First Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="fname" id="name" [(ngModel)]="fname" placeholder="Enter your First name" required
+                minlength="2" #FirstName="ngModel" />
             </div>
-                        <div class="form-group">
-                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="email" id="email" [(ngModel)]="email" placeholder="Enter your Email"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="username" class="cols-sm-2 control-label">Username</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" [(ngModel)]="username" id="username"  placeholder="Enter your Username"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="cols-sm-2 control-label">Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password"  placeholder="Enter your Password"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="passwordConfirm" id="confirm" [(ngModel)]="passwordConfirm" placeholder="Confirm your Password"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <a (click)="register()" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
-                        </div>
-          </form>
-         </div>
-			<div style="background-image: url('./assets/images/iphonenew.jpg'); width:300px; height: 600px; padding-top: 4.8%; display: inline-block; padding-left:2%; float-right;">
-				<div style="display: block;
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lname" class="cols-sm-2 control-label">Your Last Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="lname" id="name" [(ngModel)]="lname" placeholder="Enter your Last name" required
+                minlength="2" #LastName="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="cols-sm-2 control-label">Your Email</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="email" id="email" [(ngModel)]="email" placeholder="Enter your Email" required
+                minlength="2" #Email="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username" class="cols-sm-2 control-label">Username</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="username" [(ngModel)]="username" id="username" placeholder="Enter your Username"
+                required minlength="2" #Username="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="cols-sm-2 control-label">Password</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password" placeholder="Enter your Password"
+                required minlength="2" #Password="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="password" class="form-control" name="passwordConfirm" id="confirm" [(ngModel)]="passwordConfirm" placeholder="Confirm your Password"
+                required minlength="2" #ConfirmPassword="ngModel" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group " *ngIf='FirstName.valid && LastName.valid && Email.valid && Password.valid && password==passwordConfirm'>
+          <a (click)="register()" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+        </div>
+      </form>
+    </div>
+    <div style="background-image: url('./assets/images/iphonenew.jpg'); width:300px; height: 600px; padding-top: 4.8%; display: inline-block; padding-left:2%; float-right;">
+      <div style="display: block;
 					margin-top: 19px; 
 					width: 92%; height: 110%; text-align:center;">
-					<carousel [sources]="imageSources" [config]="config"></carousel>
+        <carousel [sources]="imageSources" [config]="config"></carousel>
 
-				</div>
-			</div>
+      </div>
+    </div>
 
-	</div>
+  </div>
 </div>
-
-

@@ -13,7 +13,7 @@ module.exports = app => {
 	app.get('/logout', controller.logout);
 
 
-	app.get('/api/recentposts', controller.getRecentPosts);
+	// app.get('/api/recentposts', controller.getRecentPosts);
 
 	app.get('/api/current', controller.current);
 	app.get('/api/posts', controller.getAllPosts);
@@ -21,5 +21,7 @@ module.exports = app => {
 	app.post('/api/addfriend', controller.addFriend);
 	app.get('/api/getcurrentuser', controller.getCurrentUser);
 	app.get('/api/getFriendsPosts', controller.getFriendsPosts);
+	app.post('/api/rate', controller.rate);
+	app.post('/api/loadPost', controller.loadPost)
 }
 

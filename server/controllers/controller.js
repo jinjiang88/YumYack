@@ -17,12 +17,15 @@ module.exports =  {
     },
 
     getAllPosts: (req, res) => {
-
+        Posts.find({},(err,posts)=>{
             if(err){
-                return res.status(500).send(err);
+                console.log(err);
+                res.Status(500).send(err);
             }else{
-                return res.json(posts)
+                console.log("heres all the posts");
+                res.json(posts);
             }
+        })
         
     },
 
@@ -140,21 +143,6 @@ module.exports =  {
         newPost.name = req.body.name;
         newPost.description = req.body.description;
         newPost.origin = req.body.origin;
-        // Users.findOne({_id: req.session.user._id},(err, user)=>{ 
-        //       if(err){
-        //         console.log(err);
-        //         return res.sendStatus(500);
-        //       }else{
-        //         user.posts++
-        //         user.save((err, savedPosts)=>{
-        //               if(err){
-        //                 console.log(err);
-        //                 return;
-        //               }
-        //               return res.json(savedPosts);
-        //         })
-        //       }
-        //     })
         newPost.save((err, savedPost)=>{
             if(err){
                 let errors = '';
@@ -212,7 +200,6 @@ module.exports =  {
   },
 
   getUser: (req, res)=>{
-      
       Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
         if(err){
             res.status(500).send(err);
@@ -278,7 +265,111 @@ module.exports =  {
             res.json(friendsPosts);
         }
     })
-  }
+  },
+
+
+
+  rate: (req, res)=>{
+      console.log("just got in rate")
+    Posts.findOne({_id:req.body.id},(err,post)=>{
+        if(err){
+            console.log("there was an error in rating")
+            res.sendStatus(500);
+        }else{
+            console.log("found the post")
+            let index=0;
+            let total=0;
+            let average=0;
+            let alreadyRated= false;
+            for(let x=0;x<post.userScores.length;x++){
+                if(post.userScores[x]==req.session.user._id){
+                    alreadyRated = true;
+                    index=x;
+                }
+            }
+            if(alreadyRated==false){
+                console.log("it has not been rated yet")
+                post.userScores.push(req.session.user._id);
+                post.score.push(req.body.rate)
+            
+                console.log("going to the loop now")
+               for(let i=0;i<post.score.length;i++){
+                    total+=post.score[i];
+                }
+                console.log(total)
+                console.log(post.score.length)
+                console.log(total/post.score.length)
+                if(!post.score.length){
+                    post.average=total/1;
+                }else{
+                    post.average=total/post.score.length;
+                }
+                post.save((err,savedPost)=>{
+                    if(err){
+                        console.log("something wrong with saving");
+                        console.log(err);
+                        res.sendStatus(500);
+                    }else{
+                        console.log("it successfully saved")
+                        console.log(savedPost);
+                        res.json(savedPost);
+                    }
+                })
+                }else{
+                console.log("it has been rated")
+//------------------need to learn to update in an array----------------                
+                Posts.update({_id:req.body.id}, {$inc:
+                     { 
+                     "score.${index}": req.body.rate}});
+                     console.log("everything should be copacetic")
+                     res.json(post);
+            }
+        
+
+          }
+        })
+      },
+
+      loadPost: (req,res)=>{
+          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+              if(err){
+                  console.log("there has been an error in finding post", err);
+                  res.status(500).send(err);
+              }else{
+                  console.log("posts has been successfully found", posts);
+                  res.json(posts);
+              }
+          })
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 }
