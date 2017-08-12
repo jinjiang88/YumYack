@@ -17,13 +17,13 @@ module.exports =  {
     },
 
     getAllPosts: (req, res) => {
-        Posts.find({}, (err, posts)=>{
+
             if(err){
                 return res.status(500).send(err);
             }else{
                 return res.json(posts)
             }
-        })
+        
     },
 
     getAllImages: (req, res)=>{
@@ -251,8 +251,44 @@ module.exports =  {
               }
           }
       })
+  },
+
+//gets the current user
+  getCurrentUser: (req,res)=>{
+        Users.findOne({_id:req.session.user._id}, (err,user)=>{
+            if(err){
+                res.status(500).send("There was an error find user. User may not be logged in")
+            }else{
+                console.log("we got the current user")
+                res.json(user);
+            }
+        })
+  },
+
+  //query to posts to find all of your friends posts
+  getFriendsPosts: (req,res)=>{
+    Posts.find({'user': {$in: req.session.user.friends}}).populate('user').exec((err,friendsPosts)=>{
+        if(err){
+            console.log("something went wrong with the query on getFriendsPosts controller")
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+            console.log("this is all your friends posts")
+            console.log(friendsPosts);
+            res.json(friendsPosts);
+        }
+    })
   }
 
 
-
 }
+//Instructions on how to find multiples id's in an array
+// model.find({
+//     '_id': { $in: [
+//         mongoose.Types.ObjectId('4ed3ede8844f0f351100000c'),
+//         mongoose.Types.ObjectId('4ed3f117a844e0471100000d'), 
+//         mongoose.Types.ObjectId('4ed3f18132f50c491100000e')
+//     ]}
+// }, function(err, docs){
+//      console.log(docs);
+// });

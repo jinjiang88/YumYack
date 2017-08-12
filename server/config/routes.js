@@ -11,10 +11,18 @@ module.exports = app => {
 	// app.get('/api/grossest', controller.grossest);
 	// app.get('/api/averagin', controller.averaging);
 	app.get('/logout', controller.logout);
+
+
+	app.get('/api/recentposts', controller.getRecentPosts);
+
 	app.get('/api/current', controller.current);
 	app.get('/api/posts', controller.getAllPosts);
 	app.post('/api/getuser', controller.getUser);
 	app.post('/api/addfriend', controller.addFriend);
+	app.get('/api/getcurrentuser', controller.getCurrentUser);
+	app.get('/api/getFriendsPosts', controller.getFriendsPosts);
+
+
 
 }
 
