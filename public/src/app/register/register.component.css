@@ -1,3 +1,14 @@
+/* our stuff */
+err {
+    color: red;
+}
+
+
+
+
+
+
+/* bootstrap stuff */
 #playground-container {
     height: 500px;
     overflow: hidden !important;

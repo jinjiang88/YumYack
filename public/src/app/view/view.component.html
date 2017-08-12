@@ -1,0 +1,18 @@
+<div class="container">
+ 
+  <div > 
+    
+    Username:<p>{{User[0].username}}</p>
+    First Name:<p>{{User[0].fname}}</p>
+    Last Name:<p>{{User[0].lname}}</p>
+    Email:<p>{{User[0].email}}</p>
+
+  </div>
+
+
+    <form (submit)="addFriend()">
+      <input type='submit' value='Add {{User[0].fname}} {{User[0].lname}}' />
+    </form>
+
+
+</div>
