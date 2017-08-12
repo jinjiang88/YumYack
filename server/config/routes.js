@@ -21,8 +21,5 @@ module.exports = app => {
 	app.post('/api/addfriend', controller.addFriend);
 	app.get('/api/getcurrentuser', controller.getCurrentUser);
 	app.get('/api/getFriendsPosts', controller.getFriendsPosts);
-
-
-
 }
 
