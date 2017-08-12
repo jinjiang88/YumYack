@@ -6,6 +6,10 @@ module.exports = app => {
     app.get('/api/getallusers', controller.getAllUsers);
     app.post('/api/register', controller.register);
     app.post('/api/createPost', controller.createPost);
+
+		app.get('/api/grossest', controller.grossest);
+		app.get('/api/averagin', controller.averaging);
+
     app.get('/api/getallposts', controller.getAllPosts);
     app.get('/api/getallfriends', controller.getAllFriends);
 	// app.get('/api/grossest', controller.grossest);
@@ -20,6 +24,4 @@ module.exports = app => {
 	app.post('/api/getuser', controller.getUser);
 	app.post('/api/addfriend', controller.addFriend);
 
-
 }
-

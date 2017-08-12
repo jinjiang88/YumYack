@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
+
+import { NewlandingComponent } from './newlanding/newlanding.component'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -19,7 +25,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component'
 
 
 const routes: Routes = [
-  {path: '', component: LandingPageComponent},
+  {path: '', component: NewlandingComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'landing', component: LandingPageComponent},
   {path: 'home', component: UserHomeComponent },
@@ -31,6 +37,9 @@ const routes: Routes = [
   {path: 'search', component: FindfriendsComponent},
 
   {path: 'test', component:TestComponent},
+
+  {path:'newlanding', component: NewlandingComponent},
+
   {path: 'posts', component:UserPostsComponent},
   {path: 'view/:id', component:ViewComponent},
 
@@ -38,6 +47,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  bootstrap: [AppComponent]
 })
 export class AppRoutingModule { }
