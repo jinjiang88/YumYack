@@ -21,15 +21,18 @@ export class RegisterComponent implements OnInit {
   password='';
   passwordConfirm='';
 
- register(){
+
+  register(){
     console.log(this.username, this.lname, this.fname, this.email,this.password);
-        this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname})
-          .then( (user) => {this._router.navigate(['/home'])})
-          .catch( (err) => console.log(err) )
+    	this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname})
+  		.then( (user) => this._router.navigate(['/home']))
+  		.catch( (err) =>
+        this.error=err)
 
+    }
 
-      
   }
+
   public imageSources: string[] = [
    'http://thewoksoflife.com/wp-content/uploads/2015/03/cantonese-roast-pork-belly-13.jpg',
   'http://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2011/09/babyo.jpg?resize=700%2C%20525',
@@ -49,4 +52,5 @@ export class RegisterComponent implements OnInit {
 
 
   }
+
 

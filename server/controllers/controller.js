@@ -91,46 +91,40 @@ module.exports =  {
            }
          }
 
-       })
-      },
-
-  //  grossest:(request, response)=>{
-  //   //  ProjectModel.find({projectName: 'name'}).sort({viewCount: -1}).limit(5).exec(
-  //   // function(err, projects) {
-  //   //     ...
-  //   },
-
-  //   Posts.find({}).sort(average({average:-1}).limit(6).exec(
-  //     function(err, posts){
-  //       if(err){
-  //         console.log(err);
-  //         response.json(err);
-  //       }else{
-  //         console.log("something didnt go wrong");
-  //         response.json(posts);
-  //       }
-  //     }
-  //   )
-  // )
-  // },
-//   averaging: (request,response)=>{
-//     Posts.find({}, (err,posts)=>{
-//         if(err){
-//           response.json(err)
-//         }else{
-//           console.log(posts)
-//           // var sum=0;
-//           // for(var i=0; i>posts.length; i++){
-//           //   for(var x=0; x>posts.score.length;x++){
-//           //     posts[i].score[x]
-//           //   }
-//           // }
-//         }
-//     })
-  
-// },
+      })
+     },
+  averaging: (request,response)=>{
+    Posts.find({}, (err,posts)=>{
+        if(err){
+          response.json(err)
+        }else{
+          console.log(posts)
+          response.json("poop")
+          // var sum=0;
+          // for(var i=0; i>posts.length; i++){
+          //   for(var x=0; x>posts.score.length;x++){
+          //     posts[i].score[x]
+          //   }
+          // }
+        }
+    })
 
 
+},
+grossest: (request,response)=>{
+ Posts.find({}).sort({average:-1}).limit(6).exec(
+   function(err, posts){
+     if(err){
+       console.log(err);
+       response.json(err);
+     }else{
+       console.log("something didnt go wrong");
+       response.json(posts);
+     }
+   }
+ )
+
+},
    createPost: (req, res) => {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
@@ -253,6 +247,7 @@ module.exports =  {
       })
   },
 
+
 //gets the current user
   getCurrentUser: (req,res)=>{
         Users.findOne({_id:req.session.user._id}, (err,user)=>{
@@ -292,3 +287,6 @@ module.exports =  {
 // }, function(err, docs){
 //      console.log(docs);
 // });
+
+}
+
