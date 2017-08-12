@@ -7,6 +7,18 @@ export class UserHomeService {
 
   constructor(private _http:Http) { }
   
+
+  getCurrentUser(){
+    return this._http.get('/api/getcurrentuser')
+    .map( (response: Response)=> response.json())
+    .toPromise();
+  }
+
+  getFriendsPosts(){
+    return this._http.get('/api/getFriendsPosts')
+    .map( (response: Response)=> response.json())
+    .toPromise();
+  }
   getCurrent(){
   	return this._http.get('/api/current')
   		.map( (user:Response) => user.json())
@@ -16,6 +28,8 @@ export class UserHomeService {
   	return this._http.get('/api/recentposts')
   		.map( (posts:Response) => posts.json())
   		.toPromise()
+
+
 
   }
 }
