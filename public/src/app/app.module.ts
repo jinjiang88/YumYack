@@ -19,9 +19,27 @@ import { UserHomeService } from './user-home/user-home.service'
 import { NewlandingService } from './newlanding/newlanding.service'
 
 import { CarouselModule } from 'angular4-carousel';
+
 // import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
+
+import { ProfileComponent } from './profile/profile.component';
+import { TestComponent } from './test/test.component';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
+
+import { LoginComponent } from './login/login.component';
+import { FriendslistComponent } from './friendslist/friendslist.component';
+import { FriendslistService } from './friendslist/friendslist.service';
+import { LoginService } from './login/login.service';
+import { FindfriendsComponent } from './findfriends/findfriends.component';
+import { FindfriendsService } from './findfriends/findfriends.service';
+
+import { UserPostsComponent } from './user-posts/user-posts.component';
+import { UserPostsService } from './user-posts/user-posts.service';
+import { ViewComponent } from './view/view.component';
+import {ViewService } from './view/view.service';
+
 
 
 
@@ -34,6 +52,12 @@ import { TestService } from './test/test.service';
     ProfileComponent,
     TestComponent,
     NewlandingComponent
+    LoginComponent,
+    FriendslistComponent,
+    FindfriendsComponent,
+    UserPostsComponent,
+    ViewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +66,13 @@ import { TestService } from './test/test.service';
     CarouselModule,
     FileUploadModule,
   ],
-  providers: [RegisterService, LandingPageService, UserHomeService, TestService, NewlandingService],
+
+  providers: [RegisterService, LandingPageService, UserHomeService, TestService,
+     FriendslistService, LoginService, FindfriendsService,
+     UserPostsService,
+     ViewService, NewlandingService
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

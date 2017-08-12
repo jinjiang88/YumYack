@@ -11,11 +11,11 @@ import { Router } from '@angular/router'
 export class LandingPageComponent implements OnInit {
 grossest: object[]=[]
 errors = []
-
+users: any;
   constructor(private _landingservice: LandingPageService, private _router:Router) { }
 
   ngOnInit() {
-
+    this.getCurrentUser();
   }
 
 public imageSources: string[] = [
@@ -52,5 +52,10 @@ public imageSources: string[] = [
       this.errors = err;
     }
   })
+  }
+  getCurrentUser(){
+    this._landingservice.getCurrent()
+      .then( (users) => this.users = users)
+      .catch((err) => this._router.navigate(['/login']))
   }
 }
