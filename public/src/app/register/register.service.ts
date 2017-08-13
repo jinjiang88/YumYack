@@ -7,7 +7,7 @@ export class RegisterService {
 
   constructor(private _http: Http) { }
 
-  register(user){
+  register(user){    
     console.log(user);
     return this._http.post('/api/register', user)
       .map( (response: Response)=> response.json())

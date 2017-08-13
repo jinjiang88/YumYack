@@ -7,17 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './register/register.component';
-
-
-import { RegisterService } from './register/register.service';
+import { NewlandingComponent } from './newlanding/newlanding.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LandingPageService } from './landing-page/landing-page.service'
-import { UserHomeService } from './user-home/user-home.service'
-
-import { CarouselModule } from 'angular4-carousel';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
+
+import { RegisterService } from './register/register.service';
+import { LandingPageService } from './landing-page/landing-page.service'
+import { UserHomeService } from './user-home/user-home.service'
+import { NewlandingService } from './newlanding/newlanding.service'
+
+import { CarouselModule } from 'angular4-carousel';
+
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
@@ -48,6 +51,7 @@ import { PostviewService } from './postview/postview.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
+    NewlandingComponent,
     LoginComponent,
     FriendslistComponent,
     FindfriendsComponent,
@@ -55,6 +59,7 @@ import { PostviewService } from './postview/postview.service';
     ViewComponent,
     FriendspostsComponent,
     PostviewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -64,13 +69,18 @@ import { PostviewService } from './postview/postview.service';
     FileUploadModule,
      RatingModule,
   ],
+
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
      FriendslistService, LoginService, FindfriendsService,
      UserPostsService,
      ViewService,
      FriendspostsService,
      PostviewService,
+     ViewService,
+      NewlandingService
+
     ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
