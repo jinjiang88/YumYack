@@ -277,7 +277,7 @@ module.exports =  {
             res.sendStatus(500);
         }else{
             console.log("found the post")
-            let index=0;
+            let index;
             let total=0;
             let average=0;
             let alreadyRated= false;
@@ -288,7 +288,7 @@ module.exports =  {
                 }
             }
             if(alreadyRated==false){
-                console.log("it has not been rated yet")
+                console.log("it has not been rated by the current user yet")
                 post.userScores.push(req.session.user._id);
                 post.score.push(req.body.rate)
             
@@ -329,6 +329,20 @@ module.exports =  {
           }
         })
       },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
