@@ -29,8 +29,11 @@ module.exports =  {
     getRecentPosts: (req, res) => {
         Posts.find({timestamp:{'$lte':new Date(),'$gte':new Date(Date()-7)}}, (err, posts)=>{
             if(err){
+                console.log("something is going wrong")
                 return res.status(500).send(err);
             }else{
+              console.log("my mind is telling me no, but my body, my body is telling me yes")
+                console.log(posts);
                 return res.json(posts)
             }
         })

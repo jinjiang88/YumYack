@@ -14,7 +14,8 @@ export class UserHomeComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-  	this.getAllPosts();
+  	this.getAllRecentPosts();
+    this.getCurrentUser();
   }
 
   getCurrentUser(){
@@ -22,7 +23,7 @@ export class UserHomeComponent implements OnInit {
   	.then( (user)=> this.user = user)
   	.catch((err) => this._router.navigate(['/']))
   }
-  getAllPosts(){
+  getAllRecentPosts(){
   	this._userhomeService.getAllRecentPosts()
   	.then((posts)=> {
   		this.posts = posts
