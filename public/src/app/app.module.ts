@@ -22,9 +22,6 @@ import { CarouselModule } from 'angular4-carousel';
 
 // import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
-import { ProfileComponent } from './profile/profile.component';
-import { TestComponent } from './test/test.component';
-
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
@@ -38,10 +35,13 @@ import { FindfriendsService } from './findfriends/findfriends.service';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UserPostsService } from './user-posts/user-posts.service';
 import { ViewComponent } from './view/view.component';
-import {ViewService } from './view/view.service';
+import { ViewService } from './view/view.service';
 
-
-
+import { RatingModule } from 'ng2-rating';
+import { FriendspostsComponent } from './friendsposts/friendsposts.component';
+import { FriendspostsService } from './friendsposts/friendsposts.service';
+import { PostviewComponent } from './postview/postview.component';
+import { PostviewService } from './postview/postview.service';
 
 @NgModule({
   declarations: [
@@ -51,12 +51,14 @@ import {ViewService } from './view/view.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
-    NewlandingComponent
+    NewlandingComponent,
     LoginComponent,
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
-    ViewComponent
+    ViewComponent,
+    FriendspostsComponent,
+    PostviewComponent
 
   ],
   imports: [
@@ -65,12 +67,18 @@ import {ViewService } from './view/view.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
+     RatingModule,
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
      FriendslistService, LoginService, FindfriendsService,
      UserPostsService,
-     ViewService, NewlandingService
+     ViewService,
+     FriendspostsService,
+     PostviewService,
+     ViewService,
+      NewlandingService
+
     ],
 
   bootstrap: [AppComponent]

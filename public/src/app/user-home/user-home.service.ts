@@ -28,8 +28,5 @@ export class UserHomeService {
   	return this._http.get('/api/recentposts')
   		.map( (posts:Response) => posts.json())
   		.toPromise()
-
-
-
   }
 }

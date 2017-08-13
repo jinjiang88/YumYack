@@ -54,8 +54,6 @@
             <span class="activity-item">3. peaches</span>
             <span class="activity-item">4. octupus</span>
             <span class="activity-item">5. Pig fat</span>
-            {{friendsPosts | json}}
-            {{test | json}}
           </div>
         </div>
       </div>
@@ -65,14 +63,15 @@
     <div class="row therow">
       <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
         <h3 style="margin:0;text-align:center;background-color:grey;">Activities</h3>
-        <div *ngFor="let post of posts">
-          <h5> {{post.name}} {{post.createdAt | date: 'mediumDate' }}</h5>
-          <p>{{ post.description}}</p>
-          <p>{{ post.origin}}</p>
-          <p>{{ post.score}}</p>
-          <p>{{ post.average}}</p>
-          
-        </div>
+           <p>{{friendsPosts[0].user.username}}: {{friendsPosts[0].name}}</p>
+        <p>{{friendsPosts[1].user.username}}: {{friendsPosts[1].name}}</p>
+        <p>{{friendsPosts[2].user.username}}: {{friendsPosts[2].name}}</p>
+        <p>{{friendsPosts[3].user.username}}: {{friendsPosts[3].name}}</p>
+        <p>{{friendsPosts[4].user.username}}: {{friendsPosts[4].name}}</p>
+        <p>{{friendsPosts[5].user.username}}: {{friendsPosts[5].name}}</p>
+        <p>{{friendsPosts[6].user.username}}: {{friendsPosts[6].name}}</p>
+        <p>{{friendsPosts[7].user.username}}: {{friendsPosts[7].name}}</p>
+        <a [routerLink]="['/friendsposts']">see more</a>
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Recomendations</h3>

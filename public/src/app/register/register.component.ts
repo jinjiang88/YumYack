@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
-  }
+
 
   public imageSources: string[] = [
    'http://thewoksoflife.com/wp-content/uploads/2015/03/cantonese-roast-pork-belly-13.jpg',
@@ -51,6 +51,6 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  }
 
+}
 

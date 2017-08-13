@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { FriendslistComponent} from './friendslist/friendslist.component'
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { ViewComponent } from './view/view.component';
+import { FriendspostsComponent } from './friendsposts/friendsposts.component';
+import { PostviewComponent } from './postview/postview.component';
 
 
 
@@ -30,18 +32,18 @@ const routes: Routes = [
   {path: 'landing', component: LandingPageComponent},
   {path: 'home', component: UserHomeComponent },
   {path: 'profile', component:ProfileComponent},
-
   {path: 'create', component:TestComponent},
   {path: 'login', component: LoginComponent},
   {path: 'friendslist', component: FriendslistComponent},
   {path: 'search', component: FindfriendsComponent},
-
   {path: 'test', component:TestComponent},
 
   {path:'newlanding', component: NewlandingComponent},
 
   {path: 'posts', component:UserPostsComponent},
   {path: 'view/:id', component:ViewComponent},
+  {path: 'friendsposts', component:FriendspostsComponent},
+  {path: 'postview/:id', component:PostviewComponent},
 
 ];
 
