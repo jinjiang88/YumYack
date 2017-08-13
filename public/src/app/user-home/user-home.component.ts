@@ -31,7 +31,6 @@ export class UserHomeComponent implements OnInit {
 
     
   }
-
   //gets users friends with populate
   getFriendsPosts(){
     this._userHomeService.getFriendsPosts()

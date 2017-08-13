@@ -1,5 +1,9 @@
-<form (submit)="login()">
 
+
+
+<p class="error" *ngIf="errors"> {{errors}} </p>
+
+<form (submit)="login()">
   <input type='text' name='email' [(ngModel)]='email'/>
   <input type='password' name='password' [(ngModel)]='password'/>
 

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  errors: any;
   email='';
   password='';
   constructor(private _loginService: LoginService, private _router:Router) { }
@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
   login(){
     this._loginService.login({email:this.email, password: this.password})
       .then( (user)=> this._router.navigate(['home']))
-      .catch( (err)=>{console.log(err)})
+      .catch( (errors)=>{
+      this.errors = "user was not found"
+      })
   }
 
 }
