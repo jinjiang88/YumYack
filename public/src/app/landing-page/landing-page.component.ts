@@ -15,7 +15,7 @@ users: any;
   constructor(private _landingservice: LandingPageService, private _router:Router) { }
 
   ngOnInit() {
-    this.getCurrentUser();
+    // this.getCurrentUser();
   }
 
 public imageSources: string[] = [
@@ -53,9 +53,9 @@ public imageSources: string[] = [
     }
   })
   }
-  getCurrentUser(){
-    this._landingservice.getCurrent()
-      .then( (users) => this.users = users)
-      .catch((err) => this._router.navigate(['/login']))
-  }
+  // getCurrentUser(){
+  //   this._landingservice.getCurrent()
+  //     .then( (users) => this.users = users)
+  //     .catch((err) => this.err = 'Please Log in!')
+  // }
 }
