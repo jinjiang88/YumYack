@@ -315,7 +315,7 @@ module.exports =  {
 //------------------need to learn to update in an array----------------                
                 Posts.update({_id:req.body.id}, {$inc:
                      { 
-                     "score.${index}": req.body.rate}});
+                     'score.$index': req.body.rate}});
                      console.log("everything should be copacetic")
                      res.json(post);
             }

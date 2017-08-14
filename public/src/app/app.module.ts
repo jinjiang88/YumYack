@@ -20,7 +20,7 @@ import { NewlandingService } from './newlanding/newlanding.service'
 
 import { CarouselModule } from 'angular4-carousel';
 
-// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
+import { PostcreationComponent } from './postcreation/postcreation.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
@@ -58,7 +58,8 @@ import { PostviewService } from './postview/postview.service';
     UserPostsComponent,
     ViewComponent,
     FriendspostsComponent,
-    PostviewComponent
+    PostviewComponent,
+    PostcreationComponent,
 
   ],
   imports: [

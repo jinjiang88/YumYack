@@ -19,6 +19,7 @@ import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { ViewComponent } from './view/view.component';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { PostviewComponent } from './postview/postview.component';
+import { PostcreationComponent } from './postcreation/postcreation.component';
 
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'view/:id', component:ViewComponent},
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
+  {path: 'postcreation', component:PostcreationComponent},
 
 ];
 
