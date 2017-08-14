@@ -10,11 +10,12 @@ import { NewlandingService } from './newlanding.service';
 })
 export class NewlandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _newLandingService: NewlandingService) { }
   email:"";
   password:"";
-
+  topPosts:any;
   ngOnInit() {
+    this.gettopPosts();
   }
   public imageSources: string[] = [
        'http://lorempixel.com/400/200/',
@@ -32,4 +33,11 @@ export class NewlandingComponent implements OnInit {
       autoplayDelay: 2000,
       stopAutoplayMinWidth: 768
     };
+
+
+    gettopPosts(){
+      this._newLandingService.topPosts()
+      .then( (topPosts)=>{console.log("we got top posts"); this.topPosts=topPosts})
+      .catch( (err)=>console.log('we could not find topPosts'))
+    }
 }

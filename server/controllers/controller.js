@@ -128,6 +128,9 @@ module.exports =  {
 //  )
 
 // },
+
+
+
    createPost: (req, res) => {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
@@ -315,7 +318,7 @@ module.exports =  {
 //------------------need to learn to update in an array----------------                
                 Posts.update({_id:req.body.id}, {$inc:
                      { 
-                     "score.${index}": req.body.rate}});
+                     'score.$index': req.body.rate}});
                      console.log("everything should be copacetic")
                      res.json(post);
             }
@@ -350,42 +353,17 @@ module.exports =  {
               }
           })
       },
+
       topPost:(req,res)=>{
-      var sort = { average: 1 };
-      Posts.find().sort(sort).toArray(function(err, result) {
+      var mysort = { average: -1 };
+      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
         if (err) throw err;
+        console.log("this is your topposts")
+        console.log(result);
         res.json(result);
-      })
-    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
+      });
+      }
 
 }
 //Instructions on how to find multiples id's in an array
