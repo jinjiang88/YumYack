@@ -1,0 +1,37 @@
+<div class="container">
+ 
+  <div > 
+    
+    Username:<p>{{User[0].username}}</p>
+    First Name:<p>{{User[0].fname}}</p>
+    Last Name:<p>{{User[0].lname}}</p>
+    Email:<p>{{User[0].email}}</p>
+
+  </div>
+
+
+    <form (submit)="addFriend()">
+      <input type='submit' value='Subscribe to {{User[0].fname}} {{User[0].lname}}' />
+    </form>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="container">
+ 
+ 
+    <!-- rating with half stars -->
+    <rating (click)="typeof();" [(ngModel)]="starsCount"
+            [float]="true">
+    </rating>
+    <br/><br/>
+ 
+ 
+ 
+</div>

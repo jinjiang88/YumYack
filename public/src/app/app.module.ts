@@ -7,17 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './register/register.component';
-
-
-import { RegisterService } from './register/register.service';
+import { NewlandingComponent } from './newlanding/newlanding.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LandingPageService } from './landing-page/landing-page.service'
-import { UserHomeService } from './user-home/user-home.service'
-
-import { CarouselModule } from 'angular4-carousel';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
+
+import { RegisterService } from './register/register.service';
+import { LandingPageService } from './landing-page/landing-page.service'
+import { UserHomeService } from './user-home/user-home.service'
+import { NewlandingService } from './newlanding/newlanding.service'
+
+import { CarouselModule } from 'angular4-carousel';
+
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
@@ -31,9 +34,14 @@ import { FindfriendsService } from './findfriends/findfriends.service';
 
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UserPostsService } from './user-posts/user-posts.service';
+import { ViewComponent } from './view/view.component';
+import { ViewService } from './view/view.service';
 
-
-
+import { RatingModule } from 'ng2-rating';
+import { FriendspostsComponent } from './friendsposts/friendsposts.component';
+import { FriendspostsService } from './friendsposts/friendsposts.service';
+import { PostviewComponent } from './postview/postview.component';
+import { PostviewService } from './postview/postview.service';
 
 @NgModule({
   declarations: [
@@ -43,10 +51,15 @@ import { UserPostsService } from './user-posts/user-posts.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
+    NewlandingComponent,
     LoginComponent,
     FriendslistComponent,
     FindfriendsComponent,
-    UserPostsComponent
+    UserPostsComponent,
+    ViewComponent,
+    FriendspostsComponent,
+    PostviewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -54,11 +67,20 @@ import { UserPostsService } from './user-posts/user-posts.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
+     RatingModule,
   ],
+
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
      FriendslistService, LoginService, FindfriendsService,
-     UserPostsService
+     UserPostsService,
+     ViewService,
+     FriendspostsService,
+     PostviewService,
+     ViewService,
+      NewlandingService
+
     ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

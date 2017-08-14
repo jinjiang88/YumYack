@@ -20,7 +20,7 @@ export class TestComponent implements OnInit {
 
   hello(){
    	this._testService.createPost({name:this.name,description:this.description,origin:this.origin})
-  	.then( (user) => this._router.navigate(['/landing']))
+  	.then( (user) => this._router.navigate(['/posts']))
   	.catch( (error) => this.error=error ) 
   }
 
