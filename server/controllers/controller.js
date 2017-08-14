@@ -354,7 +354,6 @@ module.exports =  {
           })
       },
 
-
       topPost:(req,res)=>{
       var mysort = { average: -1 };
       Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
@@ -362,6 +361,7 @@ module.exports =  {
         console.log("this is your topposts")
         console.log(result);
         res.json(result);
+
       });
       }
 
