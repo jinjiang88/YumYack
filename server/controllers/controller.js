@@ -128,6 +128,9 @@ module.exports =  {
 //  )
 
 // },
+
+
+
    createPost: (req, res) => {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
