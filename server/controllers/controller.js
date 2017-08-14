@@ -349,13 +349,14 @@ module.exports =  {
                   res.json(posts);
               }
           })
-      }
+      },
       topPost:(req,res)=>{
       var sort = { average: 1 };
       Posts.find().sort(sort).toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
-      });
+      })
+    }
 
 
 
