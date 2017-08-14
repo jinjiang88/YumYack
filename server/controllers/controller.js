@@ -349,42 +349,18 @@ module.exports =  {
                   res.json(posts);
               }
           })
-      }
+      },
+
+
       topPost:(req,res)=>{
-      var sort = { average: 1 };
-      Posts.find().sort(sort).toArray(function(err, result) {
+      var mysort = { average: -1 };
+      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
         if (err) throw err;
+        console.log("this is your topposts")
+        console.log(result);
         res.json(result);
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
+      }
 
 }
 //Instructions on how to find multiples id's in an array
