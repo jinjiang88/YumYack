@@ -20,5 +20,6 @@ module.exports = app => {
 	app.get('/api/getcurrentuser', controller.getCurrentUser);
 	app.get('/api/getFriendsPosts', controller.getFriendsPosts);
 	app.post('/api/rate', controller.rate);
-	app.post('/api/loadPost', controller.loadPost)
+	app.post('/api/loadPost', controller.loadPost);
+	app.get('/api/topPost', controller.topPost);
 }
