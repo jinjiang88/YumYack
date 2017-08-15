@@ -1,0 +1,41 @@
+<!-- this is the navbar ==============================================================================-->
+<div class="navbar" style="background-color:#FFFFFF; border:none; margin-bottom:0px;">
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFFFFF; color:#e4e4e4;">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse" style="background-color: #FFFFFF;">
+        <h3 style="color:#18233E; vertical-align:top; display:inline-block;">YumYack</h3>
+        <ul class="nav navbar-nav navbar-right">
+          <li><A HREF="#howitworks" style="color:#18233E;">How it works</A></li>
+          <li><a href="#mostgross" style="color:#18233E;">Most gross</a></li>
+          <li><a href="#recentposts" style="color:#18233E;">Recent posts</a></li>
+          <li><a href="#topcontributors" style="color:#18233E;">Top contributors</a></li>
+          <li><a href="/deals" style="color:#18233E;">Community</a></li>
+          <li><a href="/posts" style="color:#18233E;">My Posts</a></li>
+          <li><a href="/logout" style="color:#18233E;">Logout</a></li>
+          <li class="joinbutton"><a class="join" href="/register"><span class="jointext">Join</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<h1 *ngIf="users">Welcome {{users.username}}</h1>
+
+<div *ngFor="let post of posts">
+  <div class="post">
+    <img style="width:200px;" src="./../assets/images/{{post.filename}}" />
+  <h5> {{post.name}} </h5>
+  <p>{{post.createdAt | date: 'mediumDate' }}</p>
+  <p>{{ post.description}}</p>
+  <p>{{ post.origin}}</p>
+  <p>{{ post.score}}</p>
+  <p>{{ post.average}}</p>
+  <div>
+</div>

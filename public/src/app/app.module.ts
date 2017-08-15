@@ -20,10 +20,35 @@ import { NewlandingService } from './newlanding/newlanding.service'
 
 // import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
-// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
+
+import { PostcreationComponent } from './postcreation/postcreation.component';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
+<<<<<<< HEAD
+=======
+import { LoginComponent } from './login/login.component';
+import { FriendslistComponent } from './friendslist/friendslist.component';
+import { FriendslistService } from './friendslist/friendslist.service';
+import { LoginService } from './login/login.service';
+import { FindfriendsComponent } from './findfriends/findfriends.component';
+import { FindfriendsService } from './findfriends/findfriends.service';
+
+import { UserPostsComponent } from './user-posts/user-posts.component';
+import { UserPostsService } from './user-posts/user-posts.service';
+import { ViewComponent } from './view/view.component';
+import { ViewService } from './view/view.service';
+
+import { RatingModule } from 'ng2-rating';
+import { FriendspostsComponent } from './friendsposts/friendsposts.component';
+import { FriendspostsService } from './friendsposts/friendsposts.service';
+import { PostviewComponent } from './postview/postview.component';
+import { PostviewService } from './postview/postview.service';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditProfileService } from './edit-profile/edit-profile.service';
+
+>>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +57,17 @@ import { TestService } from './test/test.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
-    NewlandingComponent
+    NewlandingComponent,
+    LoginComponent,
+    FriendslistComponent,
+    FindfriendsComponent,
+    UserPostsComponent,
+    ViewComponent,
+    FriendspostsComponent,
+    PostviewComponent,
+    PostcreationComponent,
+    EditProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -40,9 +75,25 @@ import { TestService } from './test/test.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
+<<<<<<< HEAD
     // AnimateOnScrollModule,
+=======
+     RatingModule,
+>>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
   ],
-  providers: [RegisterService, LandingPageService, UserHomeService, TestService, NewlandingService],
+
+  providers: [RegisterService, LandingPageService, UserHomeService, TestService,
+     FriendslistService, LoginService, FindfriendsService,
+     UserPostsService,
+     ViewService,
+     FriendspostsService,
+     PostviewService,
+     ViewService,
+      NewlandingService,
+      EditProfileService,
+
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

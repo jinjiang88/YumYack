@@ -9,7 +9,8 @@ let UserSchema = new Schema({
     email: {type: String, minlength: 4, required: [true, 'Email must be a valid email']},
     password: {type: String, minlength: 6, required: [true, 'Password must be at least 6 characters long']},
     username: {type:String, minlength: 6, required: [true, 'Username must be at least 4 characters long']},
-    friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
+    posts: {type: Number, required: false, default: 0,},
 }, {timestamps: true})
 
 mongoose.model('Users', UserSchema);

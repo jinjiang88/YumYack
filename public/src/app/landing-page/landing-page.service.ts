@@ -16,4 +16,9 @@ averaging(){
   .map((data)=>data.json())
   .toPromise();
 }
+getCurrent(){
+  return this._http.get('/api/current')
+  .map((users) => users.json())
+  .toPromise();
+}
 }

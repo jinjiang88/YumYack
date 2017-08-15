@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { NewlandingService } from './newlanding.service';
 
+
 @Component({
   selector: 'app-newlanding',
   templateUrl: './newlanding.component.html',
@@ -10,9 +11,10 @@ import { NewlandingService } from './newlanding.service';
 })
 export class NewlandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _newLandingService: NewlandingService) { }
   email:"";
   password:"";
+<<<<<<< HEAD
   thebar={
     'textcolor':"white",
     'background':"none",
@@ -28,8 +30,16 @@ export class NewlandingComponent implements OnInit {
 
   ngOnInit() {
 }
+=======
+  topPosts:any;
+  thebar='blue';
+  recentPosts:Array<Object>
+  ngOnInit() {
+    this.gettopPosts();
+  }
+>>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
   public imageSources: string[] = [
-       'http://lorempixel.com/400/200/',
+       './../../assests/images/file-1502355578835.jpg',
    'http://lorempixel.com/400/200/sports/',
      'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/'
@@ -44,6 +54,7 @@ export class NewlandingComponent implements OnInit {
       autoplayDelay: 2000,
       stopAutoplayMinWidth: 768
     };
+<<<<<<< HEAD
     scroll(){
       this.thebar.textcolor="black",
       this.thebar.background= "white",
@@ -56,4 +67,31 @@ export class NewlandingComponent implements OnInit {
       this.thebar.pad = '25px'
 
     }
+=======
+
+
+    gettopPosts(){
+      this._newLandingService.topPosts()
+      .then( (topPosts)=>{console.log("we got top posts"); this.topPosts=topPosts})
+      .catch( (err)=>console.log('we could not find topPosts'))
+    }
+
+    getRecentPosts(){
+      this._newLandingService.getRecentPosts()
+      .then((posts)=>this.recentPosts=posts)
+      .catch((err)=>{console.log("there was an error in finding recent posts"); console.log(err);})
+    }
+    
+    scroll(){
+      this.thebar='red';
+    }
+
+//     @HostListener('window:scroll', ['$event'])
+//         onWindowScroll($event) {
+//           this.thebar = 'green';
+// }
+
+
+    
+>>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
 }

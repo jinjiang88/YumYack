@@ -16,14 +16,16 @@
             <li><a class="navlinks" href="/">Home</a></li>
             <li><a class="navlinks" href="/messageboard">My Posts</a></li>
             <li><a class="navlinks" href="/social">Friends</a></li>
-            <li><a class="navlinks" href="/test" style="font-size:150%">+</a></li>
+
+            <li><a class="navlinks" href="/create" style="font-size:150%;" >  <img class="dropbtn" src="../../assets/images/img/post.png" alt=""></a></li>
+
             <li>
               <div class="dropdown">
                 <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
                 <div class="dropdown-content">
                   <a href="/">Account Overview</a>
                   <a href="#">Profile</a>
-                  <a href="#">Settings</a>
+                  <a [routerLink]="['/friendsposts']">Settings</a>
                   <a href="/logout">Log Out</a>
                 </div>
               </div>
@@ -59,8 +61,61 @@
   </div>
   <div class="container">
     <div class="row therow">
-      <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
+      <div *ngIf="friendsPosts" class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
         <h3 style="margin:0;text-align:center;background-color:grey;">Activities</h3>
+        <p class='activitylist' >{{friendsPosts[0].user.username}}: {{friendsPosts[0].name}}</p>
+        <p class='activitylist' >{{friendsPosts[1].user.username}}: {{friendsPosts[1].name}}</p>
+        <p class='activitylist' >{{friendsPosts[2].user.username}}: {{friendsPosts[2].name}}</p>
+        <p class='activitylist' >{{friendsPosts[3].user.username}}: {{friendsPosts[3].name}}</p>
+        <p class='activitylist' >{{friendsPosts[4].user.username}}: {{friendsPosts[4].name}}</p>
+        <p class='activitylist' >{{friendsPosts[5].user.username}}: {{friendsPosts[5].name}}</p>
+        <p class='activitylist' >{{friendsPosts[6].user.username}}: {{friendsPosts[6].name}}</p>
+        <p class='activitylist' >{{friendsPosts[7].user.username}}: {{friendsPosts[7].name}}</p>
+        <p class='activitylist' >{{friendsPosts[8].user.username}}: {{friendsPosts[7].name}}</p>
+        <p class='activitylist' >{{friendsPosts[9].user.username}}: {{friendsPosts[7].name}}</p>
+        <p class='activitylist' >{{friendsPosts[10].user.username}}: {{friendsPosts[7].name}}</p>
+      
+        <a [routerLink]="['/friendsposts']">see more</a>
+      </div>
+      <div class="col-md-6 rightsec" style="paddding:none;">
+        <h3 style="margin:0;text-align:center;background-color:grey;">Recomendations</h3>
+      </div>
+      <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none;  overflow:scroll;">
+        <h3 style="margin:0;text-align:center;background-color:grey;">Friends</h3>
+            <!-- friends table -->
+        
+        <p class='friends'>{{currentUser.friends[0].username}}</p>
+        <p class='friends'>{{currentUser.friends[1].username}}</p>
+        <p class='friends'>{{currentUser.friends[2].username}}</p>
+        <p class='friends'>{{currentUser.friends[3].username}}</p>
+        <p class='friends'>{{currentUser.friends[4].username}}</p>
+        <p class='friends'>{{currentUser.friends[5].username}}</p>
+        <p class='friends'>{{currentUser.friends[6].username}}</p>
+        <p class='friends'>{{currentUser.friends[7].username}}</p>
+        <p class='friends'>{{currentUser.friends[8].username}}</p>
+        <p class='friends'>{{currentUser.friends[9].username}}</p>
+        <p class='friends'>{{currentUser.friends[10].username}}</p>
+
+        <p>See More</p>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Recomendations</h3>
