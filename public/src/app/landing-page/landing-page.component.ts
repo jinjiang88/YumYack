@@ -12,12 +12,13 @@ export class LandingPageComponent implements OnInit {
 grossest: object[]=[]
 errors = []
 
+
   constructor(private _landingservice: LandingPageService, private _router:Router) { }
 
   ngOnInit() {
 
   }
-
+thebar="red";
 public imageSources: string[] = [
      'http://lorempixel.com/400/200/',
  'http://lorempixel.com/400/200/sports/',
@@ -36,6 +37,9 @@ public imageSources: string[] = [
   };
   checkingaverage(){
     this.averaging()
+  }
+  changecolor(){
+    this.thebar = "white";
   }
   averaging(){
     this._landingservice.averaging()

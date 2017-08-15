@@ -13,9 +13,21 @@ export class NewlandingComponent implements OnInit {
   constructor() { }
   email:"";
   password:"";
+  thebar={
+    'textcolor':"white",
+    'background':"none",
+    'welcomecolor':"white",
+    'joincolor':'none',
+    'height':'50px',
+    'margin':'none',
+    'position':'none',
+    'top':'none',
+    'height2':'20px',
+    'pad':'none',
+  }  
 
   ngOnInit() {
-  }
+}
   public imageSources: string[] = [
        'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/',
@@ -32,4 +44,16 @@ export class NewlandingComponent implements OnInit {
       autoplayDelay: 2000,
       stopAutoplayMinWidth: 768
     };
+    scroll(){
+      this.thebar.textcolor="black",
+      this.thebar.background= "white",
+      this.thebar.welcomecolor="#FDA443",
+      this.thebar.joincolor = "green",
+      this.thebar.margin = "100",
+      this.thebar.position = 'relative',
+      this.thebar.top = '-25px',
+      this.thebar.height2 = '30px',
+      this.thebar.pad = '25px'
+
+    }
 }

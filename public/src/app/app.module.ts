@@ -18,12 +18,11 @@ import { LandingPageService } from './landing-page/landing-page.service'
 import { UserHomeService } from './user-home/user-home.service'
 import { NewlandingService } from './newlanding/newlanding.service'
 
+// import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
 // import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
-
-
 
 @NgModule({
   declarations: [
@@ -41,6 +40,7 @@ import { TestService } from './test/test.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
+    // AnimateOnScrollModule,
   ],
   providers: [RegisterService, LandingPageService, UserHomeService, TestService, NewlandingService],
   bootstrap: [AppComponent]
