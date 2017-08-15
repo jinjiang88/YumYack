@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 
+
 import { UserHomeService } from './user-home.service';
 import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-user-home',
@@ -39,4 +41,7 @@ export class UserHomeComponent implements OnInit {
     .then((friends)=>this.friendsPosts=friends)
     .catch((err)=>console.log("theres an error"));
   }
+
+
+
 }

@@ -28,8 +28,8 @@ export class NewlandingComponent implements OnInit {
     'pad':'none',
   }  
 
-
   topPosts:any;
+
   recentPosts:Array<Object>
   ngOnInit() {
     this.gettopPosts();
@@ -65,8 +65,6 @@ export class NewlandingComponent implements OnInit {
 
     }
 
-
-
     gettopPosts(){
       this._newLandingService.topPosts()
       .then( (topPosts)=>{console.log("we got top posts"); this.topPosts=topPosts})
@@ -78,4 +76,5 @@ export class NewlandingComponent implements OnInit {
       .then((posts)=>this.recentPosts=posts)
       .catch((err)=>{console.log("there was an error in finding recent posts"); console.log(err);})
     }
+
 }

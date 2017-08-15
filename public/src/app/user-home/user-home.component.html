@@ -13,13 +13,32 @@
         <div id="navbar" class="collapse navbar-collapse">
           <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="navlinks" href="/">Home</a></li>
-            <li><a class="navlinks" href="/messageboard">My Posts</a></li>
-            <li><a class="navlinks" href="/social">Friends</a></li>
 
+            <li><a class="navlinks"  href="/home" id="home">Home</a></li>
+            <li><a class="navlinks" href="/search">Find Friends</a></li>
+            <li><a class="navlinks" href="/friendslist">Friends</a></li>
+            <li>
+                <div class="dropdown">
+                <div *ngIf= "isValid; else other_content;">
+                
+                  <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                    <ul class="dropdown-menu">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                  </div>
 
-            <li><a class="navlinks" href="/create" style="font-size:150%;" >  <img class="dropbtn" src="../../assets/images/img/post.png" alt=""></a></li>
-
+                  <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
+                    <ul class="dropdown-menu">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                    </ng-template>
+                  </div>                
+              </li>
+            <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
 
             <li>
               <div class="dropdown">
@@ -61,11 +80,16 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
   <div class="container">
     <div class="row therow">
       <div *ngIf="friendsPosts" class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
         <h3 style="margin:0;text-align:center;background-color:grey;">Activities</h3>
-
         <p class='activitylist' >{{friendsPosts[0].user.username}}: {{friendsPosts[0].name}}</p>
         <p class='activitylist' >{{friendsPosts[1].user.username}}: {{friendsPosts[1].name}}</p>
         <p class='activitylist' >{{friendsPosts[2].user.username}}: {{friendsPosts[2].name}}</p>
@@ -80,6 +104,7 @@
       
         <a [routerLink]="['/friendsposts']">see more</a>
 
+
         <div *ngFor="let post of posts">
           <h5> {{post.name}} {{post.createdAt | date: 'mediumDate' }}</h5>
           <p>{{ post.description}}</p>
@@ -89,10 +114,12 @@
           
         </div>
 
+
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Recomendations</h3>
       </div>
+
 
       <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none;  overflow:scroll;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Friends</h3>
@@ -113,28 +140,6 @@
         <p>See More</p>
 
       <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
-        <h3 style="margin:0;text-align:center;background-color:grey;">Friends</h3>
-            <!-- friends table -->
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">
