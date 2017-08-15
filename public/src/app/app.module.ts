@@ -42,6 +42,8 @@ import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { FriendspostsService } from './friendsposts/friendsposts.service';
 import { PostviewComponent } from './postview/postview.component';
 import { PostviewService } from './postview/postview.service';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditProfileService } from './edit-profile/edit-profile.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { PostviewService } from './postview/postview.service';
     FriendspostsComponent,
     PostviewComponent,
     PostcreationComponent,
+    EditProfileComponent,
 
   ],
   imports: [
@@ -78,7 +81,8 @@ import { PostviewService } from './postview/postview.service';
      FriendspostsService,
      PostviewService,
      ViewService,
-      NewlandingService
+      NewlandingService,
+      EditProfileService,
 
     ],
 

@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class UserHomeComponent implements OnInit {
 
-  currentUser: Array<Object>
+  currentUser: any;
 
   friendsPosts: Array<Object>;
 
