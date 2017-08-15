@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { NewlandingService } from './newlanding.service';
 
+
 @Component({
   selector: 'app-newlanding',
   templateUrl: './newlanding.component.html',
@@ -14,11 +15,13 @@ export class NewlandingComponent implements OnInit {
   email:"";
   password:"";
   topPosts:any;
+  thebar='blue';
+  recentPosts:Array<Object>
   ngOnInit() {
     this.gettopPosts();
   }
   public imageSources: string[] = [
-       'http://lorempixel.com/400/200/',
+       './../../assests/images/file-1502355578835.jpg',
    'http://lorempixel.com/400/200/sports/',
      'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/'
@@ -40,4 +43,22 @@ export class NewlandingComponent implements OnInit {
       .then( (topPosts)=>{console.log("we got top posts"); this.topPosts=topPosts})
       .catch( (err)=>console.log('we could not find topPosts'))
     }
+
+    getRecentPosts(){
+      this._newLandingService.getRecentPosts()
+      .then((posts)=>this.recentPosts=posts)
+      .catch((err)=>{console.log("there was an error in finding recent posts"); console.log(err);})
+    }
+    
+    scroll(){
+      this.thebar='red';
+    }
+
+//     @HostListener('window:scroll', ['$event'])
+//         onWindowScroll($event) {
+//           this.thebar = 'green';
+// }
+
+
+    
 }

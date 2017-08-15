@@ -13,6 +13,13 @@ export class NewlandingService {
     .map((response: Response)=>response.json())
     .toPromise();
   }
+
+  getRecentPosts(){
+    return this._http.get('/api/getPosts')
+    .map((response: Response)=>response.json())
+    .toPromise();
+  }
+
 }
 
 

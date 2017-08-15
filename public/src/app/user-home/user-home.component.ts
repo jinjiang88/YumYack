@@ -11,7 +11,7 @@ import { Ng2DropdownModule } from 'ng2-material-dropdown';
 })
 export class UserHomeComponent implements OnInit {
 
-  currentUser: Array<Object>
+  currentUser: any;
 
   friendsPosts: Array<Object>;
 

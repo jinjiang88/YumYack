@@ -240,11 +240,12 @@ module.exports =  {
 
 //gets the current user
   getCurrentUser: (req,res)=>{
-        Users.findOne({_id:req.session.user._id}, (err,user)=>{
+        Users.findOne({_id:req.session.user._id}).populate('friends').exec( (err,user)=>{
             if(err){
                 res.status(500).send("There was an error find user. User may not be logged in")
             }else{
                 console.log("we got the current user")
+                console.log(user)
                 res.json(user);
             }
         })
@@ -354,14 +355,20 @@ module.exports =  {
           })
       },
 
-
       topPost:(req,res)=>{
       var mysort = { average: -1 };
       Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
-        if (err) throw err;
+          console.log("just before the erorr")
+          
+        if (err){
+            console.log("there has been an error in top posts");
+            console.log(err);
+            res.status(500).send(err);
+        } 
         console.log("this is your topposts")
         console.log(result);
         res.json(result);
+
       });
       }
 

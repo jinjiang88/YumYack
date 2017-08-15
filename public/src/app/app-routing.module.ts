@@ -20,11 +20,8 @@ import { ViewComponent } from './view/view.component';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { PostviewComponent } from './postview/postview.component';
 import { PostcreationComponent } from './postcreation/postcreation.component';
-
-
-
-
 import { UserPostsComponent } from './user-posts/user-posts.component'
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -46,6 +43,7 @@ const routes: Routes = [
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
   {path: 'postcreation', component:PostcreationComponent},
+  {path: 'editProfile', component:EditProfileComponent},
 
 ];
 
