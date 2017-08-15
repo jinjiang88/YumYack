@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
 
 
 
+
   public imageSources: string[] = [
    'http://thewoksoflife.com/wp-content/uploads/2015/03/cantonese-roast-pork-belly-13.jpg',
   'http://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2011/09/babyo.jpg?resize=700%2C%20525',
@@ -52,5 +53,4 @@ export class RegisterComponent implements OnInit {
 
 
 
-}
-
+  }

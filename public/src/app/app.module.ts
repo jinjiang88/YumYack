@@ -21,19 +21,28 @@ import { NewlandingService } from './newlanding/newlanding.service'
 // import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
 
+
 import { PostcreationComponent } from './postcreation/postcreation.component';
+
+// import { PostcreationComponent } from './src/app/postcreation/postcreation.component';
+
+
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
-<<<<<<< HEAD
-=======
+
 import { LoginComponent } from './login/login.component';
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { FriendslistService } from './friendslist/friendslist.service';
 import { LoginService } from './login/login.service';
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
+
+
+
+
+
 
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UserPostsService } from './user-posts/user-posts.service';
@@ -48,7 +57,7 @@ import { PostviewService } from './postview/postview.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditProfileService } from './edit-profile/edit-profile.service';
 
->>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,11 +84,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
-<<<<<<< HEAD
-    // AnimateOnScrollModule,
-=======
-     RatingModule,
->>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
+    RatingModule,
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
@@ -91,7 +96,6 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
-
     ],
 
   bootstrap: [AppComponent]

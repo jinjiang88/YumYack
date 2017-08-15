@@ -8,6 +8,7 @@ export class UserHomeService {
   constructor(private _http:Http) { }
   
 
+
   getCurrentUser(){
     return this._http.get('/api/getcurrentuser')
     .map( (response: Response)=> response.json())
@@ -30,3 +31,6 @@ export class UserHomeService {
   		.toPromise()
   }
 }
+
+
+

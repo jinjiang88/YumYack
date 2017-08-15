@@ -11,16 +11,12 @@ import { Router } from '@angular/router'
 export class LandingPageComponent implements OnInit {
 grossest: object[]=[]
 errors = []
-<<<<<<< HEAD
 
-
-=======
 users: any;
->>>>>>> f93ad500ca75af3c9c5e57c42617c59a0d3e2f74
   constructor(private _landingservice: LandingPageService, private _router:Router) { }
 
   ngOnInit() {
-    // this.getCurrentUser();
+    this.getCurrentUser();
   }
 thebar="red";
 public imageSources: string[] = [
@@ -61,9 +57,11 @@ public imageSources: string[] = [
     }
   })
   }
-  // getCurrentUser(){
-  //   this._landingservice.getCurrent()
-  //     .then( (users) => this.users = users)
-  //     .catch((err) => this.err = 'Please Log in!')
-  // }
+
+  getCurrentUser(){
+    this._landingservice.getCurrent()
+      .then( (users) => this.users = users)
+      .catch((err) => this._router.navigate(['/login']))
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ViewService } from './view.service';
+
 import {RatingModule} from "ng2-rating";
 
 @Component({
@@ -13,7 +14,9 @@ export class ViewComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute, private _viewService: ViewService, private _router: Router) { }
   User: Array<Object>;
   id = "";
+
   starsCount:5;
+
   ngOnInit() {
     	this._activatedRoute.params.subscribe((param)=>{
       this.id = param.id;
@@ -35,6 +38,7 @@ export class ViewComponent implements OnInit {
   		.then( User => this._router.navigate(['/friendslist']) )
   		.catch( err => console.log(err))
   }
+
 
   typeof(){
     console.log(typeof this.starsCount)

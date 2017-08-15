@@ -17,7 +17,10 @@ module.exports =  {
     },
 
     getAllPosts: (req, res) => {
+
         Posts.find({},(err,posts)=>{
+
+
             if(err){
                 console.log(err);
                 res.Status(500).send(err);
@@ -130,7 +133,20 @@ module.exports =  {
 // },
 
 
+grossest: (request,response)=>{
+ Posts.find({}).sort({average:-1}).limit(6).exec(
+   function(err, posts){
+     if(err){
+       console.log(err);
+       response.json(err);
+     }else{
+       console.log("something didnt go wrong");
+       response.json(posts);
+     }
+   }
+ )
 
+},
    createPost: (req, res) => {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
@@ -140,6 +156,21 @@ module.exports =  {
         newPost.name = req.body.name;
         newPost.description = req.body.description;
         newPost.origin = req.body.origin;
+        // Users.findOne({_id: req.session.user._id},(err, user)=>{ 
+        //       if(err){
+        //         console.log(err);
+        //         return res.sendStatus(500);
+        //       }else{
+        //         user.posts++
+        //         user.save((err, savedPosts)=>{
+        //               if(err){
+        //                 console.log(err);
+        //                 return;
+        //               }
+        //               return res.json(savedPosts);
+        //         })
+        //       }
+        //     })
         newPost.save((err, savedPost)=>{
             if(err){
                 let errors = '';
@@ -180,9 +211,17 @@ module.exports =  {
 
    },
 
-
-
-
+   getAllFriends: (req,res)=> {
+        Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
+            if(err){
+                console.log("************this is the error***************",err, "**********************************")
+                res.status(500).send(err);
+            }else{
+                console.log(user);
+                return res.json(user);
+            }
+        })
+   },
   getPosts: (req, res) => {
     Posts.find({}).populate('userscores').populate('user').exec( (err, posts)=>
     {
@@ -370,19 +409,64 @@ module.exports =  {
         res.json(result);
 
       });
+      },
+
+
+
+
+  getPosts: (req, res) => {
+    Posts.find({}).populate('userscores').populate('user').exec( (err, posts)=>
+    {
+      if(err){
+        console.log("something is up. im jin and its my fault")
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(posts);
       }
+    })
+  },
+
+  getUser: (req, res)=>{
+      
+      Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
+        if(err){
+            res.status(500).send(err);
+        }else{
+            console.log(user);
+            res.json(user);
+        }
+      })
+  },
+
+  addFriend: (req, res)=>{
+      Users.findOne({_id:req.session.user._id}, (err,user)=>{
+          if(err){
+              res.status(500).send(err);
+          }else{
+              console.log(user);
+              let check = false;
+              for(let x=0;x<user.friends.length; x++){
+                if(user.friends[x] == req.body.id){
+                    check = true;
+                }
+              }
+              if(check){
+                  res.sendStatus(500);
+              }else{
+                  user.friends.push(req.body.id);
+                  user.save((err, savedUser)=>{
+                    if(err){
+                        console.log(err);
+                        res.sendStatus(500);
+                    }else{
+                        console.log(savedUser);
+                        res.json(savedUser);
+                    }
+                  })
+              }
+          }
+      })
+  }
 
 }
-//Instructions on how to find multiples id's in an array
-// model.find({
-//     '_id': { $in: [
-//         mongoose.Types.ObjectId('4ed3ede8844f0f351100000c'),
-//         mongoose.Types.ObjectId('4ed3f117a844e0471100000d'), 
-//         mongoose.Types.ObjectId('4ed3f18132f50c491100000e')
-//     ]}
-// }, function(err, docs){
-//      console.log(docs);
-// });
-
-
-
