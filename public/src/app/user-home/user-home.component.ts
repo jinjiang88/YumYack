@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserHomeService } from './user-home.service';
 import { Router } from '@angular/router'
+import { Ng2DropdownModule } from 'ng2-material-dropdown';
 
 @Component({
   selector: 'app-user-home',

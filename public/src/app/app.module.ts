@@ -21,7 +21,7 @@ import { NewlandingService } from './newlanding/newlanding.service'
 import { CarouselModule } from 'angular4-carousel';
 
 import { PostcreationComponent } from './postcreation/postcreation.component';
-
+import { Ng2DropdownModule } from 'ng2-material-dropdown';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
@@ -69,6 +69,7 @@ import { PostviewService } from './postview/postview.service';
     CarouselModule,
     FileUploadModule,
      RatingModule,
+     Ng2DropdownModule,
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
