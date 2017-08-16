@@ -14,15 +14,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
 
 import { RegisterService } from './register/register.service';
-import { LandingPageService } from './landing-page/landing-page.service'
-import { UserHomeService } from './user-home/user-home.service'
-import { NewlandingService } from './newlanding/newlanding.service'
+import { LandingPageService } from './landing-page/landing-page.service';
+import { UserHomeService } from './user-home/user-home.service';
+import { NewlandingService } from './newlanding/newlanding.service';
 
+// import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
 
+
+
 import { PostcreationComponent } from './postcreation/postcreation.component';
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
+
 
 import { LoginComponent } from './login/login.component';
 import { FriendslistComponent } from './friendslist/friendslist.component';
@@ -31,10 +36,16 @@ import { LoginService } from './login/login.service';
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
 
+
+
+
+
+
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { UserPostsService } from './user-posts/user-posts.service';
 import { ViewComponent } from './view/view.component';
 import { ViewService } from './view/view.service';
+
 
 import { RatingModule } from 'ng2-rating';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
@@ -70,7 +81,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     HttpModule, FormsModule,
     CarouselModule,
     FileUploadModule,
-     RatingModule,
+    RatingModule,
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
@@ -82,7 +93,6 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
-
     ],
 
   bootstrap: [AppComponent]

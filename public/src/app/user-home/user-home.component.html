@@ -39,6 +39,7 @@
                   </div>                
               </li>
             <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+
             <li>
               <div class="dropdown">
                 <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
@@ -102,10 +103,24 @@
         <p class='activitylist' >{{friendsPosts[10].user.username}}: {{friendsPosts[7].name}}</p>
       
         <a [routerLink]="['/friendsposts']">see more</a>
+
+
+        <div *ngFor="let post of posts">
+          <h5> {{post.name}} {{post.createdAt | date: 'mediumDate' }}</h5>
+          <p>{{ post.description}}</p>
+          <p>{{ post.origin}}</p>
+          <p>{{ post.score}}</p>
+          <p>{{ post.average}}</p>
+          
+        </div>
+
+
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Recomendations</h3>
       </div>
+
+
       <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none;  overflow:scroll;">
         <h3 style="margin:0;text-align:center;background-color:grey;">Friends</h3>
             <!-- friends table -->
@@ -124,23 +139,7 @@
 
         <p>See More</p>
 
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <div class="col-md-6 leftsec" style="border-right:2px solid; padding:none">
 
       </div>
       <div class="col-md-6 rightsec" style="paddding:none;">

@@ -12,6 +12,8 @@
     "fs": "0.0.2",
     "mongoose": "^4.11.6",
     "multer": "1.1.0",
+    "ng2-animate-on-scroll": "^1.0.3",
+    "ng2-rating": "0.0.7",
     "ngx-facebook": "^2.4.0"
   },
   "devDependencies": {

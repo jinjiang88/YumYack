@@ -24,6 +24,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
+
 const routes: Routes = [
   {path: '', component: NewlandingComponent},
   {path: 'register', component: RegisterComponent},
@@ -35,9 +36,7 @@ const routes: Routes = [
   {path: 'friendslist', component: FriendslistComponent},
   {path: 'search', component: FindfriendsComponent},
   {path: 'test', component:TestComponent},
-
   {path:'newlanding', component: NewlandingComponent},
-
   {path: 'posts', component:UserPostsComponent},
   {path: 'view/:id', component:ViewComponent},
   {path: 'friendsposts', component:FriendspostsComponent},

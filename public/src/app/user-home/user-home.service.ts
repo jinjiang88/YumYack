@@ -29,4 +29,6 @@ export class UserHomeService {
   		.map( (posts:Response) => posts.json())
   		.toPromise()
   }
+
 }
+

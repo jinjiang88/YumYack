@@ -11,13 +11,14 @@ import { Router } from '@angular/router'
 export class LandingPageComponent implements OnInit {
 grossest: object[]=[]
 errors = []
+
 users: any;
   constructor(private _landingservice: LandingPageService, private _router:Router) { }
 
   ngOnInit() {
     // this.getCurrentUser();
   }
-
+thebar="red";
 public imageSources: string[] = [
      'http://lorempixel.com/400/200/',
  'http://lorempixel.com/400/200/sports/',
@@ -37,6 +38,9 @@ public imageSources: string[] = [
   checkingaverage(){
     this.averaging()
   }
+  changecolor(){
+    this.thebar = "white";
+  }
   averaging(){
     this._landingservice.averaging()
     .then((data)=>{
@@ -53,9 +57,11 @@ public imageSources: string[] = [
     }
   })
   }
+
   // getCurrentUser(){
   //   this._landingservice.getCurrent()
   //     .then( (users) => this.users = users)
   //     .catch((err) => this.err = 'Please Log in!')
   // }
+
 }
