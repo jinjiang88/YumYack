@@ -82,7 +82,6 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     CarouselModule,
     FileUploadModule,
     RatingModule,
-
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
