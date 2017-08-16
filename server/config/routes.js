@@ -17,7 +17,7 @@ module.exports = app => {
 
 
 
-	app.get('/api/recentposts', controller.getRecentPosts);
+	// app.get('/api/recentposts', controller.getRecentPosts);
 
 
 
