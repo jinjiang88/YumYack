@@ -1,14 +1,44 @@
 {{currentUser | json}}
 
 <div class="container">
-  <h1>Edit Profile</h1>
-  <hr>
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-3">
-      <div class="text-center">
 
-        <form>
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+
+           <form>
+                                <div class="form-group">
+                                    <label for="single">single</label>
+                                    <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />                                  
+                                </div>            
+                            </form>
+                               <button type="button" class="btn btn-success btn-s"
+                                        (click)=" uploader.uploadAll();  " [disabled]="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload Picture
+                                </button>
+
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+
+          <div class="progress" style="">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                    </div>
+
+        </div>
+        <h3>Personal info</h3>
+        
+        <form class="form-horizontal" role="form">
+
+
           <div class="form-group">
             <label for="single">single</label>
             <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />

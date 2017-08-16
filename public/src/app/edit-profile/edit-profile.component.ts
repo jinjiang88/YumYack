@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EditProfileService } from './edit-profile.service';
+
 import { FileUploader } from 'ng2-file-upload';
+
 
 
 @Component({
@@ -9,13 +11,17 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
   currentUser:any;
+
   public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
+
   constructor(private _editProfileService:EditProfileService ) { }
 
 
   
   ngOnInit() {
+
     
   }
 

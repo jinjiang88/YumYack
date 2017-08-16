@@ -60,8 +60,36 @@ footer {
   border-radius: 10px;
 }
 
+
 /* indent 2nd level */
 .list-unstyled li > ul > li {
    margin-left:10px;
    padding:8px;
 }
+=======
+}
+.activity{
+  border: solid;
+  border-color: #F8F8F8;
+  height: 100%;
+}
+.activity-item{
+  display: block;
+  margin-bottom: 10%;
+}
+.leftsec{
+  height:100%;
+  background-color: white;
+  opacity: 0.9;
+}
+.rightsec{
+  height: 100%;
+  background-color: white!important;
+  opacity: 0.9;
+  margin-bottom: 10%;
+}
+
+.background{
+  background: url(../../assets/images/foodimage.jpg) 100% fixed
+}
+
