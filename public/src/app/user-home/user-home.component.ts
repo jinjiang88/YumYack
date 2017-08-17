@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 import { UserHomeService } from './user-home.service';
 import { Router } from '@angular/router'
 
@@ -10,6 +12,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
+
 
   currentUser: any;
 
@@ -38,6 +41,7 @@ export class UserHomeComponent implements OnInit {
     .then((friends)=>this.friendsPosts=friends)
     .catch((err)=>console.log("theres an error"));
   }
+
 
 
 }

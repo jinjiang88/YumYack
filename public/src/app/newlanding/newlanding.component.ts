@@ -14,12 +14,27 @@ export class NewlandingComponent implements OnInit {
   constructor(private _newLandingService: NewlandingService) { }
   email:"";
   password:"";
+
+  thebar={
+    'textcolor':"white",
+    'background':"none",
+    'welcomecolor':"white",
+    'joincolor':'none',
+    'height':'50px',
+    'margin':'none',
+    'position':'none',
+    'top':'none',
+    'height2':'20px',
+    'pad':'none',
+  }  
+
   topPosts:any;
-  thebar='blue';
+
   recentPosts:Array<Object>
   ngOnInit() {
     this.gettopPosts();
   }
+
   public imageSources: string[] = [
        './../../assests/images/file-1502355578835.jpg',
    'http://lorempixel.com/400/200/sports/',
@@ -37,6 +52,18 @@ export class NewlandingComponent implements OnInit {
       stopAutoplayMinWidth: 768
     };
 
+    scroll(){
+      this.thebar.textcolor="black",
+      this.thebar.background= "white",
+      this.thebar.welcomecolor="#FDA443",
+      this.thebar.joincolor = "green",
+      this.thebar.margin = "100",
+      this.thebar.position = 'relative',
+      this.thebar.top = '-25px',
+      this.thebar.height2 = '30px',
+      this.thebar.pad = '25px'
+
+    }
 
     gettopPosts(){
       this._newLandingService.topPosts()
@@ -49,16 +76,5 @@ export class NewlandingComponent implements OnInit {
       .then((posts)=>this.recentPosts=posts)
       .catch((err)=>{console.log("there was an error in finding recent posts"); console.log(err);})
     }
-    
-    scroll(){
-      this.thebar='red';
-    }
 
-//     @HostListener('window:scroll', ['$event'])
-//         onWindowScroll($event) {
-//           this.thebar = 'green';
-// }
-
-
-    
 }

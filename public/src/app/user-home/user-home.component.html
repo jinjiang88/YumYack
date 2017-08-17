@@ -1,3 +1,4 @@
+
 <!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
   <div class="container">
@@ -13,7 +14,41 @@
         <li class="dropdown">
           <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
           <ul id="g-account-menu" class="dropdown-menu" role="menu">
-            <li><a href="#">My Profile</a></li>
+            <li><a href="#">My Profile</a></li>            
+            <li>
+                <div class="dropdown">
+                <div *ngIf= "isValid; else other_content;">
+                
+                  <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                    <ul class="dropdown-menu">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                  </div>
+
+                  <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
+                    <ul class="dropdown-menu">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                    </ng-template>
+                  </div>                
+              </li>
+            <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+
+            <li>
+              <div class="dropdown">
+                <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+                <div class="dropdown-content">
+                  <a href="/">Account Overview</a>
+                  <a href="#">Profile</a>
+                  <a [routerLink]="['/friendsposts']">Settings</a>
+                  <a href="/logout">Log Out</a>
+                </div>
+              </div>
+            </li>
           </ul>
         </li>
         <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
@@ -30,6 +65,7 @@
       <!-- Left column -->
       <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>  
       
+
       <hr>
       
       <ul class="list-unstyled">
@@ -49,7 +85,7 @@
         </li>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
           <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
-          </a>
+
         
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a href="#">Information & Stats</a>
@@ -350,6 +386,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title">Add Widget</h4>
+
       </div>
       <div class="modal-body">
         <p>Add a widget stuff here..</p>
