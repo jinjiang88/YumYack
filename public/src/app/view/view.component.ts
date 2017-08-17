@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ViewService } from './view.service';
 import {RatingModule} from "ng2-rating";
 
-import {RatingModule} from "ng2-rating";
 
 @Component({
   selector: 'app-view',
@@ -39,11 +38,6 @@ export class ViewComponent implements OnInit {
   	this._viewService.addFriend({id:this.id})
   		.then( User => this._router.navigate(['/friendslist']) )
   		.catch( err => console.log(err))
-  }
-
-  typeof(){
-    console.log(typeof this.starsCount)
-    console.log(this.starsCount)
   }
 
   typeof(){
