@@ -30,5 +30,15 @@ export class UserHomeService {
   		.toPromise()
   }
 
+  getNumberOfStars(){
+    console.log("now its in service")
+    return this._http.get('/api/getNumberOfStars')
+    .map((response:Response)=>response.json())
+    .toPromise()
+  
+    
+  }
+
+
 }
 

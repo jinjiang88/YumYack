@@ -318,6 +318,7 @@ module.exports = {
       },
 //16
       topPost:(req,res)=>{
+          
       var mysort = { average: -1 };
       Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
           console.log("just before the erorr")
@@ -334,7 +335,78 @@ module.exports = {
       });
       },
 
-      getRecentPosts(){
-          Posts.find
+      getNumberOfStars: (req, res)=>{
+          console.log("you just got in getNumberOfStars. No query yet")
+          Posts.find({user: req.session.user._id}, (err, posts)=>{
+              if(err){
+                  console.log("theres been an error for the query of posts in getNumberOf Stars", err);
+                  res.status(500).send(err)
+              }else{
+                  if(posts){
+                      console.log("here are the posts for the stars")
+                      console.log(posts)
+                    if(posts[0]){
+                        let five = 0;
+                        let four = 0;
+                        let three = 0;
+                        let two = 0;
+                        let one = 0;
+                        let total = 0;
+                      
+                        // for(let i = 0; i<posts.score.length; i++){
+                        //     switch(posts.score[i]) {
+                        //         case 1: one++; total+=1;
+                        //         break;
+                        //         case 2: two++; total+=2;
+                        //         break;
+                        //         case 3: three++; total+=3;
+                        //         break;
+                        //         case 4: four++; total+=4;
+                        //         break;
+                        //         case five: five++; total+=5;
+                        //         break;
+                        //     }
+                        for(let x = 0; x<posts.length; x++){
+                              for(let i = 0; i<posts[x].score.length; i++){
+                                switch(posts[x].score[i]) {
+                                    case .5: console.log("someone put .5 on picture");
+                                    break;
+                                    case 1: one++; total++;
+                                    break;
+                                    case 1.5: one++; total++;
+                                    break;
+                                    case 2: two++; total++;
+                                    break;
+                                    case 2.5: two++; total++;
+                                    break;
+                                    case 3: three++; total++;
+                                    break;
+                                    case 3.5: three++; total++;
+                                    break;
+                                    case 4: four++; total++;
+                                    break;
+                                    case 4.5: four++; total++;
+                                    break;
+                                    case 5: five++; total++;
+                                    break;
+                                }
+                        }
+                        }
+                        console.log("here are your number of stars");
+                        console.log(five,four,three,two,one + " total:", total);
+                        res.json({"one":one, "two":two, "three":three, "four": four, "five":five, "total":total})
+
+
+
+
+                    }else{
+                        console.log("there was no posts[0].score")
+                    }
+
+
+
+                  }
+              }
+          })
       }
 }

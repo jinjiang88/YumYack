@@ -22,5 +22,6 @@ module.exports = app => {
 	app.post('/api/rate', controller.rate);//14
 	app.post('/api/loadPost', controller.loadPost);//15
 	app.get('/api/topPost', controller.topPost);//16
+	app.get('/api/getNumberOfStars', controller.getNumberOfStars);
 
 }

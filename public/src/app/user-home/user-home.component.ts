@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
+import { FileUploader } from 'ng2-file-upload';
 import { UserHomeService } from './user-home.service';
 import { Router } from '@angular/router'
+
 
 
 @Component({
@@ -12,18 +11,21 @@ import { Router } from '@angular/router'
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
+  public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});//file uploader 
 
+  currentUser: any; //current user
 
-  currentUser: any;
+  friendsPosts: Array<Object>; //posts of user's friends
 
-  friendsPosts: Array<Object>;
+  
 
-  test={test: "this is a test"}
-  constructor(private _userHomeService: UserHomeService) { }
+  Stars: any; //number of accumulated stars
+  constructor(private _userHomeService: UserHomeService, private _router: Router) { }
 
   ngOnInit() {
     this.getCurrentUser();
     this.getFriendsPosts();
+    this.getNumberOfStars();
   }
 
 
@@ -40,6 +42,15 @@ export class UserHomeComponent implements OnInit {
     this._userHomeService.getFriendsPosts()
     .then((friends)=>this.friendsPosts=friends)
     .catch((err)=>console.log("theres an error"));
+  }
+
+  getNumberOfStars(){
+    console.log("running function getnumberofstars in component")
+    this._userHomeService.getNumberOfStars()
+    .then((stars)=>this.Stars=stars)
+    .catch((err)=>console.log("there has been an error catching the stars"))
+
+  
   }
 
 
