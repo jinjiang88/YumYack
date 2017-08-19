@@ -106,27 +106,40 @@ module.exports = {
              console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^')
              return response.json('this email has been used')
            }else{
-             var newuser = new Users();
-             newuser.fname =request.body.fname;
-             newuser.lname = request.body.lname;
-             newuser.email = request.body.email;
-             newuser.password = request.body.password;
-             newuser.username = request.body.username;
-             newuser.city = request.body.city;
-             newuser.state = request.body.state;
-             console.log('asdfasdfasdfasdfsfd')
-             newuser.save(function(err,saveduser){
-               if(err){
-                 console.log('something went wrong saving new user')
-                 response.status(500).send(err);
-               }else{
-                 console.log('everything went right')
-                 request.session.user= saveduser;
-                 response.json(saveduser)
+               Users.findOne({username:request.body.username},(err,thisuser)=>{
+                   if(err){
+                       console.log("something wrong looking for username")
+                   }else{
+                       if(thisuser){
+                           return response.json("this username has been used")
+                       }else{
+                        var newuser = new Users();
+                        console.log(request.body)
+                        newuser.fname =request.body.fname;
+                        newuser.lname = request.body.lname;
+                        newuser.email = request.body.email;
+                        newuser.password = request.body.password;
+                        newuser.username = request.body.username;
+                        newuser.city = request.body.city;
+                        newuser.state = request.body.state;
+                        console.log('asdfasdfasdfasdfsfd')
+                        newuser.save(function(err,saveduser){
+                          if(err){
+                            console.log('something went wrong saving new user')
+                            console.log(err)
+                            response.status(500).send(err);
+                          }else{
+                            console.log('everything went right')
+                            request.session.user= saveduser;
+                            response.json(saveduser)
+                       }
+                   })
+               }
+
                }
              })
            }
-         }
+        }
 
       })
      },

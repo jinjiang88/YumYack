@@ -9,7 +9,7 @@ let UserSchema = new Schema({
     email: {type: String, minlength: 4, required: [true, 'Email must be a valid email']},
     password: {type: String, minlength: 6, required: [true, 'Password must be at least 6 characters long']},
     username: {type:String, minlength: 6, required: [true, 'Username must be at least 4 characters long']},
-    _friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
+    friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
     posts: {type: Number, required: false, default: 0,},
     city: {type:String, required:true},
     state: {type:String, required:true},
