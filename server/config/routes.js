@@ -1,6 +1,7 @@
 var controller = require('./../controllers/controller');
 
 module.exports = app => {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 
 	app.post('/api/login', controller.login);
     app.get('/api/getallusers', controller.getAllUsers);
@@ -12,13 +13,8 @@ module.exports = app => {
 	// app.get('/api/grossest', controller.grossest);
 	// app.get('/api/averagin', controller.averaging);
 	app.get('/logout', controller.logout);
-
-
-
-
-
+	app.post('/api/yelpsearch', controller.yelpsearch);
 	// app.get('/api/recentposts', controller.getRecentPosts);
-
 
 
 	app.get('/api/current', controller.current);

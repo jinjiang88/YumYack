@@ -3,6 +3,13 @@ var Users = mongoose.model("Users");
 var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
 mongoose.promise = Promise
+var yelp = require('yelp-fusion');
+// var oauthSignature = require('oauth-signature');
+// var n = require('nonce')();
+// var request = require('request');
+const clientId = 'YFwchaLGlVSnFPeQXIEvjQ';
+const clientSecret='RoVIIt9dAifYUKD1a8GyIMwKdzqGHrHqHsiACGh5BLEwuMa2xLo4hYvEoB2rdtfG';
+
 
 module.exports = {
 
@@ -42,7 +49,30 @@ module.exports = {
         })
     },
 
-
+    yelpsearch:(request,response)=>{
+        var keyword= request.body.posttitle.name;
+        console.log("here is the resquest.body",request.body.posttitle.name, "###############################")
+        const searchRequest={
+            term:keyword,
+            location:'los angeles',
+        }
+        yelp.accessToken(clientId, clientSecret)
+        .then(data=>{
+            const client = yelp.client(data.jsonBody.access_token);
+            // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            client.search(searchRequest).then(data=>{
+                console.log(data.jsonBody)
+                if(data.jsonBody.businesses){
+                    return response.json(data.jsonBody.businesses)
+                }else{
+                    return response.json("no businesses near you")
+                }
+            })
+            .catch(e=>{
+                console.log(e)
+            })
+        })
+      },
 	login: (req, res) => {
         console.log(req.body.email,req.body.password)
         Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
@@ -574,6 +604,6 @@ module.exports = {
 
       });
       },
-
+      
 
 }

@@ -12,4 +12,11 @@ export class PostviewService {
     .map((response:Response)=>response.json())
     .toPromise();
   }
+  grabyelpdata(param){
+    console.log(":::::::::::::::::::::::::::")
+    return this._http.post('/api/yelpsearch', param)
+    .map((data:Response)=>data.json())
+    .toPromise();
+  }
+  
 }

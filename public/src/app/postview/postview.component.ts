@@ -9,7 +9,9 @@ import { PostviewService } from './postview.service';
 })
 export class PostviewComponent implements OnInit {
   id:String;
-  post:any;
+  post:object;
+  yelpdata:object[];
+
   constructor(private _activatedRoute:ActivatedRoute, private _router:Router,private _postViewService:PostviewService) { }
 
   ngOnInit() {
@@ -22,7 +24,15 @@ export class PostviewComponent implements OnInit {
 
   loadPost(){
     this._postViewService.loadPost({id:this.id})
-    .then((post)=>this.post=post)
+    .then((post)=>(this.post=post, this.grabyelprecs(post)))
     .catch((err)=>console.log("there has been an error", err))
   }
+
+  grabyelprecs(data){
+    console.log(data)
+    this._postViewService.grabyelpdata({posttitle:data})
+    .then((data)=>this.yelpdata=data)
+    .catch((err)=>console.log(err))
+  }
+
 }
