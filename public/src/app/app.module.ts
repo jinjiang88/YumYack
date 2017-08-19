@@ -57,6 +57,9 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +101,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
+      
     ],
 
   bootstrap: [AppComponent]

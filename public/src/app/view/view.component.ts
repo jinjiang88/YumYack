@@ -41,6 +41,12 @@ export class ViewComponent implements OnInit {
   }
 
 
+  typeof(){
+    console.log(typeof this.starsCount)
+    console.log(this.starsCount)
+  }
+
+
 
 
 }
