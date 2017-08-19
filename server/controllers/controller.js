@@ -113,6 +113,8 @@ module.exports = {
              newuser.email = request.body.email;
              newuser.password = request.body.password;
              newuser.username = request.body.username;
+             newuser.city = request.body.city;
+             newuser.state = request.body.state;
              console.log('asdfasdfasdfasdfsfd')
              newuser.save(function(err,saveduser){
                if(err){
