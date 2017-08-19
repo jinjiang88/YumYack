@@ -7,8 +7,7 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-const clientId = 'YFwchaLGlVSnFPeQXIEvjQ';
-const clientSecret='RoVIIt9dAifYUKD1a8GyIMwKdzqGHrHqHsiACGh5BLEwuMa2xLo4hYvEoB2rdtfG';
+
 
 
 module.exports = {
