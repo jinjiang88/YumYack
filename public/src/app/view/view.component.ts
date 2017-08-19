@@ -4,7 +4,6 @@ import { ViewService } from './view.service';
 import {RatingModule} from "ng2-rating";
 
 
-
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -41,11 +40,11 @@ export class ViewComponent implements OnInit {
   		.catch( err => console.log(err))
   }
 
+
   typeof(){
     console.log(typeof this.starsCount)
     console.log(this.starsCount)
   }
-
 
 
 

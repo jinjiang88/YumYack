@@ -29,6 +29,7 @@
       </div>
     
   </nav>
+
 </div>
 <!-- /Header -->
 
@@ -114,22 +115,19 @@
       </ul>
 
       <hr>
-  	</div><!-- /col-3 -->
+    </div><!-- /col-3 -->
     <div class="col-md-9">
-      	
-     
-   
-    
+
       
-      	<hr>
+        <hr>
       
-		<div class="row">
+    <div class="row">
            
             
           
-            <!-- center left-->	
-         	<div class="col-md-6">
-			  <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
+            <!-- center left--> 
+          <div class="col-md-6">
+        <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
               
               <hr>
               
@@ -158,26 +156,34 @@
                   <div class="panel-heading"><h4>Stars Graph Report</h4></div>
                   <div class="panel-body">
                     
+
                     <small *ngIf='Stars'>Five Stars: </small>
+
                     <div class="progress">
                       <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" [style.width]="(Stars.five/Stars.total)*100 + '%'">
                         
                       </div>
                     </div>
+
                     <small *ngIf='Stars'>Four Stars: </small>
+
                     <div class="progress">
                       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" [style.width]="(Stars.four/Stars.total)*100 + '%'">
                         
                       </div>
                     </div>
+
                     <small *ngIf='Stars'>Three Stars: </small>
+
                     <div class="progress">
                       <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width]="(Stars.three/Stars.total)*100 + '%'">
                         
                         
                       </div>
                     </div>
+
                     <small *ngIf='Stars'>Two Stars: </small>
+
                     <div class="progress">
                       <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" [style.width]="(Stars.two/Stars.total)*100 + '%'">
                        
@@ -191,10 +197,10 @@
                     </div>
                   </div><!--/panel-body-->
               </div><!--/panel-->
-	
-			  <hr>              
+  
+        <hr>              
 
-			  <!--tabs-->
+        <!--tabs-->
               <div class="container">
                 <div class="col-md-4">
                 <ul class="nav nav-tabs" id="myTab">
@@ -221,7 +227,7 @@
                     <p>Quisque mauris augue, molestie.</p>
                   </div>
                 </div>
-              	</div>
+                </div>
               </div>  
                
               <!--/tabs-->
@@ -239,6 +245,7 @@
                   </div>
               </div>
    
+
           	</div><!--/col-->
         	<div class="col-md-6">
 				<div class="panel panel-default" >
@@ -249,12 +256,15 @@
                     <button type="button" class="close" data-dismiss="alert" >×</button>
                     {{friendsPosts[friendsPosts.length - 1 - i].user.username}} posted a picture of <a href="/postview/{{friendsPosts[friendsPosts.length - 1 - i]._id}}" style="color:green" >{{friendsPosts[friendsPosts.length - 1 - i].name}}</a>
                   
+
                   </div>
                                 <!-- ENTER ANY CONTENT HERE IF WANTED -->
               
                   </div>
 
+
               	</div>
+
               
                 <table class="table table-striped">
                       <thead>
@@ -267,8 +277,9 @@
                         <tr><td>Two Stars</td><td>{{((Stars.two/Stars.total) * 100) - ((Stars.two/Stars.total) * 100) % 1}} %</td><td>{{Stars.two}}</td></tr>
                         <tr><td>One Star</td><td>{{((Stars.one/Stars.total) * 100) - ((Stars.one/Stars.total) * 100) % 1}} %</td><td>{{Stars.one}}</td></tr>
                       </tbody>
-               	</table>
+                </table>
               
+
               	<div class="panel panel-default">
                 	<div class="panel-heading">
                       	<div class="panel-title">
@@ -277,6 +288,7 @@
                       	</div>
                 	</div>
                 	<div class="panel-body">
+
 
                     <!-- Form for photo upload on create post-->
                       <form >
@@ -303,7 +315,9 @@
                         <div class="control-group">
                           <label>description</label>
                           <div class="controls">
+
                           	<textarea class="form-control" name="description" ngModel></textarea>
+
                           </div>
                         </div> 
                              
@@ -316,10 +330,12 @@
                         </div>    
                         
                         <div class="control-group">
+
                           	<label></label>
                         	<div class="controls">
                         <input type="submit" value="Post" class="btn btn-primary">
                         	</div>
+
                         </div>   
                         
                       </form>
@@ -328,16 +344,16 @@
                   </div><!--/panel content-->
                 </div><!--/panel-->
               
-              	<div class="panel panel-default">
+                <div class="panel panel-default">
                   <div class="panel-heading"><div class="panel-title"><h4>Engagement</h4></div></div>
-                  <div class="panel-body">	
-                   	<div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive"></div>
+                  <div class="panel-body">  
+                    <div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive"></div>
                     <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EFEFEF/555" class="img-circle img-responsive"></div>
                     <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EEEEEE/222" class="img-circle img-responsive"></div>
                   </div>
                </div><!--/panel-->
               
-			</div><!--/col-span-6-->
+      </div><!--/col-span-6-->
      
       </div><!--/row-->
       
@@ -359,7 +375,7 @@
           </ul>
         </div>
       </div>
-  	</div><!--/col-span-9-->
+    </div><!--/col-span-9-->
 </div>
 </div>
 <!-- /Main -->
