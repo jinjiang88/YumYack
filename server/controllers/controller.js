@@ -575,5 +575,35 @@ module.exports = {
       });
       },
 
-
+  findbyusername: (req, res) => {
+        Users.findOne({username: req.body.username}, (err, someUser)=>{
+            if(err){
+                console.log("something is wrong in the controller with findbyuser")
+                res.status(500).send(err);
+            }else if(someUser){
+                    res.json(someUser);
+                   
+                }
+            else{
+                console.log("user was not found");
+                res.sendStatus(500);
+                }
+        })
+    },
+  getnameusers: (req, res) => {
+        console.log("in the controller with getnameuser")
+        Users.find({fname: req.body.fname, lname: req.body.lname}, (err, nameusers)=>{
+            if(err){
+                console.log("something is wrong in the controller with findbyuser")
+                res.status(500).send(err);
+            }else if(nameusers){
+                    res.json(nameusers);
+                   
+                }
+            else{
+                console.log("No users were found.");
+                res.sendStatus(500);
+                }
+        })
+    },
 }

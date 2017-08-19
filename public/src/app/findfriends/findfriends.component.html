@@ -1,31 +1,172 @@
-<form>
-  First Name:<input type='text' name="fname"/>
-  <br/>
-  <input type='submit' value='Search'/>
+<nav (window:scroll)="onWindowScroll(scroll())" style=""[ngClass]="thebar" class="navbar navbar-default navbar-fixed-top probootstrap-navbar" [style.background-color]="thebar.background">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
 
-</form>
-<br/>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="margin-top:25px;"href="index.html" title="ProBootstrap:FineOak">FineOak</a>
+        </div>
+          
+        <div id="navbar-collapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" [style.height]="thebar.height" [style.position]="thebar.position" [style.top]="thebar.top">
+            <li class="active"><a [style.color]="thebar.welcomecolor" href="#" data-nav-section="welcome">Welcome</a></li>
+            <li><a [style.color]="thebar.textcolor" href="#howitworks" data-nav-section="specialties">How it works</a></li>
+            <li><a [style.color]="thebar.textcolor" href="#mostgross" data-nav-section="menu">Grossest</a></li>
+            <li><a [style.color]="thebar.textcolor" href="#recentposts" data-nav-section="reservation">Recent Posts</a></li>
+            <li><a [style.color]="thebar.textcolor" href="#topcontributors" data-nav-section="events">Top Contributors</a></li>
+            <li class="joinbutton"><a [style.color]="thebar.textcolor" class="join" href="#login" data-nav-section="contact">Login</a></li>
+            <li [style.background-color]='thebar.joincolor' class="joinbutton"><a [style.color]="thebar.textcolor" class="join" href="/register" data-nav-section="contact">Join</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<!--     <div class="search-background">
+            <img src="https://lh4.googleusercontent.com/-T4pmKmAS5D4/U0uihfPzEZI/AAAAAAAAA2c/sN0mjJS2bx4/w957-h374-no/141.jpg"> -->
+        
+            <div class="well-searchbox">
+                <label class="control-label" style="font-size: 25px;">Search for your friends: </label>
+                <br>
+                <br>
+                <form class="form-horizontal" role="form" (submit)="findbyfnamelname()">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="fname">First Name: </label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="First Name" name='fname' [(ngModel)]='fname'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-md-4 control-label" for="lname">Last Name: </label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Last Name" name='lname' [(ngModel)]='lname'>
+                      </div>
+                    </div>
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </div>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <form class="form-horizontal" role="form" (submit)="findbyUsername()">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="username">Username: </label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="Username" name='username' [(ngModel)]='username'>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
+<!-- <h1>Are your friends on YumYack?</h1>
+<div class="main-login main-center" style="display: inline-block; vertical-align: top; background-color: #009EDF;">
+  <h3>Find your Friends with their names: </h3>
+  <form (submit)="findbyfnamelname()">
+    <label for="fname" class="cols-sm-2 control-label">First Name: <input type='text' name='fname' [(ngModel)]='fname'/></label>
+    <br/>
+    <label for="lname" class="cols-sm-2 control-label">Last Name: <input type='text' name='lname' [(ngModel)]='lname'/></label>
+    <br/>
+    <input type='submit' value='Search'/>
+  </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="main-login main-center" style="display: inline-block; background-color: #009EDF;">
+  <h4>Or Find your Friends with UserName: </h4>
+  <form (submit)="findbyUsername()">
+    <label>Username: <input type='text' name='username' [(ngModel)]='username'/></label>
+    <br/>
+    <input type='submit' value='Search'/>
+  </form>
+</div> -->
+
+<!-- <div class="container">
+  <div *ngIf='someUser'>
+    
+    <div style="border:1px solid black;">
+        <a href='view/{{someUser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+        <br>
+        <p>{{someUser.username}}</p>
+        <p>{{someUser.fname}}</p>
+        <p>{{someUser.lname}}</p>
+    </div>
+
+  </div>
+
+</div> -->
+
+<!-- <div class="container">
+  <div *ngFor='let nameuser of nameusers'>
+      
+    
+    <div style="border:1px solid black;">
+        <a href='view/{{nameuser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+        <br>
+        <p>{{nameuser.username}}</p>
+        <p>{{nameuser.fname}}</p>
+        <p>{{nameuser.lname}}</p>
+    </div>
+
+  </div>
+
+</div> -->
+
+
+      <div class="container">
+        <div class="alert alert-info picture"  *ngFor= "let nameuser of nameusers; let i = index" >
+         <button type="button" class="close" data-dismiss="alert" >×</button>
+         <a href='view/{{nameusers[nameusers.length - 1 - i]._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+         <p>{{nameusers[nameusers.length - 1 - i].username}}</p>
+         <p>{{nameusers[nameusers.length - 1 - i].fname}}</p>
+         <p>{{nameusers[nameusers.length - 1 - i].lname}}</p>
+
+       </div>
+      </div>
 
 <div class="container">
+    
+    <div class="alert alert-info picture"  *ngIf='someUser'>
+        <button type="button" class="close" data-dismiss="alert" >×</button>
+        <a href='view/{{someUser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+        <br>
+        <p>{{someUser.username}}</p>
+        <p>{{someUser.fname}}</p>
+        <p>{{someUser.lname}}</p>
+    </div>
+
+
+</div>
+
+<!-- <div class="container">
   <div *ngFor='let user of users'>
       
     
     <div style="border:1px solid black;">
         <a href='view/{{user._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
-        <br/>
+        <br>
         <p>{{user.fname}}</p>
         <p>{{user.lname}}</p>
-      </div>
-
-
-
-
-
-
-
-
-
+    </div>
   </div>
 
-</div>
+</div> -->
+<!-- </div> -->

@@ -1,7 +1,7 @@
 var controller = require('./../controllers/controller');
 
 module.exports = app => {
-
+	console.log("In the routes section")
 	app.post('/api/login', controller.login);
     app.get('/api/getallusers', controller.getAllUsers);
     app.post('/api/register', controller.register);
@@ -25,5 +25,8 @@ module.exports = app => {
 	app.post('/api/rate', controller.rate);
 	app.post('/api/loadPost', controller.loadPost);
 	app.get('/api/topPost', controller.topPost);
+	app.post('/api/findbyusername', controller.findbyusername);
+	app.post('/api/getnameusers', controller.getnameusers);
+	
 
 }
