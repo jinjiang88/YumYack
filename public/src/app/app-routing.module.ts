@@ -43,7 +43,7 @@ const routes: Routes = [
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
   {path: 'postcreation', component:PostcreationComponent},
-  {path: 'editProfile', component:EditProfileComponent},
+  {path: 'editprofile', component:EditProfileComponent},
 
 ];
 
