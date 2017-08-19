@@ -8,6 +8,12 @@ import { FindfriendsService } from './findfriends.service';
 })
 export class FindfriendsComponent implements OnInit {
   users: Array<Object>;
+  nameusers: Array<Object>;
+  errors: any;
+  someUser: any;
+  username: string;
+  fname: string;
+  lname: string;
   constructor(private _findFriendsService: FindfriendsService) { }
 
   ngOnInit() {
@@ -20,5 +26,19 @@ export class FindfriendsComponent implements OnInit {
       .catch( (err)=>console.log("there is an error for getallusers"))
     
     }
+    findbyUsername(){
+      console.log(this.username)
+      this._findFriendsService.findbyUsername({username:this.username})
+      .then( someUser => this.someUser = someUser)
+      .catch( (err)=>console.log("there is an error for getsomeuser"))
+    
+    }
 
+    findbyfnamelname(){
+      console.log(this.lname + this.fname)
+      this._findFriendsService.findbyfnamelname({fname:this.fname, lname:this.lname})
+      .then( nameusers => this.nameusers = nameusers)
+      .catch( (err)=>console.log("there is an error for findbyfnamelname"))
+    
+    }
 }

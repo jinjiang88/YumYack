@@ -11,7 +11,8 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  currentUser:Object;
+
+  currentUser:any;
 
   public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
 

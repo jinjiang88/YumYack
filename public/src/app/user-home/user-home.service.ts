@@ -25,10 +25,26 @@ export class UserHomeService {
   		.toPromise()
   }
   getAllRecentPosts(){
-  	return this._http.get('/api/recentposts')
+  	return this._http.get('/api/posts')
   		.map( (posts:Response) => posts.json())
   		.toPromise()
   }
+
+  getNumberOfStars(){
+    console.log("now its in service")
+    return this._http.get('/api/getNumberOfStars')
+    .map((response:Response)=>response.json())
+    .toPromise()
+  
+    
+  }
+
+  createPost(post){
+  	return this._http.post('/api/createPost', post)
+  		.map( (user:Response) => user.json())
+  		.toPromise()
+  }
+
 
 }
 

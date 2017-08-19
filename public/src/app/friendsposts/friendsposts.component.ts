@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendspostsService } from './friendsposts.service';
+import { RatingModule } from 'ng2-rating';
 
 @Component({
   selector: 'app-friendsposts',

@@ -55,6 +55,11 @@ import { PostviewService } from './postview/postview.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditProfileService } from './edit-profile/edit-profile.service';
 
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +78,8 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     PostviewComponent,
     PostcreationComponent,
     EditProfileComponent,
+    
+
 
   ],
   imports: [
@@ -82,6 +89,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     CarouselModule,
     FileUploadModule,
     RatingModule,
+
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
@@ -93,6 +101,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
+      
     ],
 
   bootstrap: [AppComponent]
