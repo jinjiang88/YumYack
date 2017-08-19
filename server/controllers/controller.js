@@ -3,6 +3,13 @@ var Users = mongoose.model("Users");
 var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
 mongoose.promise = Promise
+var yelp = require('yelp-fusion');
+// var oauthSignature = require('oauth-signature');
+// var n = require('nonce')();
+// var request = require('request');
+const clientId = 'YFwchaLGlVSnFPeQXIEvjQ';
+const clientSecret='RoVIIt9dAifYUKD1a8GyIMwKdzqGHrHqHsiACGh5BLEwuMa2xLo4hYvEoB2rdtfG';
+
 
 module.exports = {
 //1
@@ -31,8 +38,41 @@ module.exports = {
         })
         
     },
+    getAllImages: (req, res)=>{
+        Images.find({}, (err, images)=>{
+            if(err){
+                return res.status(500).send(err);
+            }else{
+                return res.json(images);
+            }
+        })
+    },
 
-    //3
+    yelpsearch:(request,response)=>{
+        var keyword= request.body.posttitle.name;
+        console.log("here is the resquest.body",request.body.posttitle.name, "###############################")
+        const searchRequest={
+            term:keyword,
+            location:'los angeles',
+        }
+        yelp.accessToken(clientId, clientSecret)
+        .then(data=>{
+            const client = yelp.client(data.jsonBody.access_token);
+            // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            client.search(searchRequest).then(data=>{
+                console.log(data.jsonBody)
+                if(data.jsonBody.businesses){
+                    return response.json(data.jsonBody.businesses)
+                }else{
+                    return response.json("no businesses near you")
+                }
+            })
+            .catch(e=>{
+                console.log(e)
+            })
+        })
+      },
+
 	login: (req, res) => {
         console.log(req.body.email,req.body.password)
         Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
@@ -290,20 +330,6 @@ module.exports = {
           }
         })
       },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //15
       loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
@@ -408,6 +434,7 @@ module.exports = {
                   }
               }
           })
+        },
 
 
   findbyusername: (req, res) => {
@@ -440,6 +467,34 @@ module.exports = {
                 res.sendStatus(500);
                 }
         })
-    },
+      },
 
+      loadPost: (req,res)=>{
+          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+              if(err){
+                  console.log("there has been an error in finding post", err);
+                  res.status(500).send(err);
+              }else{
+                  console.log("posts has been successfully found", posts);
+                  res.json(posts);
+              }
+          })
+      },
+
+      topPost:(req,res)=>{
+      var mysort = { average: -1 };
+      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
+          console.log("just before the erorr")
+          
+        if (err){
+            console.log("there has been an error in top posts");
+            console.log(err);
+            res.status(500).send(err);
+        } 
+        console.log("this is your topposts")
+        console.log(result);
+        res.json(result);
+
+      });
+      },
 }

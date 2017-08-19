@@ -31,7 +31,7 @@
 <div *ngFor="let post of posts">
   <div class="post">
     <img style="width:200px;" src="./../assets/images/{{post.filename}}" />
-  <h5> {{post.name}} </h5>
+  <h5> <a href="/postview/{{post._id}}">{{post.name}}</a></h5>
   <p>{{post.createdAt | date: 'mediumDate' }}</p>
   <p>{{ post.description}}</p>
   <p>{{ post.origin}}</p>

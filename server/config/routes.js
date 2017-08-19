@@ -1,6 +1,9 @@
 var controller = require('./../controllers/controller');
 
 module.exports = app => {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+
+	app.post('/api/yelpsearch', controller.yelpsearch);
 
 	app.post('/api/login', controller.login);//3
     app.get('/api/getallusers', controller.getAllUsers);//1
@@ -25,5 +28,6 @@ module.exports = app => {
 	app.get('/api/getNumberOfStars', controller.getNumberOfStars);
 	app.post('/api/findbyusername', controller.findbyusername);
 	app.post('/api/getnameusers', controller.getnameusers);
+
 
 }

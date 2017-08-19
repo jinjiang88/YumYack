@@ -16,7 +16,8 @@ export class UserPostsComponent implements OnInit {
 
   ngOnInit() {
   	this.getCurrentUser();
-  	this.getAllPosts();
+		this.getAllPosts();
+
   }
   getCurrentUser(){
   	this._userpostsService.getCurrent()
@@ -26,7 +27,7 @@ export class UserPostsComponent implements OnInit {
   getAllPosts(){
   	this._userpostsService.getAllPosts()
   	.then((posts)=> {
-  		this.posts = posts
+  		this.posts = posts, console.log(posts)
   	})
   	.catch( (err) => console.log(err))
   }

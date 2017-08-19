@@ -11,6 +11,7 @@ let UserSchema = new Schema({
     username: {type:String, minlength: 6, required: [true, 'Username must be at least 4 characters long']},
     friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
     posts: {type: Number, required: false, default: 0,},
+    location: {type:String, required:true}
 }, {timestamps: true})
 
 mongoose.model('Users', UserSchema);
