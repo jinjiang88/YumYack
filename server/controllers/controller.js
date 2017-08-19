@@ -5,7 +5,7 @@ var Images = mongoose.model("Images");
 mongoose.promise = Promise
 
 module.exports = {
-
+//1
     getAllUsers: function(req, res) {
         Users.find({}, (err, users)=>{
             if(err){
@@ -15,7 +15,7 @@ module.exports = {
             }
         })
     },
-
+//2
     getAllPosts: (req, res) => {
 
         Posts.find({},(err,posts)=>{
@@ -32,17 +32,7 @@ module.exports = {
         
     },
 
-    getAllImages: (req, res)=>{
-        Images.find({}, (err, images)=>{
-            if(err){
-                return res.status(500).send(err);
-            }else{
-                return res.json(images);
-            }
-        })
-    },
-
-
+    //3
 	login: (req, res) => {
         console.log(req.body.email,req.body.password)
         Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
@@ -53,7 +43,7 @@ module.exports = {
                 console.log(user);
                 if(user){
                       req.session.user=user;
-                    console.log("user was found");
+                 console.log("user was found");
                     res.json({user: "found"});
 
 
@@ -65,7 +55,7 @@ module.exports = {
             }
         })
     },
-    
+    //4
  register: (request, response)=>{
        Users.findOne({email:request.body.email}, (err, user)=>{
          if(err){
@@ -99,39 +89,7 @@ module.exports = {
 
       })
      },
-//   averaging: (request,response)=>{
-//     Posts.find({}, (err,posts)=>{
-//         if(err){
-//           response.json(err)
-//         }else{
-//           console.log(posts)
-//           response.json("poop")
-//           var sum=0;
-//           for(var i=0; i>posts.length; i++){
-//             for(var x=0; x>posts.score.length;x++){
-//               posts[i].score[x]
-//             }
-//           }
-//         }
-//     })
-
-
-// },
-// grossest: (request,response)=>{
-//  Posts.find({}).sort({average:-1}).limit(6).exec(
-//    function(err, posts){
-//      if(err){
-//        console.log(err);
-//        response.json(err);
-//      }else{
-//        console.log("something didnt go wrong");
-//        response.json(posts);
-//      }
-//    }
-//  )
-
-// },
-
+//5
    createPost: (req, res) => {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
@@ -154,6 +112,8 @@ module.exports = {
             }
         })
    },
+
+   //6
   current: (req, res) => {
     if(!req.session.user){
       return res.status(401).send("Nice try")
@@ -161,13 +121,13 @@ module.exports = {
       return res.json(req.session.user);
     }
   },
-
+//7
   logout: (req, res)=> {
     req.session.destroy();
     res.redirect('/')
   },
 
-
+//8
    getAllFriends: (req,res)=> {
         Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
             if(err){
@@ -182,17 +142,8 @@ module.exports = {
 
    },
 
-   getAllFriends: (req,res)=> {
-        Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
-            if(err){
-                console.log("************this is the error***************",err, "**********************************")
-                res.status(500).send(err);
-            }else{
-                console.log(user);
-                return res.json(user);
-            }
-        })
-   },
+
+//9
   getPosts: (req, res) => {
     Posts.find({}).populate('userscores').populate('user').exec( (err, posts)=>
     {
@@ -205,7 +156,7 @@ module.exports = {
       }
     })
   },
-
+//10
   getUser: (req, res)=>{
       Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
         if(err){
@@ -216,7 +167,7 @@ module.exports = {
         }
       })
   },
-
+//11
   addFriend: (req, res)=>{
       Users.findOne({_id:req.session.user._id}, (err,user)=>{
           if(err){
@@ -247,8 +198,8 @@ module.exports = {
       })
   },
 
-
-//gets the current user
+//12
+//gets the current user with populated friends
   getCurrentUser: (req,res)=>{
         Users.findOne({_id:req.session.user._id}).populate('friends').exec( (err,user)=>{
             if(err){
@@ -260,7 +211,7 @@ module.exports = {
             }
         })
   },
-
+//13
   //query to posts to find all of your friends posts
   getFriendsPosts: (req,res)=>{
     Posts.find({'user': {$in: req.session.user.friends}}).populate('user').exec((err,friendsPosts)=>{
@@ -277,199 +228,7 @@ module.exports = {
   },
 
 
-
-  rate: (req, res)=>{
-      console.log("just got in rate")
-    Posts.findOne({_id:req.body.id},(err,post)=>{
-        if(err){
-            console.log("there was an error in rating")
-            res.sendStatus(500);
-        }else{
-            console.log("found the post")
-            let index;
-            let total=0;
-            let average=0;
-            let alreadyRated= false;
-            for(let x=0;x<post.userScores.length;x++){
-                if(post.userScores[x]==req.session.user._id){
-                    alreadyRated = true;
-                    index=x;
-                }
-            }
-            if(alreadyRated==false){
-                console.log("it has not been rated by the current user yet")
-                post.userScores.push(req.session.user._id);
-                post.score.push(req.body.rate)
-            
-                console.log("going to the loop now")
-               for(let i=0;i<post.score.length;i++){
-                    total+=post.score[i];
-                }
-                console.log(total)
-                console.log(post.score.length)
-                console.log(total/post.score.length)
-                if(!post.score.length){
-                    post.average=total/1;
-                }else{
-                    post.average=total/post.score.length;
-                }
-                post.save((err,savedPost)=>{
-                    if(err){
-                        console.log("something wrong with saving");
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-                        console.log("it successfully saved")
-                        console.log(savedPost);
-                        res.json(savedPost);
-                    }
-                })
-                }else{
-                console.log("it has been rated")
-//------------------need to learn to update in an array----------------                
-                Posts.update({_id:req.body.id}, {$inc:
-                     { 
-                     'score.$index': req.body.rate}});
-                     console.log("everything should be copacetic")
-                     res.json(post);
-            }
-        
-
-          }
-        })
-      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-      },
-
-      topPost:(req,res)=>{
-      var mysort = { average: -1 };
-      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
-          console.log("just before the erorr")
-          
-        if (err){
-            console.log("there has been an error in top posts");
-            console.log(err);
-            res.status(500).send(err);
-        } 
-        console.log("this is your topposts")
-        console.log(result);
-        res.json(result);
-
-      });
-      },
-
-
-
-
-  getPosts: (req, res) => {
-    Posts.find({}).populate('userscores').populate('user').exec( (err, posts)=>
-    {
-      if(err){
-        console.log("something is up. im jin and its my fault")
-        console.log(err);
-        return res.sendStatus(500)
-      }else{
-        return res.json(posts);
-      }
-    })
-  },
-
-  getUser: (req, res)=>{
-      Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
-        if(err){
-            res.status(500).send(err);
-        }else{
-            console.log(user);
-            res.json(user);
-        }
-      })
-  },
-
-  addFriend: (req, res)=>{
-      Users.findOne({_id:req.session.user._id}, (err,user)=>{
-          if(err){
-              res.status(500).send(err);
-          }else{
-              console.log(user);
-              let check = false;
-              for(let x=0;x<user.friends.length; x++){
-                if(user.friends[x] == req.body.id){
-                    check = true;
-                }
-              }
-              if(check){
-                  res.sendStatus(500);
-              }else{
-                  user.friends.push(req.body.id);
-                  user.save((err, savedUser)=>{
-                    if(err){
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-                        console.log(savedUser);
-                        res.json(savedUser);
-                    }
-                  })
-              }
-          }
-      })
-  },
-
-
-//gets the current user
-  getCurrentUser: (req,res)=>{
-        Users.findOne({_id:req.session.user._id}).populate('friends').exec( (err,user)=>{
-            if(err){
-                res.status(500).send("There was an error find user. User may not be logged in")
-            }else{
-                console.log("we got the current user")
-                console.log(user)
-                res.json(user);
-            }
-        })
-  },
-
-  //query to posts to find all of your friends posts
-  getFriendsPosts: (req,res)=>{
-    Posts.find({'user': {$in: req.session.user.friends}}).populate('user').exec((err,friendsPosts)=>{
-        if(err){
-            console.log("something went wrong with the query on getFriendsPosts controller")
-            console.log(err);
-            res.status(500).send(err);
-        }else{
-            console.log("this is all your friends posts")
-            console.log(friendsPosts);
-            res.json(friendsPosts);
-        }
-    })
-  },
-
-
-
+//14
   rate: (req, res)=>{
       console.log("just got in rate")
     Posts.findOne({_id:req.body.id},(err,post)=>{
@@ -545,7 +304,7 @@ module.exports = {
 
 
 
-
+//15
       loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
               if(err){
@@ -557,8 +316,9 @@ module.exports = {
               }
           })
       },
-
+//16
       topPost:(req,res)=>{
+          
       var mysort = { average: -1 };
       Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
           console.log("just before the erorr")
@@ -575,5 +335,111 @@ module.exports = {
       });
       },
 
+      getNumberOfStars: (req, res)=>{
+          console.log("you just got in getNumberOfStars. No query yet")
+          Posts.find({user: req.session.user._id}, (err, posts)=>{
+              if(err){
+                  console.log("theres been an error for the query of posts in getNumberOf Stars", err);
+                  res.status(500).send(err)
+              }else{
+                  if(posts){
+                      console.log("here are the posts for the stars")
+                      console.log(posts)
+                    if(posts[0]){
+                        let five = 0;
+                        let four = 0;
+                        let three = 0;
+                        let two = 0;
+                        let one = 0;
+                        let total = 0;
+                      
+                        // for(let i = 0; i<posts.score.length; i++){
+                        //     switch(posts.score[i]) {
+                        //         case 1: one++; total+=1;
+                        //         break;
+                        //         case 2: two++; total+=2;
+                        //         break;
+                        //         case 3: three++; total+=3;
+                        //         break;
+                        //         case 4: four++; total+=4;
+                        //         break;
+                        //         case five: five++; total+=5;
+                        //         break;
+                        //     }
+                        for(let x = 0; x<posts.length; x++){
+                              for(let i = 0; i<posts[x].score.length; i++){
+                                switch(posts[x].score[i]) {
+                                    case .5: console.log("someone put .5 on picture");
+                                    break;
+                                    case 1: one++; total++;
+                                    break;
+                                    case 1.5: one++; total++;
+                                    break;
+                                    case 2: two++; total++;
+                                    break;
+                                    case 2.5: two++; total++;
+                                    break;
+                                    case 3: three++; total++;
+                                    break;
+                                    case 3.5: three++; total++;
+                                    break;
+                                    case 4: four++; total++;
+                                    break;
+                                    case 4.5: four++; total++;
+                                    break;
+                                    case 5: five++; total++;
+                                    break;
+                                }
+                        }
+                        }
+                        console.log("here are your number of stars");
+                        console.log(five,four,three,two,one + " total:", total);
+                        res.json({"one":one, "two":two, "three":three, "four": four, "five":five, "total":total})
+
+
+
+
+                    }else{
+                        console.log("there was no posts[0].score")
+                    }
+
+
+
+                  }
+              }
+          })
+
+
+  findbyusername: (req, res) => {
+        Users.findOne({username: req.body.username}, (err, someUser)=>{
+            if(err){
+                console.log("something is wrong in the controller with findbyuser")
+                res.status(500).send(err);
+            }else if(someUser){
+                    res.json(someUser);
+                   
+                }
+            else{
+                console.log("user was not found");
+                res.sendStatus(500);
+                }
+        })
+    },
+  getnameusers: (req, res) => {
+        console.log("in the controller with getnameuser")
+        Users.find({fname: req.body.fname, lname: req.body.lname}, (err, nameusers)=>{
+            if(err){
+                console.log("something is wrong in the controller with findbyuser")
+                res.status(500).send(err);
+            }else if(nameusers){
+                    res.json(nameusers);
+                   
+                }
+            else{
+                console.log("No users were found.");
+                res.sendStatus(500);
+                }
+        })
+    },
 
 }
