@@ -43,8 +43,8 @@
               <div class="dropdown">
                 <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
                 <div class="dropdown-content">
-                  <a href="/">Account Overview</a>
-                  <a href="#">Profile</a>
+                  <a href="/home">Account Overview</a>
+                  <a href="/home">Profile</a>
                   <a [routerLink]="['/friendsposts']">Settings</a>
                   <a href="/logout">Log Out</a>
                 </div>
@@ -77,7 +77,7 @@
       <div class="col-md-4">
         <div class="stores">
           <img class="reqimage" src="{{yelpdata[0].image_url}}" alt="">
-          <p>{{yelpdata[0].name}}</p>
+          <p><a target="_blank" href="{{yelpdata[0].url}}">{{yelpdata[0].name}}</a></p>
           <p>is open:{{yelpdata[0].is_closed}}</p>
           <p>{{yelpdata[0].display_phone}}</p>
           <p>{{yelpdata[0].location.address}}</p>
@@ -86,7 +86,7 @@
       <div class="col-md-4">
         <div class="stores">
           <img class="reqimage" src="{{yelpdata[1].image_url}}" alt="">
-          <p>{{yelpdata[1].name}}</p>
+          <p><a target="_blank" href="{{yelpdata[1].url}}">{{yelpdata[1].name}}</a></p>
           <p>is open:{{yelpdata[1].is_closed}}</p>
           <p>{{yelpdata[1].display_phone}}</p>
           <p>{{yelpdata[1].location.address}}</p>
@@ -95,7 +95,7 @@
       <div class="col-md-4">
         <div class="stores">
           <img class="reqimage" src="{{yelpdata[2].image_url}}" alt="">
-          <p>{{yelpdata[2].name}}</p>
+          <p><a target="_blank"href="{{yelpdata[2].url}}">{{yelpdata[2].name}}</a></p>
           <p>is open:{{yelpdata[2].is_closed}}</p>
           <p>{{yelpdata[2].display_phone}}</p>
           <p>{{yelpdata[2].location.address}}</p>
