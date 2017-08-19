@@ -26,11 +26,12 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
-  {path: '', component: NewlandingComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'landing', component: LandingPageComponent},
-  {path: 'home', component: UserHomeComponent },
-  {path: 'profile', component:ProfileComponent},
+ 
+  {path: '', component: NewlandingComponent}, //home page for unregistered users
+  {path: 'register', component: RegisterComponent},//register page
+  {path: 'landing', component: LandingPageComponent},//old landing page (unused)
+  {path: 'home', component: UserHomeComponent },//user hub controller
+  {path: 'profile', component:ProfileComponent},//old profile component (unused)
   {path: 'create', component:TestComponent},
   {path: 'login', component: LoginComponent},
   {path: 'friendslist', component: FriendslistComponent},

@@ -30,7 +30,7 @@ export class UserHomeComponent implements OnInit {
 
 
   //gets current user for the hub
-  getCurrentUser(){
+  getCurrentUser(){ // grabs current logged user
     this._userHomeService.getCurrentUser()
     .then( (user)=>this.currentUser=user)
     .catch( (err)=>console.log(err));
@@ -38,13 +38,13 @@ export class UserHomeComponent implements OnInit {
     
   }
   //gets users friends with populate
-  getFriendsPosts(){
+  getFriendsPosts(){//grabs all of friends posts
     this._userHomeService.getFriendsPosts()
     .then((friends)=>this.friendsPosts=friends)
     .catch((err)=>console.log("theres an error"));
   }
 
-  getNumberOfStars(){
+  getNumberOfStars(){ //grabs the total number of stars
     console.log("running function getnumberofstars in component")
     this._userHomeService.getNumberOfStars()
     .then((stars)=>this.Stars=stars)
@@ -52,6 +52,12 @@ export class UserHomeComponent implements OnInit {
 
   
   }
+
+  createPost(formData){ //creates post and redirects to post view
+    this._userHomeService.createPost(formData.value)
+   .then( (post) => this._router.navigate(['/postview/' + post._id]))
+   .catch( (error) => console.log("there has been an error creating a post", error) ) 
+ }
 
 
 

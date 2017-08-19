@@ -39,6 +39,12 @@ export class UserHomeService {
     
   }
 
+  createPost(post){
+  	return this._http.post('/api/createPost', post)
+  		.map( (user:Response) => user.json())
+  		.toPromise()
+  }
+
 
 }
 
