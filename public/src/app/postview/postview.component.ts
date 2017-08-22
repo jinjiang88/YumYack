@@ -15,6 +15,7 @@ export class PostviewComponent implements OnInit {
   constructor(private _activatedRoute:ActivatedRoute, private _router:Router,private _postViewService:PostviewService) { }
 
   ngOnInit() {
+    this.current();
     this._activatedRoute.params.subscribe( (param)=>{
       this.id=param.id;
     })
@@ -34,5 +35,15 @@ export class PostviewComponent implements OnInit {
     .then((data)=>this.yelpdata=data)
     .catch((err)=>console.log(err))
   }
-
+  current(){
+    this._postViewService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
+  }
 }

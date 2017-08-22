@@ -14,6 +14,7 @@ export class NewlandingComponent implements OnInit {
   email="";
   password="";
   errors:any;
+  topPosts:any;
 
   loginval=""
 
@@ -30,7 +31,6 @@ export class NewlandingComponent implements OnInit {
     'pad':'none',
   }  
 
-  topPosts:any;
 
   recentPosts:Array<Object>
   ngOnInit() {

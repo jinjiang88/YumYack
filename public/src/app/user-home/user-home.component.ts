@@ -23,6 +23,7 @@ export class UserHomeComponent implements OnInit {
   constructor(private _userHomeService: UserHomeService, private _router: Router) { }
 
   ngOnInit() {
+    this.current();
     this.getCurrentUser();
     this.getFriendsPosts();
     this.getNumberOfStars();
@@ -58,7 +59,17 @@ export class UserHomeComponent implements OnInit {
    .then( (post) => this._router.navigate(['/postview/' + post._id]))
    .catch( (error) => console.log("there has been an error creating a post", error) ) 
  }
-
+ current(){
+  this._userHomeService.current()
+  .then((user)=>{
+    console.log(user)
+    if(user.login == false){
+      this._router.navigate(['/'])
+    }else{
+      this._router.navigate(['editprofile'])
+    }
+  })
+}
 
 
 }

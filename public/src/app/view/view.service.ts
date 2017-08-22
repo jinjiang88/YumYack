@@ -19,8 +19,9 @@ export class ViewService {
   		.map( (user:Response) => user.json())
   		.toPromise()
   }
-  
-
-  
-
+  current(){
+    return this._http.get('/api/current')
+    .map((response:Response)=> response.json())
+    .toPromise();
+  }
 }
