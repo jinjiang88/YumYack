@@ -31,3 +31,7 @@ img {
 .picture{
   width: 300px;
 }
+.floorplan{
+  background: url(../../assets/images/restaurantimage.jpg) 100% fixed; 
+  min-height: 750px;
+}

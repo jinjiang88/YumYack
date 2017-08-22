@@ -22,6 +22,7 @@ import { PostviewComponent } from './postview/postview.component';
 import { PostcreationComponent } from './postcreation/postcreation.component';
 import { UserPostsComponent } from './user-posts/user-posts.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProfilepicComponent } from './profilepic/profilepic.component';
 
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'postview/:id', component:PostviewComponent},
   {path: 'postcreation', component:PostcreationComponent},
   {path: 'editprofile', component:EditProfileComponent},
+  {path: 'preprofile', component:ProfilepicComponent},
 
 ];
 

@@ -13,6 +13,7 @@ let UserSchema = new Schema({
     posts: {type: Number, required: false, default: 0,},
     city: {type:String, required:true},
     state: {type:String, required:true},
+    filename:{type: String, required: false},
 
 }, {timestamps: true})
 

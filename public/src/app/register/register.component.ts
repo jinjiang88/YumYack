@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   register(){
     console.log(this.username, this.lname, this.fname, this.email,this.password);
     	this._registerService.register({email:this.email,username:this.username,password:this.password,fname:this.fname,lname:this.lname, city:this.city, state:this.state})
-  		.then( (user) => this._router.navigate(['/home']))
+  		.then( (user) => this._router.navigate(['/preprofile']))
   		.catch( (err) =>
         this.error=err)
 

@@ -54,7 +54,8 @@ import { PostviewComponent } from './postview/postview.component';
 import { PostviewService } from './postview/postview.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditProfileService } from './edit-profile/edit-profile.service';
-
+import { ProfilepicComponent } from './profilepic/profilepic.component';
+import { ProfilepicService } from './profilepic/profilepic.service';
 
 
 
@@ -78,6 +79,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     PostviewComponent,
     PostcreationComponent,
     EditProfileComponent,
+    ProfilepicComponent,
     
 
 
@@ -101,7 +103,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
-      
+      ProfilepicService,
     ],
 
   bootstrap: [AppComponent]
