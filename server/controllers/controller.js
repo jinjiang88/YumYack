@@ -224,37 +224,44 @@ module.exports = {
       })
   },
 //11
-  addFriend: (req, res)=>{
-      Users.findOne({_id:req.session.user._id}, (err,user)=>{
+addFriend: (req, res)=>{
+  Users.findOne({_id:req.session.user._id}, (err,user)=>{
+    if(err){
+      res.status(500).send(err);
+    }else{
+      console.log(user);
+      let check = false;
+      for(let x=0;x<user.friends.length; x++){
+        if(user.friends[x] == req.body.id){
+          check = true;
+        }
+      }
+
+      if(check){
+        res.sendStatus(500);
+      }else{
+        user.friends.push(req.body.id);
+        user.save((err, savedUser)=>{
           if(err){
-              res.status(500).send(err);
+            console.log(err);
+            res.sendStatus(500);
           }else{
-              console.log(user);
-              let check = false;
-              for(let x=0;x<user.friends.length; x++){
-                if(user.friends[x] == req.body.id){
-                    check = true;
-                }
-              }
-              if(check){
-                  res.sendStatus(500);
+            console.log(savedUser);
+            Users.findOne({_id:req.body.id}, (err,user)=>{
+              if(err){
+                res.status(500).send(err);
               }else{
-                  user.friends.push(req.body.id);
-                  user.save((err, savedUser)=>{
-                    if(err){
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-                        console.log(savedUser);
-                        notify = Users.findOne({_id:req.body.id});
-                        notify.notification.push(req.session.user.username+" has subscribed to you.")
-                        res.json(savedUser);
-                    }
-                  })
+                user.notification.push(req.session.user.username+" has subscribed to you.");
+                user.save();
               }
+              res.json(savedUser);
+            })
           }
+        })
+      }
+    }
       })
-  },
+    },
 
 //12
 //gets the current user with populated friends
