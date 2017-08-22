@@ -1,5 +1,5 @@
 img {
-    width:50px;
+    width:100px;
 }
 
 /*new background*/
@@ -28,3 +28,6 @@ img {
 /*.picture img{
 	width:50px;
 }*/
+.picture{
+  width: 300px;
+}
