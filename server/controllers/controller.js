@@ -428,6 +428,7 @@ module.exports = {
 
                     }else{
                         console.log("there was no posts[0].score")
+                        res.status(500).send("there are no posts yet")
                     }
 
 

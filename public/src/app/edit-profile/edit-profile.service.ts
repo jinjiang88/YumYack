@@ -15,4 +15,11 @@ export class EditProfileService {
     .toPromise();
   }
 
+  editProfile(formData){
+    return this._http.post('/api/editprofile', formData)
+    .map((response:Response)=> response.json())
+    .toPromise()
+
+  }
+
 }
