@@ -7,7 +7,8 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-
+const clientId="ja63gfSYKpuf3EDg6CrmwA";
+const clientSecret='A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
 
 
 module.exports = {
@@ -74,22 +75,23 @@ module.exports = {
 
 	login: (req, res) => {
         console.log(req.body.email,req.body.password)
-        Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
+        Users.findOne({email: req.body.email}, (err, user)=>{
             if(err){
                 res.status(500).send(err);
             }else{
                 //check what user shows
                 console.log(user);
                 if(user){
-                      req.session.user=user;
-                 console.log("user was found");
-                    res.json({user: "found"});
-
-
-                   
+                    if(user.password == req.body.password){
+                        req.session.user=user
+                        return res.json(user)
+                    }else{
+                        var err=[]
+                        return res.json({error:true,message:"password is incorrect"})
+                    }
                 }else{
-                    console.log("user was not found");
-                    res.sendStatus(500);
+                    var err=[]
+                    return res.json({error:true, message:"email not found"})
                 }
             }
         })
@@ -99,19 +101,19 @@ module.exports = {
        Users.findOne({email:request.body.email}, (err, user)=>{
          if(err){
            console.log('**********************')
-           return response.json(err)
+           return response.status(500).send(err)
          }else{
            console.log('_______________________')
            if(user){
              console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^')
-             return response.json('this email has been used')
+             return response.json({error:true, message:'this email has been used'})
            }else{
                Users.findOne({username:request.body.username},(err,thisuser)=>{
                    if(err){
-                       console.log("something wrong looking for username")
+                       return response.status(500).send(err)
                    }else{
                        if(thisuser){
-                           return response.json("this username has been used")
+                           return response.json({error:true, message:"this username has been used"})
                        }else{
                         var newuser = new Users();
                         console.log(request.body)
@@ -126,8 +128,8 @@ module.exports = {
                         newuser.save(function(err,saveduser){
                           if(err){
                             console.log('something went wrong saving new user')
-                            console.log(err)
-                            response.status(500).send(err);
+                            console.log(err,'&&&&&&&&&&&&&&&&&&')
+                            return response.status(500).send(err);
                           }else{
                             console.log('everything went right')
                             request.session.user= saveduser;
