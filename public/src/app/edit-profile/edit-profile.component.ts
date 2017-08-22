@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EditProfileService } from './edit-profile.service';
-import { Router } from '@angular/router';
+
+import { Router } from '@angular/router'
+
 import { FileUploader } from 'ng2-file-upload';
 
 
@@ -21,7 +23,12 @@ export class EditProfileComponent implements OnInit {
 
   
   ngOnInit() {
+
+
+    this.getCurrentUser();
+
     this.current()
+
   }
 
   getCurrentUser(){
@@ -39,6 +46,12 @@ export class EditProfileComponent implements OnInit {
         this._router.navigate(['editprofile'])
       }
     })
+  }
+
+  editProfileComponent(formData){
+    this._editProfileService.editProfile(formData.value)
+    .then((profile)=> this._router.navigate(['/home']))
+    .catch((error)=>console.log("Edit was unsuccessful"))
   }
 
 }

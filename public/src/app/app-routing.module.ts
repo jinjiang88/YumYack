@@ -44,8 +44,9 @@ const routes: Routes = [
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
   {path: 'postcreation', component:PostcreationComponent},
-  {path: 'editprofile', component:EditProfileComponent},
+  {path: 'editProfile', component:EditProfileComponent},
   {path: 'preprofile', component:ProfilepicComponent},
+
 
 ];
 
