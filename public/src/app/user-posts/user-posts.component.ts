@@ -12,9 +12,10 @@ export class UserPostsComponent implements OnInit {
 	user: any;
   constructor(
   	private _userpostsService: UserPostsService,
-  	private _router: Router) { }
+		private _router: Router) { }
 
   ngOnInit() {
+    this.current();
   	this.getCurrentUser();
 		this.getAllPosts();
 
@@ -30,5 +31,16 @@ export class UserPostsComponent implements OnInit {
   		this.posts = posts, console.log(posts)
   	})
   	.catch( (err) => console.log(err))
+	}
+	current(){
+    this._userpostsService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
   }
 }

@@ -5,6 +5,7 @@
   "dependencies": {
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.30",
     "angular4-carousel": "^3.1.3",
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "express-session": "^1.15.5",

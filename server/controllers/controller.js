@@ -172,9 +172,9 @@ module.exports = {
    //6
   current: (req, res) => {
     if(!req.session.user){
-      return res.status(401).send("Nice try")
+      return res.json({login:false})
     }else{
-      return res.json(req.session.user);
+      return res.json({login:true,user:req.session.user});
     }
   },
 //7

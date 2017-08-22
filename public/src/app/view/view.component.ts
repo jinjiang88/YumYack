@@ -19,6 +19,7 @@ export class ViewComponent implements OnInit {
   starsCount:5;
 
   ngOnInit() {
+      this.current();
     	this._activatedRoute.params.subscribe((param)=>{
       this.id = param.id;
     })
@@ -45,8 +46,15 @@ export class ViewComponent implements OnInit {
     console.log(typeof this.starsCount)
     console.log(this.starsCount)
   }
-
-
-
-
+  current(){
+    this._viewService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
+  }
 }

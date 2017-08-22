@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from './profile.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -11,9 +14,10 @@ export class ProfileComponent implements OnInit {
   friendsbuttcolor="none";
   postsbuttcolor="none";
 
-  constructor() { }
+  constructor(private _profileService:ProfileService, private _router:Router) { }
 
   ngOnInit() {
+    this.current();
     this.componentnumber = 2;
   }
 
@@ -36,6 +40,17 @@ export class ProfileComponent implements OnInit {
     this.overviewbuttcolor="white"
     this.friendsbuttcolor="white"
     this.postsbuttcolor= "white"
+  }
+  current(){
+    this._profileService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
   }
 
 }
