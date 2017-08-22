@@ -513,5 +513,37 @@ module.exports = {
 
       });
       },
+   // createProfilePic: (req, res) => {
+   //     console.log(req.session.filename);
+   //     console.log(req.session.user);
+   //      let newProfilePic = new ProfilePics();
+   //      newProfilePic.filename = req.session.filename;
+   //      newProfilePic.user = req.session.user._id;
+   //      newProfilePic.save((err, savedProfilePic=>{
+   //          if(err){
+   //              let errors = '';
+   //              for(let i in err.errors){
+   //                  errors += err.errors[i].message + ","
+   //              }
+   //              return res.status(500).send(errors="something went wrong", errors);
+   //          }else{
+   //              console.log("this is the saved ProfilePic", savedProfilePic);
+   //              return res.json(savedProfilePic);
+   //          }
+   //      })
+   // },
+    createProfilePic: (req, res) => {
+       console.log(req.session.filename);
+       console.log(req.session.user);
+       Users.update({_id: req.session.user._id}, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        console.log(data);
+        return res.json(data);
+      }
+    })  
+  },
 }
 ///check yourself before you reck yourself

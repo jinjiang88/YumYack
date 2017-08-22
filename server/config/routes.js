@@ -28,6 +28,8 @@ module.exports = app => {
 	app.get('/api/getNumberOfStars', controller.getNumberOfStars);
 	app.post('/api/findbyusername', controller.findbyusername);
 	app.post('/api/getnameusers', controller.getnameusers);
+	app.get('/api/createProfilePic', controller.createProfilePic);
+
 
 
 }
