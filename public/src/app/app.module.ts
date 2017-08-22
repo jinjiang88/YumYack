@@ -23,16 +23,16 @@ import { CarouselModule } from 'angular4-carousel';
 
 
 
-import { PostcreationComponent } from './postcreation/postcreation.component';
+
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
 
-import { LoginComponent } from './login/login.component';
+
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { FriendslistService } from './friendslist/friendslist.service';
-import { LoginService } from './login/login.service';
+
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
 
@@ -70,14 +70,14 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     ProfileComponent,
     TestComponent,
     NewlandingComponent,
-    LoginComponent,
+ 
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
     ViewComponent,
     FriendspostsComponent,
     PostviewComponent,
-    PostcreationComponent,
+   
     EditProfileComponent,
     ProfilepicComponent,
     
@@ -95,7 +95,7 @@ import { ProfilepicService } from './profilepic/profilepic.service';
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
-     FriendslistService, LoginService, FindfriendsService,
+     FriendslistService, FindfriendsService,
      UserPostsService,
      ViewService,
      FriendspostsService,
