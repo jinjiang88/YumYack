@@ -1,35 +1,61 @@
 <!-- Header -->
 <!-- this is the navbar ==============================================================================-->
-<div class="navbar" style="background-color:#FFFFFF; border:none; margin-bottom:0px;">
-  <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFFFFF; color:#e4e4e4;">
-   
+<div class="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top thenav">
+    <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-          aria-controls="navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
       </div>
-      <div id="navbar" class="collapse navbar-collapse" style="background-color: #FFFFFF;">
-        <h3 style="color:#18233E; vertical-align:top; display:inline-block;">YumYack</h3>
+      <div id="navbar" class="collapse navbar-collapse">
+        <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
         <ul class="nav navbar-nav navbar-right">
+
+          <li><a class="navlinks"  href="/home" id="home">Home</a></li>
+          <li><a class="navlinks" href="/search">Find Friends</a></li>
+          <li><a class="navlinks" href="/friendslist">Friends</a></li>
+          <li class="thenotify">
+              <div class="dropdown">
+              <div *ngIf= "isValid; else other_content;">
+              
+                <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                  <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                </div>
+
+                <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
+                  <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                  </ng-template>
+                </div>                
+            </li>
+          <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+
           <li>
-            <A HREF="#howitworks" style="color:#18233E;">How it works</A>
+            <div class="dropdown">
+              <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+              <div class="dropdown-content">
+                <a href="/home">Account Overview</a>
+                <a href="/home">Profile</a>
+                <a [routerLink]="['/friendsposts']">Settings</a>
+                <a href="/logout">Log Out</a>
+              </div>
+            </div>
           </li>
-          <li><a href="#mostgross" style="color:#18233E;">Most gross</a></li>
-          <li><a href="#recentposts" style="color:#18233E;">Recent posts</a></li>
-          <li><a href="#topcontributors" style="color:#18233E;">Top contributors</a></li>
-          <li><a href="/deals" style="color:#18233E;">Community</a></li>
-          <li><a href="/posts" style="color:#18233E;">My Posts</a></li>
-          <li><a href="/logout" style="color:#18233E;">Logout</a></li>
-          <li class="joinbutton"><a class="join" href="/register"><span class="jointext">Join</span></a></li>
         </ul>
       </div>
-    
+    </div>
   </nav>
-
 </div>
 <!-- /Header -->
 
