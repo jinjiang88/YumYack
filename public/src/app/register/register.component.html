@@ -1,90 +1,82 @@
-<!-- this is the navbar ==============================================================================-->
-<div class="navbar" style="background-color:#FFFFFF; border:none; margin-bottom:0px;">
-  <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFFFFF; color:#e4e4e4;">
+<div class="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top thenav">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-          aria-controls="navbar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
       </div>
-      <div id="navbar" class="collapse navbar-collapse" style="background-color: #FFFFFF;">
-        <h3 style="color:#18233E; vertical-align:top; display:inline-block;">YumYack</h3>
+      <div id="navbar" class="collapse navbar-collapse">
+        <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <A HREF="#howitworks" style="color:#18233E;">How it works</A>
-          </li>
-          <li><a href="#mostgross" style="color:#18233E;">Most gross</a></li>
-          <li><a href="#recentposts" style="color:#18233E;">Recent posts</a></li>
-          <li><a href="#topcontributors" style="color:#18233E;">Top contributors</a></li>
-          <li><a href="/deals" style="color:#18233E;">Community</a></li>
-          <li><a href="/posts" style="color:#18233E;">My Posts</a></li>
-          <li><a href="/logout" style="color:#18233E;">Logout</a></li>
-          <li class="joinbutton"><a class="join" href="/register"><span class="jointext">Join</span></a></li>
+  
+          <li><a class="navlinks"  href="/register" id="home">Home</a></li>
+          <li><a class="navlinks" href="/register">Find Friends</a></li>
+          <li><a class="navlinks" href="/register">Friends</a></li>
         </ul>
       </div>
     </div>
   </nav>
-</div>
-
+  </div>
 
 <div class="container">
   <div class="row main">
     <div class="main-login main-center" style="display: inline-block; vertical-align: top;">
-      <h5>Already Registered? <a [routerLink]="['/login']">Login</a></h5>
-
+      <h5>Already Registered? <a [routerLink]="['/#login']">Login</a></h5>
+      <p *ngIf="error != ''" style="color:red;">{{error}}</p>
 
       <form method="post">
         <div class="form-group">
           <label for="fname" class="cols-sm-2 control-label">Your First Name</label>
+          <p class="err" *ngIf="FirstName.errors">First name must at least be 2 characters long</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
               <input type="text" class="form-control" name="fname" id="name" [(ngModel)]="fname" placeholder="Enter your First name" required
                 minlength="2" #FirstName="ngModel" />
-                <p class="err" *ngIf="FirstName.errors">First name must at least be 2 characters long</p>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="lname" class="cols-sm-2 control-label">Your Last Name</label>
+          <p class="err" *ngIf="LastName.errors">Last name must at least be 2 characters long</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
               <input type="text" class="form-control" name="lname" id="name" [(ngModel)]="lname" placeholder="Enter your Last name" required
                 minlength="2" #LastName="ngModel" />
-                <p class="err" *ngIf="LastName.errors">Last name must at least be 2 characters long</p>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="email" class="cols-sm-2 control-label">Your Email</label>
+          <p class="err" *ngIf="Email.errors">Email must at least be 2 characters long</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
               <input type="text" class="form-control" name="email" id="email" [(ngModel)]="email" placeholder="Enter your Email" required
                 minlength="2" #Email="ngModel" />
-                <p class="err" *ngIf="Email.errors">Email must at least be 2 characters long</p>
 
             </div>
           </div>
         </div>
         <div class="form-group">
-            <label for="city" class="cols-sm-2 control-label">City</label>
+          <label for="city" class="cols-sm-2 control-label">City</label>
+          <p class="err" *ngIf="City.errors">must not be blank</p>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" name="city" id="city" [(ngModel)]="city" placeholder="Enter your city" required
                   minlength="2" #City="ngModel" />
-                  <p class="err" *ngIf="City.errors">must not be blank</p>
               </div>
             </div>
           </div>
           <div class="form-group">
               <label for="state" class="cols-sm-2 control-label">Your state</label>
+              <p class="err" *ngIf="State.errors">state must be 2 characters</p>
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -145,41 +137,40 @@
                         
                   <!-- <input type="text" class="form-control" name="state" id="state" [(ngModel)]="state" placeholder="Enter your state" required
                     minlength="2" #State="ngModel" /> -->
-                    <p class="err" *ngIf="State.errors">state must be 2 characters</p>
                 </div>
               </div>
             </div>
         <div class="form-group">
           <label for="username" class="cols-sm-2 control-label">Username</label>
+          <p class="err" *ngIf="Username.errors">Username must be at least 2 characters</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
               <input type="text" class="form-control" name="username" [(ngModel)]="username" id="username" placeholder="Enter your Username"
                 required minlength="2" #Username="ngModel" />
-                <p class="err" *ngIf="Username.errors">must select a state</p>
             </div>
           </div>
         </div>
         <div class="form-group">
 
           <label for="password" class="cols-sm-2 control-label">Password</label>
+          <p class="err" *ngIf="Password.errors">Password must at least be 2 characters long</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
               <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password" placeholder="Enter your Password"
                 required minlength="2" #Password="ngModel" />
-                <p class="err" *ngIf="Password.errors">Password must at least be 2 characters long</p>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+          <p class="err" *ngIf="password!=passwordConfirm">Password Confirmation must match Password</p>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
               <input type="password" class="form-control" name="passwordConfirm" id="confirm" [(ngModel)]="passwordConfirm" placeholder="Confirm your Password"
                 required minlength="2" #ConfirmPassword="ngModel" />
-                <p class="err" *ngIf="password!=passwordConfirm">Password Confirmation must match Password</p>
             </div>
           </div>
         </div>
