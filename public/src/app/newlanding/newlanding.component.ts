@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { NewlandingService } from './newlanding.service';
 
-
 @Component({
   selector: 'app-newlanding',
   templateUrl: './newlanding.component.html',
@@ -11,9 +10,13 @@ import { NewlandingService } from './newlanding.service';
 })
 export class NewlandingComponent implements OnInit {
 
-  constructor(private _newLandingService: NewlandingService) { }
-  email:"";
-  password:"";
+  constructor(private _newLandingService: NewlandingService, private _router:Router) { }
+  email="";
+  password="";
+  errors:any;
+  topPosts:any;
+
+  loginval=""
 
   thebar={
     'textcolor':"white",
@@ -28,7 +31,6 @@ export class NewlandingComponent implements OnInit {
     'pad':'none',
   }  
 
-  topPosts:any;
 
   recentPosts:Array<Object>
   ngOnInit() {
@@ -76,5 +78,22 @@ export class NewlandingComponent implements OnInit {
       .then((posts)=>this.recentPosts=posts)
       .catch((err)=>{console.log("there was an error in finding recent posts"); console.log(err);})
     }
-
+    login(){
+      this._newLandingService.login({email:this.email, password: this.password})
+        .then( (user)=>{
+          if(user.error){
+            this.loginval = user.message;
+          }else{
+            this._router.navigate(['/home'])
+          }
+        }
+      )
+        .catch( (err)=>{
+          if(err){
+            console.log(err,"poopooooooopopopopopopop")
+            this.loginval = err
+          }
+        })
+    }
+    
 }

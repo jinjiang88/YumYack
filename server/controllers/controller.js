@@ -7,7 +7,8 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-
+const clientId="";
+const clientSecret='';
 
 
 module.exports = {
@@ -74,22 +75,23 @@ module.exports = {
 
 	login: (req, res) => {
         console.log(req.body.email,req.body.password)
-        Users.findOne({email: req.body.email, password: req.body.password}, (err, user)=>{
+        Users.findOne({email: req.body.email}, (err, user)=>{
             if(err){
                 res.status(500).send(err);
             }else{
                 //check what user shows
                 console.log(user);
                 if(user){
-                      req.session.user=user;
-                 console.log("user was found");
-                    res.json({user: "found"});
-
-
-                   
+                    if(user.password == req.body.password){
+                        req.session.user=user
+                        return res.json(user)
+                    }else{
+                        var err=[]
+                        return res.json({error:true,message:"password is incorrect"})
+                    }
                 }else{
-                    console.log("user was not found");
-                    res.sendStatus(500);
+                    var err=[]
+                    return res.json({error:true, message:"email not found"})
                 }
             }
         })
@@ -99,34 +101,47 @@ module.exports = {
        Users.findOne({email:request.body.email}, (err, user)=>{
          if(err){
            console.log('**********************')
-           return response.json(err)
+           return response.status(500).send(err)
          }else{
            console.log('_______________________')
            if(user){
              console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^')
-             return response.json('this email has been used')
+             return response.json({error:true, message:'this email has been used'})
            }else{
-             var newuser = new Users();
-             newuser.fname =request.body.fname;
-             newuser.lname = request.body.lname;
-             newuser.email = request.body.email;
-             newuser.password = request.body.password;
-             newuser.username = request.body.username;
-             newuser.city = request.body.city;
-             newuser.state = request.body.state;
-             console.log('asdfasdfasdfasdfsfd')
-             newuser.save(function(err,saveduser){
-               if(err){
-                 console.log('something went wrong saving new user')
-                 response.status(500).send(err);
-               }else{
-                 console.log('everything went right')
-                 request.session.user= saveduser;
-                 response.json(saveduser)
+               Users.findOne({username:request.body.username},(err,thisuser)=>{
+                   if(err){
+                       return response.status(500).send(err)
+                   }else{
+                       if(thisuser){
+                           return response.json({error:true, message:"this username has been used"})
+                       }else{
+                        var newuser = new Users();
+                        console.log(request.body)
+                        newuser.fname =request.body.fname;
+                        newuser.lname = request.body.lname;
+                        newuser.email = request.body.email;
+                        newuser.password = request.body.password;
+                        newuser.username = request.body.username;
+                        newuser.city = request.body.city;
+                        newuser.state = request.body.state;
+                        console.log('asdfasdfasdfasdfsfd')
+                        newuser.save(function(err,saveduser){
+                          if(err){
+                            console.log('something went wrong saving new user')
+                            console.log(err,'&&&&&&&&&&&&&&&&&&')
+                            return response.status(500).send(err);
+                          }else{
+                            console.log('everything went right')
+                            request.session.user= saveduser;
+                            response.json(saveduser)
+                       }
+                   })
+               }
+
                }
              })
            }
-         }
+        }
 
       })
      },
@@ -157,9 +172,9 @@ module.exports = {
    //6
   current: (req, res) => {
     if(!req.session.user){
-      return res.status(401).send("Nice try")
+      return res.json({login:false})
     }else{
-      return res.json(req.session.user);
+      return res.json({login:true,user:req.session.user});
     }
   },
 //7
@@ -499,5 +514,37 @@ module.exports = {
 
       });
       },
+   // createProfilePic: (req, res) => {
+   //     console.log(req.session.filename);
+   //     console.log(req.session.user);
+   //      let newProfilePic = new ProfilePics();
+   //      newProfilePic.filename = req.session.filename;
+   //      newProfilePic.user = req.session.user._id;
+   //      newProfilePic.save((err, savedProfilePic=>{
+   //          if(err){
+   //              let errors = '';
+   //              for(let i in err.errors){
+   //                  errors += err.errors[i].message + ","
+   //              }
+   //              return res.status(500).send(errors="something went wrong", errors);
+   //          }else{
+   //              console.log("this is the saved ProfilePic", savedProfilePic);
+   //              return res.json(savedProfilePic);
+   //          }
+   //      })
+   // },
+    createProfilePic: (req, res) => {
+       console.log(req.session.filename);
+       console.log(req.session.user);
+       Users.update({_id: req.session.user._id}, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        console.log(data);
+        return res.json(data);
+      }
+    })  
+  },
 }
 ///check yourself before you reck yourself

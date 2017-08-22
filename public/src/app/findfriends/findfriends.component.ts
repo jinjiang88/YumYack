@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FindfriendsService } from './findfriends.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-findfriends',
@@ -14,9 +15,10 @@ export class FindfriendsComponent implements OnInit {
   username: string;
   fname: string;
   lname: string;
-  constructor(private _findFriendsService: FindfriendsService) { }
+  constructor(private _findFriendsService: FindfriendsService, private _router:Router) { }
 
   ngOnInit() {
+    this.current()
     this.getallusers();
   }
 
@@ -39,6 +41,16 @@ export class FindfriendsComponent implements OnInit {
       this._findFriendsService.findbyfnamelname({fname:this.fname, lname:this.lname})
       .then( nameusers => this.nameusers = nameusers)
       .catch( (err)=>console.log("there is an error for findbyfnamelname"))
-    
+    }
+    current(){
+      this._findFriendsService.current()
+      .then((user)=>{
+        console.log(user)
+        if(user.login == false){
+          this._router.navigate(['/'])
+        }else{
+          this._router.navigate(['editprofile'])
+        }
+      })
     }
 }

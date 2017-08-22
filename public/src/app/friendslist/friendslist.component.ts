@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendslistService } from './friendslist.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friendslist',
@@ -8,10 +9,11 @@ import { FriendslistService } from './friendslist.service'
 })
 export class FriendslistComponent implements OnInit {
 
-  constructor(private _friendsListService: FriendslistService) { }
+  constructor(private _friendsListService: FriendslistService, private _router:Router) { }
   friends: Array<any>;
 
   ngOnInit() {
+    this.current();
     this.getAllFriends();
   }
 
@@ -20,6 +22,17 @@ export class FriendslistComponent implements OnInit {
     .then( (friends) => this.friends=friends)
   		.catch( (err) => console.log(err))
 
+  }
+  current(){
+    this._friendsListService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
   }
 
 

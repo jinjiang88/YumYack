@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EditProfileService } from './edit-profile.service';
+
 import { Router } from '@angular/router'
+
 import { FileUploader } from 'ng2-file-upload';
 
 
@@ -22,13 +24,28 @@ export class EditProfileComponent implements OnInit {
   
   ngOnInit() {
 
+
     this.getCurrentUser();
+
+    this.current()
+
   }
 
   getCurrentUser(){
     this._editProfileService.getCurrentUser()
     .then((user)=>this.currentUser=user)
     .catch((err)=>{console.log("cannot get the current user", err)})
+  }
+  current(){
+    this._editProfileService.current()
+    .then((user)=>{
+      console.log(user)
+      if(user.login == false){
+        this._router.navigate(['/'])
+      }else{
+        this._router.navigate(['editprofile'])
+      }
+    })
   }
 
   editProfileComponent(formData){

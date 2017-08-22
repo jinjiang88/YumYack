@@ -19,6 +19,11 @@ export class NewlandingService {
     .map((response: Response)=>response.json())
     .toPromise();
   }
+  login(user){
+    return this._http.post('/api/login', user)
+      .map( (response: Response)=> response.json())
+      .toPromise();
+  }
 
 }
 
