@@ -541,5 +541,17 @@ module.exports = {
       }
     })  
   },
+  topcontrib:(request,response)=>{
+      Users.find({}).sort({yumyackscore:-1}).limit(6)
+      .exec(function(err,users){
+          if(err){
+              console.log(err)
+              return response.json(err);
+          }else{
+              console.log("something didnt go wrong")
+              return response.json(users)
+          }
+      })
+  }
 }
 ///check yourself before you reck yourself
