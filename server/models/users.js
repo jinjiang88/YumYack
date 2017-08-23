@@ -12,15 +12,10 @@ let UserSchema = new Schema({
     friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
     city: {type:String, required:true},
     state: {type:String, required:true},
-    filename:{type: String, required: false},
-<<<<<<< HEAD
-    notification: [{type: String, required: false, default: 'blank.png',}],
-
-=======
+    filename:{type: String, required: false, default: 'blank.png'},
     notification: [{type: String, required: false}],
     allposts: [{type: Schema.Types.ObjectId, ref: 'Posts'}],
     yumyackscore: {type:Number, default:0},
->>>>>>> 4045aee3472eb16ccb6bc294d1103adb16bcad47
 }, {timestamps: true})
 
 mongoose.model('Users', UserSchema);
