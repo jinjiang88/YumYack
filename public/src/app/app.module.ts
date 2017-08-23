@@ -69,22 +69,13 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
-<<<<<<< HEAD
-    NewlandingComponent,
- 
-=======
     NewlandingComponent,  
->>>>>>> master
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
     ViewComponent,
     FriendspostsComponent,
     PostviewComponent,
-<<<<<<< HEAD
-   
-=======
->>>>>>> master
     EditProfileComponent,
     ProfilepicComponent,
     

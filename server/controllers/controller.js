@@ -1,35 +1,22 @@
 var mongoose = require('mongoose');
 var Users = mongoose.model("Users");
 var Posts = mongoose.model("Posts");
-var Images = mongoose.model("Images"); <<
-<< << < HEAD
-var bcrypt = require("bcrypt"); ===
-=== =
-var bcrypt = require("bcryptjs"); >>>
->>> > master
+var Images = mongoose.model("Images"); 
+
+var bcrypt = require("bcryptjs");
+
 mongoose.promise = Promise
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-<<
-<< << < HEAD
 
 
-userSchema.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-}
 
-userSchema.methods.validPassword = function (password) {
-        return bcrypt.compareSync(password, this.local.password);
-    }
-
-    ===
-    === =
-    const clientId = "";
+const clientId = "";
 const clientSecret = '';
-var salt = bcrypt.genSaltSync(10); >>>
->>> > master
+var salt = bcrypt.genSaltSync(10);
+
 
 
 
