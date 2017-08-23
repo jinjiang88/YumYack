@@ -27,8 +27,11 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
 
+
+
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { FriendslistService } from './friendslist/friendslist.service';
+
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
 
@@ -50,7 +53,8 @@ import { PostviewComponent } from './postview/postview.component';
 import { PostviewService } from './postview/postview.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditProfileService } from './edit-profile/edit-profile.service';
-
+import { ProfilepicComponent } from './profilepic/profilepic.component';
+import { ProfilepicService } from './profilepic/profilepic.service';
 
 
 
@@ -64,7 +68,11 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
+<<<<<<< HEAD
     NewlandingComponent,
+=======
+    NewlandingComponent,  
+>>>>>>> 42f96942bb9d8ea33564d47e7138b8a72e77fdd3
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
@@ -72,6 +80,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     FriendspostsComponent,
     PostviewComponent,
     EditProfileComponent,
+    ProfilepicComponent,
     
 
 
@@ -95,7 +104,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
      ViewService,
       NewlandingService,
       EditProfileService,
-      
+      ProfilepicService,
     ],
 
   bootstrap: [AppComponent]

@@ -1,0 +1,119 @@
+<div class="background2">
+  <div class="background1">
+   
+    <div class="navbar">
+      <nav class="navbar navbar-default navbar-fixed-top thenav">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="navlinks" href="/">Home</a></li>
+              <li><a class="navlinks" href="/messageboard">My Posts</a></li>
+              <li><a class="navlinks" href="/social">Friends</a></li>
+              <li><a class="navlinks" href="/deals" style="font-size:150%">+</a></li>
+              <li>
+                <div class="dropdown">
+                  <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+                  <div class="dropdown-content">
+                    <a href="/">Account Overview</a>
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="/logout">Log Out</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form>
+                                <div class="form-group">
+                                    <label for="single">Please Upload your Profile Picture here</label>
+                                    <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />                                  
+                                </div>            
+                            </form>
+                        </div>
+                        <div class="col-md-8">
+                            Queue length: {{ uploader?.queue?.length }}
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th width="50%">Name</th>
+                                    <th>Size</th>
+                                    <th>Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of uploader.queue">
+                                    <td><strong>{{ item.file.name }}</strong></td>
+                                    <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                                    <td>
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                    </td>
+                                    <td nowrap>
+                                        <button type="button" class="btn btn-success btn-xs"
+                                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs"
+                                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs"
+                                                (click)="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div>
+                                <div>
+                                    Queue progress:
+                                    <div class="progress" style="">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-success btn-s"
+                                        (click)=" uploader.uploadAll();  " [disabled]="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                                </button>
+                                <button type="button" class="btn btn-warning btn-s"
+                                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                </button>
+                                <button type="button" class="btn btn-danger btn-s"
+                                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<button (click)="createProfilePic();">Post</button>
+<button [routerLink]=" ['/home'] ">Not Now</button>
+</div>
+</div>

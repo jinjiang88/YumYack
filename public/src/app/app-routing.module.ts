@@ -20,6 +20,7 @@ import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { PostviewComponent } from './postview/postview.component';
 import { UserPostsComponent } from './user-posts/user-posts.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProfilepicComponent } from './profilepic/profilepic.component';
 
 
 
@@ -39,7 +40,9 @@ const routes: Routes = [
   {path: 'view/:id', component:ViewComponent},
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
-  {path: 'editprofile', component:EditProfileComponent},
+  {path: 'editProfile', component:EditProfileComponent},
+  {path: 'preprofile', component:ProfilepicComponent},
+
 
 ];
 

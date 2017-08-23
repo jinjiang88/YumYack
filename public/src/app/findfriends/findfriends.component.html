@@ -24,8 +24,9 @@
         </div>
       </div>
     </nav>
-<!--     <div class="search-background">
-            <img src="https://lh4.googleusercontent.com/-T4pmKmAS5D4/U0uihfPzEZI/AAAAAAAAA2c/sN0mjJS2bx4/w957-h374-no/141.jpg"> -->
+    <div class="floorplan">
+<!--     <div class="search-background"> -->
+<!--             <img src="https://lh4.googleusercontent.com/-T4pmKmAS5D4/U0uihfPzEZI/AAAAAAAAA2c/sN0mjJS2bx4/w957-h374-no/141.jpg"> -->
         
             <div class="well-searchbox">
                 <label class="control-label" style="font-size: 25px;">Search for your friends: </label>
@@ -130,34 +131,38 @@
 
 </div> -->
 
+<div style="overflow: hidden;" *ngIf = "nameusers || someUser">
+<div class="container stylebox">
+<div class="alert alert-info picture"  *ngFor = "let nameuser of nameusers; let i = index" >
+   <button type="button" class="close" data-dismiss="alert" >×</button>
+   <a href='view/{{nameusers[nameusers.length - 1 - i]._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+   <br>
+   <label >Username: </label><p>{{nameusers[nameusers.length - 1 - i].username}}</p>
+   <label >First Name: </label><p>{{nameusers[nameusers.length - 1 - i].fname}}</p>
+   <label >Last Name: </label><p>{{nameusers[nameusers.length - 1 - i].lname}}</p>
+   <label >City: </label><p>{{nameusers[nameusers.length - 1 - i].city}}</p>
+   <label >State: </label><p>{{nameusers[nameusers.length - 1 - i].state}}</p>
 
-      <div class="container stylebox">
-        <div class="alert alert-info picture"  *ngFor= "let nameuser of nameusers; let i = index" >
-         <button type="button" class="close" data-dismiss="alert" >×</button>
-         <a href='view/{{nameusers[nameusers.length - 1 - i]._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
-         <br>
-         <label >Username: </label><p>{{nameusers[nameusers.length - 1 - i].username}}</p>
-         <label >First Name: </label><p>{{nameusers[nameusers.length - 1 - i].fname}}</p>
-         <label >Last Name: </label><p>{{nameusers[nameusers.length - 1 - i].lname}}</p>
-
-       </div>
-      </div>
+ </div>
+</div>
 
 <div class="container stylebox">
-    
-    <div class="alert alert-info picture"  *ngIf='someUser'>
-        <button type="button" class="close" data-dismiss="alert" >×</button>
-        <a href='view/{{someUser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
-        <br>
-        <label >Username: </label><p>{{someUser.username}}</p>
-        <label >First Name: </label><p>{{someUser.fname}}</p>
-        <label >Last Name: </label><p>{{someUser.lname}}</p>
-    </div>
+
+  <div class="alert alert-info picture"  *ngIf='someUser'>
+    <button type="button" class="close" data-dismiss="alert" >×</button>
+    <a href='view/{{someUser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+    <br>
+    <label >Username: </label><p>{{someUser.username}}</p>
+    <label >First Name: </label><p>{{someUser.fname}}</p>
+    <label >Last Name: </label><p>{{someUser.lname}}</p>
+    <label >City: </label><p>{{someUser.city}}</p>
+   <label >State: </label><p>{{someUser.state}}</p>
+  </div>
 
 
 </div>
 
-
+</div>
 <!-- <div class="container">
   <div *ngFor='let user of users'>
       
@@ -172,3 +177,4 @@
 
 </div> -->
 <!-- </div> -->
+</div>
