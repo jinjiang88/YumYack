@@ -1,62 +1,4 @@
 
-<div class="navbar">
-  <nav class="navbar navbar-default navbar-fixed-top thenav">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
-        <ul class="nav navbar-nav navbar-right">
-  
-          <li><a class="navlinks"  href="/home" id="home">Home</a></li>
-          <li><a class="navlinks" href="/search">Find Friends</a></li>
-          <li><a class="navlinks" href="/friendslist">Friends</a></li>
-          <li class="thenotify">
-              <div class="dropdown">
-              <div *ngIf= "isValid; else other_content;">
-              
-                <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
-                  <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                  </ul>
-                </div>
-  
-                <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
-                  <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                  </ul>
-                  </ng-template>
-                </div>                
-            </li>
-          <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
-  
-          <li>
-            <div class="dropdown">
-              <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
-              <div class="dropdown-content">
-                <a href="/home">Account Overview</a>
-                <a href="/home">Profile</a>
-                <a [routerLink]="['/friendsposts']">Settings</a>
-                <a href="/logout">Log Out</a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  </div>
-  {{currentUser | json}}
 
 <div class="container">
   <h1>Edit Profile</h1>
@@ -124,20 +66,20 @@
         <div class="form-group">
           <label class="col-md-3 control-label">City:</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" value="{{currentUser.city}}" name="city">
+            <input class="form-control" type="text" value="{{currentUser.city}}" name="city" ngModel>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-3 control-label">State:</label>
           <div class="col-md-8">
-            <select name="state" id="state"><option value="" selected="selected">Select a State</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District Of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+            <select name="state" id="state" ngModel><option value="" selected="selected">Select a State</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District Of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
+          <label class="col-md-3 control-label" ngModel>Password:</label>
           <div class="col-md-8">
             <input class="form-control" type="password" value="" name="password" ngModel >
           </div>

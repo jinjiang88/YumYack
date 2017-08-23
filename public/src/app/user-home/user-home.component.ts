@@ -16,6 +16,7 @@ export class UserHomeComponent implements OnInit {
   currentUser: any; //current user
 
   friendsPosts: Array<Object>; //posts of user's friends
+  uploadedAPic=false;
 
   
 
@@ -27,6 +28,7 @@ export class UserHomeComponent implements OnInit {
     this.getCurrentUser();
     this.getFriendsPosts();
     this.getNumberOfStars();
+    this.uploadedAPic=false;
   }
 
 
@@ -66,7 +68,7 @@ export class UserHomeComponent implements OnInit {
     if(user.login == false){
       this._router.navigate(['/'])
     }else{
-      this._router.navigate(['editprofile'])
+      this._router.navigate(['home'])
     }
   })
 }

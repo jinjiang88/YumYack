@@ -336,7 +336,7 @@
                             <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />
                           </div>
                 
-                           <button type="button" class="btn btn-success btn-s" (click)=" uploader.uploadAll();  " [disabled]="!uploader.getNotUploadedItems().length">
+                           <button type="button" class="btn btn-success btn-s" (click)=" uploader.uploadAll(); uploadedAPic=false; " [disabled]="!uploader.getNotUploadedItems().length">
                               <span class="glyphicon glyphicon-upload"></span> Upload Picture
                           </button>
                         </form>
@@ -372,7 +372,7 @@
 
                           	<label></label>
                         	<div class="controls">
-                        <input type="submit" value="Post" class="btn btn-primary">
+                        <input *ngIf="uploadedAPic" type="submit" value="Post" class="btn btn-primary">
                         	</div>
 
                         </div>   

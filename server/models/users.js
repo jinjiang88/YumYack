@@ -10,12 +10,12 @@ let UserSchema = new Schema({
     password: {type: String, minlength: 6, required: [true, 'Password must be at least 6 characters long']},
     username: {type:String, minlength: 6, required: [true, 'Username must be at least 4 characters long']},
     friends: [{type: Schema.Types.ObjectId, ref: 'Users'}],
-    posts: {type: Number, required: false, default: 0,},
     city: {type:String, required:true},
     state: {type:String, required:true},
     filename:{type: String, required: false},
     notification: [{type: String, required: false}],
-
+    allposts: [{type: Schema.Types.ObjectId, ref: 'Posts'}],
+    yumyackscore: {type:Number, default:0},
 }, {timestamps: true})
 
 mongoose.model('Users', UserSchema);
