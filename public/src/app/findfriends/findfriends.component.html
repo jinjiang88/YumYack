@@ -131,32 +131,46 @@
 
 </div> -->
 
-<div style="overflow: hidden;" *ngIf = "nameusers || someUser">
-<div class="container stylebox">
-<div class="alert alert-info picture"  *ngFor = "let nameuser of nameusers; let i = index" >
+<div *ngIf = "nameusers || someUser" class="searchcover">
+<div class="container stylebox checkbox" id="namename">
+<div class="alert alert-info picture"   *ngFor = "let nameuser of nameusers; let i = index" >
    <button type="button" class="close" data-dismiss="alert" >×</button>
-   <a href='view/{{nameusers[nameusers.length - 1 - i]._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+   <div style="display: inline-block;">
+   <a href='view/{{nameusers[nameusers.length - 1 - i]._id}}'> <img src='./../assets/images/{{nameusers[nameusers.length - 1 - i].filename}}'> </a>
+   </div>
+   <div style="display: inline-block;">
+   <label >Username: {{nameusers[nameusers.length - 1 - i].username}}</label>
+    <br>
+   <label >First Name: {{nameusers[nameusers.length - 1 - i].fname}}</label>
    <br>
-   <label >Username: </label><p>{{nameusers[nameusers.length - 1 - i].username}}</p>
-   <label >First Name: </label><p>{{nameusers[nameusers.length - 1 - i].fname}}</p>
-   <label >Last Name: </label><p>{{nameusers[nameusers.length - 1 - i].lname}}</p>
-   <label >City: </label><p>{{nameusers[nameusers.length - 1 - i].city}}</p>
-   <label >State: </label><p>{{nameusers[nameusers.length - 1 - i].state}}</p>
-
+   <label >Last Name: {{nameusers[nameusers.length - 1 - i].lname}}</label>
+   <br>
+   <label >City: {{nameusers[nameusers.length - 1 - i].city}}</label>
+   <br>
+   <label >State: {{nameusers[nameusers.length - 1 - i].state}}</label>
+  </div>
  </div>
 </div>
 
-<div class="container stylebox">
+<div class="container stylebox checkbox" id="username">
 
-  <div class="alert alert-info picture"  *ngIf='someUser'>
-    <button type="button" class="close" data-dismiss="alert" >×</button>
-    <a href='view/{{someUser._id}}'> <img src='./../assets/images/file-1502355578835.jpg'> </a>
+  <div class="alert alert-info picture"  *ngIf="someUser">
+<!--     <button type="button" class="close" data-dismiss="alert" >×</button> -->
+    
+    <div style="display: inline-block;">
+    <a href='view/{{someUser._id}}'> <img src='./../assets/images/{{someUser.filename}}'> </a>
+    </div>
+    <div style="display: inline-block;">
+    <label >Username: {{someUser.username}}</label>
     <br>
-    <label >Username: </label><p>{{someUser.username}}</p>
-    <label >First Name: </label><p>{{someUser.fname}}</p>
-    <label >Last Name: </label><p>{{someUser.lname}}</p>
-    <label >City: </label><p>{{someUser.city}}</p>
-   <label >State: </label><p>{{someUser.state}}</p>
+    <label >First Name: {{someUser.fname}}</label>
+    <br>
+    <label >Last Name: {{someUser.lname}}</label>
+    <br>
+    <label >City: {{someUser.city}}</label>
+    <br>
+    <label >State: {{someUser.state}}</label>
+   </div>
   </div>
 
 
