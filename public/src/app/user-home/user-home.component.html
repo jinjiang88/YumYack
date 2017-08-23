@@ -20,13 +20,19 @@
           <li><a class="navlinks" href="/friendslist">Friends</a></li>
           <li class="thenotify">
               <div class="dropdown">
-              <div *ngIf= "isValid; else other_content;">
+              <div *ngIf= "currentUser; else other_content;">
               
                 <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
                   <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
+                    <li>{{currentUser.notification[currentUser.notification.length-1]}}</li>
+                    <br>
+                    <li>{{currentUser.notification[currentUser.notification.length-2]}}</li>
+                    <br>
+                    <li>{{currentUser.notification[currentUser.notification.length-3]}}</li>
+                    <br>
+                    <li>{{currentUser.notification[currentUser.notification.length-4]}}</li>
+                    <br>
+                    <li>{{currentUser.notification[currentUser.notification.length-5]}}</li>
                   </ul>
                 </div>
 
