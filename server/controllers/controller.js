@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Users = mongoose.model("Users");
 var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
+var bcrypt = require("bcryptjs");
 mongoose.promise = Promise
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
@@ -9,6 +10,10 @@ var yelp = require('yelp-fusion');
 // var request = require('request');
 const clientId="";
 const clientSecret='';
+var salt = bcrypt.genSaltSync(10);
+
+
+
 
 
 module.exports = {
@@ -82,7 +87,7 @@ module.exports = {
                 //check what user shows
                 console.log(user);
                 if(user){
-                    if(user.password == req.body.password){
+                    if(bcrypt.compareSync(req.body.password, user.password)){
                         req.session.user=user
                         return res.json(user)
                     }else{
@@ -97,7 +102,7 @@ module.exports = {
         })
     },
     //4
- register: (request, response)=>{
+    register: (request, response)=>{
        Users.findOne({email:request.body.email}, (err, user)=>{
          if(err){
            console.log('**********************')
@@ -120,7 +125,7 @@ module.exports = {
                         newuser.fname =request.body.fname;
                         newuser.lname = request.body.lname;
                         newuser.email = request.body.email;
-                        newuser.password = request.body.password;
+                        newuser.password = bcrypt.hashSync(request.body.password, salt);
                         newuser.username = request.body.username;
                         newuser.city = request.body.city;
                         newuser.state = request.body.state;
@@ -163,8 +168,19 @@ module.exports = {
                 }
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
-                console.log("this is the saved newPost", savedPost);
-                return res.json(savedPost);
+                Users.findOne({_id: req.session.user._id}, (err,currentUser)=>{
+                    if(err){
+                        console.log("something went wrong with finding a current user");
+                    }else{
+
+                        currentUser.allposts.push(savedPost._id);
+                        currentUser.yumyackscore = (currentUser.allposts.length * 2) + (savedPost.average*85)
+                        currentUser.save();
+                        console.log("this is the saved newPost", savedPost);
+                        return res.json(savedPost);
+                    }
+                })
+                
             }
         })
    },
@@ -439,10 +455,6 @@ module.exports = {
                         console.log("here are your number of stars");
                         console.log(five,four,three,two,one + " total:", total);
                         res.json({"one":one, "two":two, "three":three, "four": four, "five":five, "total":total})
-
-
-
-
                     }else{
                         console.log("there was no posts[0].score")
                         res.status(500).send("there are no posts yet")
