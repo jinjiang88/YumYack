@@ -555,38 +555,48 @@ module.exports = {
             }
         })
     },
+      },
 
-    loadPost: (req, res) => {
-        Posts.findOne({
-            _id: req.body.id
-        }).populate('user').exec((err, posts) => {
-            if (err) {
-                console.log("there has been an error in finding post", err);
-                res.status(500).send(err);
-            } else {
-                console.log("posts has been successfully found", posts);
-                res.json(posts);
-            }
-        })
-    },
+      loadPost: (req,res)=>{
+          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+              if(err){
+                  console.log("there has been an error in finding post", err);
+                  res.status(500).send(err);
+              }else{
+                  console.log("posts has been successfully found", posts);
+                  res.json(posts);
+              }
+          })
+      },
 
-    topPost: (req, res) => {
-        var mysort = {
-            average: -1
-        };
-        Posts.find({}).populate('user').sort(mysort).exec(function (err, result) {
-            console.log("just before the erorr")
+      topPost:(req,res)=>{
+      var mysort = { average: -1 };
+      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
+          console.log("just before the erorr")
+          
+        if (err){
+            console.log("there has been an error in top posts");
+            console.log(err);
+            res.status(500).send(err);
+        } 
+        console.log("this is your topposts")
+        console.log(result);
+        res.json(result);
 
-            if (err) {
-                console.log("there has been an error in top posts");
-                console.log(err);
-                res.status(500).send(err);
-            }
-            console.log("this is your topposts")
-            console.log(result);
-            res.json(result);
-
-        });
-    },
+      });
+      },
+    createProfilePic: (req, res) => {
+       console.log(req.session.filename);
+       console.log(req.session.user);
+       Users.update({_id: req.session.user._id}, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        console.log(data);
+        return res.json(data); 
+      }
+    })  
+  },
 }
 ///check yourself before you reck yourself
