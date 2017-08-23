@@ -14,7 +14,7 @@ let UserSchema = new Schema({
     city: {type:String, required:true},
     state: {type:String, required:true},
     filename:{type: String, required: false},
-    notification: [{type: String, required: false}],
+    notification: [{type: String, required: false, default: 'blank.png',}],
 
 }, {timestamps: true})
 
