@@ -15,8 +15,9 @@ export class NewlandingComponent implements OnInit {
   password="";
   errors:any;
   topPosts:any;
-
+  recentPosts:Array<Object>
   loginval=""
+
 
   thebar={
     'textcolor':"white",
@@ -32,8 +33,9 @@ export class NewlandingComponent implements OnInit {
   }  
 
 
-  recentPosts:Array<Object>
   ngOnInit() {
+    this.current();
+    this.getRecentPosts();
     this.gettopPosts();
   }
 
@@ -94,6 +96,16 @@ export class NewlandingComponent implements OnInit {
             this.loginval = err
           }
         })
+    }
+    current(){
+      this._newLandingService.current()
+      .then((user)=>{
+        if(user.login == false){
+          
+        }else{
+          this._router.navigate(['home'])
+        }
+      })
     }
     
 }

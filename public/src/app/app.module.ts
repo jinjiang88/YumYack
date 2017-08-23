@@ -18,15 +18,14 @@ import { LandingPageService } from './landing-page/landing-page.service';
 import { UserHomeService } from './user-home/user-home.service';
 import { NewlandingService } from './newlanding/newlanding.service';
 
-// import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
-
 
 
 
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
+
 
 
 
@@ -69,7 +68,11 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
+<<<<<<< HEAD
+    NewlandingComponent,
+=======
     NewlandingComponent,  
+>>>>>>> 42f96942bb9d8ea33564d47e7138b8a72e77fdd3
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
