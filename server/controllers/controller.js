@@ -525,7 +525,7 @@ module.exports = {
         return res.sendStatus(500)
       }else{
         console.log(data);
-        return res.json(data);
+        return res.json(data); 
       }
     })  
   },
