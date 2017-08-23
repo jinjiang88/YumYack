@@ -11,6 +11,7 @@ export class ProfilepicComponent implements OnInit {
 public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
   constructor(private _profilepicService: ProfilepicService, private _router: Router) { }
   error = String;
+  hitupload = false;
   ngOnInit() {
   }
   createProfilePic(){
