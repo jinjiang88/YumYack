@@ -16,6 +16,7 @@ export class UserHomeComponent implements OnInit {
   currentUser: any; //current user
 
   friendsPosts: Array<Object>; //posts of user's friends
+  uploadedAPic=false;
 
   
 
@@ -27,6 +28,7 @@ export class UserHomeComponent implements OnInit {
     this.getCurrentUser();
     this.getFriendsPosts();
     this.getNumberOfStars();
+    this.uploadedAPic=false;
   }
 
 
