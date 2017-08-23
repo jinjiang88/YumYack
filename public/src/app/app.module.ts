@@ -18,21 +18,17 @@ import { LandingPageService } from './landing-page/landing-page.service';
 import { UserHomeService } from './user-home/user-home.service';
 import { NewlandingService } from './newlanding/newlanding.service';
 
-// import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { CarouselModule } from 'angular4-carousel';
 
 
 
-import { PostcreationComponent } from './postcreation/postcreation.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
 
-import { LoginComponent } from './login/login.component';
 import { FriendslistComponent } from './friendslist/friendslist.component';
 import { FriendslistService } from './friendslist/friendslist.service';
-import { LoginService } from './login/login.service';
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { FindfriendsService } from './findfriends/findfriends.service';
 
@@ -69,14 +65,12 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
     ProfileComponent,
     TestComponent,
     NewlandingComponent,
-    LoginComponent,
     FriendslistComponent,
     FindfriendsComponent,
     UserPostsComponent,
     ViewComponent,
     FriendspostsComponent,
     PostviewComponent,
-    PostcreationComponent,
     EditProfileComponent,
     
 
@@ -93,7 +87,7 @@ import { EditProfileService } from './edit-profile/edit-profile.service';
   ],
 
   providers: [RegisterService, LandingPageService, UserHomeService, TestService,
-     FriendslistService, LoginService, FindfriendsService,
+     FriendslistService, FindfriendsService,
      UserPostsService,
      ViewService,
      FriendspostsService,

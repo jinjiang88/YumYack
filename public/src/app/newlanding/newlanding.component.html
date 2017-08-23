@@ -54,31 +54,22 @@
 
                 <!--User Testimonial-->
                 <blockquote class="col-md-3 testimonial classic">
-                    <img src="../../assets/images/facepic.jpg" alt="User"/>
-                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua</q>
-                    <footer>John Doe - Happy Customer</footer>
+                    <img  src="../../assets/images/adduser.png" alt="User"/>
+                    <q>Take a minute to sign up for an account</q>
                 </blockquote>
                 <!-- End of Testimonial-->
 
                 <!--User Testimonial-->
                 <blockquote class="col-md-3 testimonial classic">
-                    <img src="../../assets/images/facepic.jpg" alt="User"/>
-                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua</q>
-                    <footer>Roslyn Doe - Happy Customer</footer>
+                    <img src="../../assets/images/camera.png" alt="User"/>
+                    <q>Eat some exotic food and post images to your account!</q>
                 </blockquote>
                 <!-- End of Testimonial-->
 
                 <!--User Testimonial-->
                 <blockquote class="col-md-3 testimonial classic">
-                    <img src="../../assets/images/facepic.jpg" alt="User"/>
-                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua</q>
-                    <footer>Thomas Doe - Happy Customer</footer>
+                    <img src="../../assets/images/like.png" alt="User"/>
+                    <q>Share with the community and see what people think of your daring food choices</q>
                 </blockquote>
                 <!-- End of Testimonial-->
 
@@ -118,13 +109,13 @@
                 </div>
               </div>
               <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" [style.background-image]="'url(../../assets/images/'+topPosts[1].filename+')'"></div>
+                <div class="image" [style.background-image]="'url(../../assets/images/'+topPosts[0].filename+')'"></div>
                 <div class="text text-center">
-                    <h3>{{topPosts[1].name}}</h3>
-                    <p>{{topPosts[1].description}}</p>
-                    <p>by:{{topPosts[1].user.username}}</p>
-                    <p>{{topPosts[1]|json}}</p>
-                    <a href="/postview/{{topPosts[1]._id}}">more details</a>
+                    <h3>{{topPosts[0].name}}</h3>
+                    <p>{{topPosts[0].description}}</p>
+                    <p>by:{{topPosts[0].user.username}}</p>
+                    <p>{{topPosts[0].filename|json}}</p>
+                    <a href="/postview/{{topPosts[0]._id}}">more details</a>
                 </div>
               </div>
               <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">

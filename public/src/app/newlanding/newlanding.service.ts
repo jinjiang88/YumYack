@@ -24,7 +24,11 @@ export class NewlandingService {
       .map( (response: Response)=> response.json())
       .toPromise();
   }
-
+  current(){
+    return this._http.get('/api/current')
+    .map((response:Response)=> response.json())
+    .toPromise();
+  }
 }
 
 

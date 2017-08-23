@@ -13,13 +13,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
-import { LoginComponent } from './login/login.component';
 import { FriendslistComponent} from './friendslist/friendslist.component'
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { ViewComponent } from './view/view.component';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { PostviewComponent } from './postview/postview.component';
-import { PostcreationComponent } from './postcreation/postcreation.component';
 import { UserPostsComponent } from './user-posts/user-posts.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
@@ -33,7 +31,6 @@ const routes: Routes = [
   {path: 'home', component: UserHomeComponent },//user hub controller
   {path: 'profile', component:ProfileComponent},//old profile component (unused)
   {path: 'create', component:TestComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'friendslist', component: FriendslistComponent},
   {path: 'search', component: FindfriendsComponent},
   {path: 'test', component:TestComponent},
@@ -42,7 +39,6 @@ const routes: Routes = [
   {path: 'view/:id', component:ViewComponent},
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
-  {path: 'postcreation', component:PostcreationComponent},
   {path: 'editprofile', component:EditProfileComponent},
 
 ];
