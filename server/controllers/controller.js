@@ -361,9 +361,19 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                            console.log("it successfully saved")
-                            console.log(savedPost);
-                            res.json(savedPost);
+                            Users.findOne({_id: req.body.users_id}, (err,foundUser)=>{
+                                if(err){
+                                    console.log("There has been an error");
+                                    res.sendStatus(500);
+                                }else{
+                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
+                                    console.log("it successfully saved");
+                                    console.log(savedPost);
+                                    res.json(savedPost);
+                                }
+                            })
+
+                          
                         }
                     })
                 } else {
@@ -385,20 +395,21 @@ module.exports = {
             }
         })
     },
-    //15
-    loadPost: (req, res) => {
-        Posts.findOne({
-            _id: req.body.id
-        }).populate('user').exec((err, posts) => {
-            if (err) {
+
+//15
+    loadPost: (req,res)=>{
+        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+            if(err){
                 console.log("there has been an error in finding post", err);
                 res.status(500).send(err);
-            } else {
+            }else{
                 console.log("posts has been successfully found", posts);
                 res.json(posts);
             }
         })
     },
+
+
     //16
     topPost: (req, res) => {
 
@@ -555,19 +566,9 @@ module.exports = {
             }
         })
     },
-      },
 
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-      },
+
+
 
       topPost:(req,res)=>{
       var mysort = { average: -1 };
