@@ -10,7 +10,7 @@ let PostSchema = new Schema({
     origin: {type:String, required:[true,'You must select an origin']},//origin of food
     userScores: [{type: Schema.Types.ObjectId, ref: 'Users'}], //id of users that rated
     score: Array, //scores that corresponds to _userScores
-    average: Number,//the average of all user scores
+    average: {type: Number, default:0},//the average of all user scores
 
 }, {timestamps: true})
 

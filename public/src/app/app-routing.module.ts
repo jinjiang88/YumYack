@@ -13,13 +13,19 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 import { FriendslistComponent} from './friendslist/friendslist.component'
 import { FindfriendsComponent } from './findfriends/findfriends.component';
 import { ViewComponent } from './view/view.component';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { PostviewComponent } from './postview/postview.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 import { UserPostsComponent } from './user-posts/user-posts.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfilepicComponent } from './profilepic/profilepic.component';
@@ -34,7 +40,10 @@ const routes: Routes = [
   {path: 'home', component: UserHomeComponent },//user hub controller
   {path: 'profile', component:ProfileComponent},//old profile component (unused)
   {path: 'create', component:TestComponent},
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
   {path: 'friendslist', component: FriendslistComponent},
   {path: 'search', component: FindfriendsComponent},
   {path: 'test', component:TestComponent},
