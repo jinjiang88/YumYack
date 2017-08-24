@@ -13,8 +13,8 @@ var yelp = require('yelp-fusion');
 
 
 
-const clientId = "";
-const clientSecret = '';
+const clientId = "ja63gfSYKpuf3EDg6CrmwA";
+const clientSecret = 'A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
 var salt = bcrypt.genSaltSync(10);
 
 
@@ -193,12 +193,12 @@ module.exports = {
 
     //6
     current: (req, res) => {
-        if (!req.session.user) {
-            return res.status(401).send("Nice try")
-        } else {
-            return res.json(req.session.user);
+        if(!req.session.user){
+          return res.json({login:false})
+        }else{
+          return res.json({login:true,user:req.session.user});
         }
-    },
+      },
     //7
     logout: (req, res) => {
         req.session.destroy();
@@ -385,20 +385,6 @@ module.exports = {
             }
         })
     },
-    //15
-    loadPost: (req, res) => {
-        Posts.findOne({
-            _id: req.body.id
-        }).populate('user').exec((err, posts) => {
-            if (err) {
-                console.log("there has been an error in finding post", err);
-                res.status(500).send(err);
-            } else {
-                console.log("posts has been successfully found", posts);
-                res.json(posts);
-            }
-        })
-    },
     //16
     topPost: (req, res) => {
 
@@ -555,7 +541,6 @@ module.exports = {
             }
         })
     },
-      },
 
       loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
@@ -609,6 +594,16 @@ module.exports = {
               return response.json(users)
           }
       })
-  }
+  },
+  getuserfriends:(request,response)=>{
+    Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
+        if(err){
+            return response.json({error:true});
+        }else{
+            console.log(usersfriends,"KKKKKKKKKKKKKKKKKKKKKKKKK")
+            return response.json(usersfriends);
+        }
+    })
+  },
 }
 ///check yourself before you reck yourself

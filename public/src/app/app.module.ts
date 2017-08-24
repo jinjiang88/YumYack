@@ -36,7 +36,7 @@ import { UserPostsService } from './user-posts/user-posts.service';
 import { ViewComponent } from './view/view.component';
 import { ViewService } from './view/view.service';
 
-
+import { ProfileService } from './profile/profile.service'
 import { RatingModule } from 'ng2-rating';
 import { FriendspostsComponent } from './friendsposts/friendsposts.component';
 import { FriendspostsService } from './friendsposts/friendsposts.service';
@@ -69,9 +69,6 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     PostviewComponent,
     EditProfileComponent,
     ProfilepicComponent,
-    
-
-
   ],
   imports: [
     BrowserModule,
@@ -93,6 +90,7 @@ import { ProfilepicService } from './profilepic/profilepic.service';
       NewlandingService,
       EditProfileService,
       ProfilepicService,
+      ProfileService,
     ],
 
   bootstrap: [AppComponent]
