@@ -1,29 +1,91 @@
-<nav (window:scroll)="onWindowScroll(scroll())" style=""[ngClass]="thebar" class="navbar navbar-default navbar-fixed-top probootstrap-navbar" [style.background-color]="thebar.background">
+<div class="navbar">
+    <nav class="navbar navbar-default navbar-fixed-top thenav">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
-
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="margin-top:25px;"href="index.html" title="ProBootstrap:FineOak">FineOak</a>
         </div>
-          
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right" [style.height]="thebar.height" [style.position]="thebar.position" [style.top]="thebar.top">
-            <li class="active"><a [style.color]="thebar.welcomecolor" href="#" data-nav-section="welcome">Welcome</a></li>
-            <li><a [style.color]="thebar.textcolor" href="#howitworks" data-nav-section="specialties">How it works</a></li>
-            <li><a [style.color]="thebar.textcolor" href="#mostgross" data-nav-section="menu">Grossest</a></li>
-            <li><a [style.color]="thebar.textcolor" href="#recentposts" data-nav-section="reservation">Recent Posts</a></li>
-            <li><a [style.color]="thebar.textcolor" href="#topcontributors" data-nav-section="events">Top Contributors</a></li>
-            <li class="joinbutton"><a [style.color]="thebar.textcolor" class="join" href="#login" data-nav-section="contact">Login</a></li>
-            <li [style.background-color]='thebar.joincolor' class="joinbutton"><a [style.color]="thebar.textcolor" class="join" href="/register" data-nav-section="contact">Join</a></li>
+        <div id="navbar" class="collapse navbar-collapse">
+          <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="navlinks"  href="/home" id="home">Home</a></li>
+            <li style="margin-top:3.5%;"><div class="dropdown">
+                <span class="dropbtn" style="color:grey;">Friends</span>
+                <div class="dropdown-content">
+                  <a href="/friendsposts">Friends Posts</a>
+                  <a href="/search">Find Friends</a>
+                  <a href="/friendslist">All Friends</a>
+                </div>
+              </div></li>
+            <li><a class="navlinks"  href="/">My posts</a></li>
+            <li class="thenotify">
+                <div class="dropdown">
+                <div *ngIf= "currentUser; else other_content;">
+                
+                  <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                    <ul class="dropdown-menu">
+                      <li>{{currentUser.notification[currentUser.notification.length-1]}}</li>
+                      <br>
+                      <li>{{currentUser.notification[currentUser.notification.length-2]}}</li>
+                      <br>
+                      <li>{{currentUser.notification[currentUser.notification.length-3]}}</li>
+                      <br>
+                      <li>{{currentUser.notification[currentUser.notification.length-4]}}</li>
+                      <br>
+                      <li>{{currentUser.notification[currentUser.notification.length-5]}}</li>
+                    </ul>
+                  </div>
+  
+                  <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
+                    <ul class="dropdown-menu">
+                      <li><a href="#">HTML</a></li>
+                      <li><a href="#">CSS</a></li>
+                      <li><a href="#">JavaScript</a></li>
+                    </ul>
+                    </ng-template>
+                  </div>                
+              </li>
+            <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+  
+            <li>
+              <div class="dropdown">
+                <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+                <div class="dropdown-content">
+                  <a href="/editprofile">Edit profile</a>
+                  <a href="/home">Profile</a>
+                  <a [routerLink]="['/friendsposts']">Settings</a>
+                  <a href="/logout">Log Out</a>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
+  </div>
+
+ <div class='container' >
+   <div class="row">
+    <div *ngFor="let post of friendsPosts">
+     <div class="col-md-6 friendspost">
+       <div style="text-align:center; margin-bottom:50px;">
+          <h3>{{post.name}}</h3>
+          <a  class="outerimage" href="/postview/{{post._id}}"><img class="image" src="./../../assets/images/{{post.filename}}"/></a>
+            <br/>
+            <h6>{{post.user.username}}</h6>
+        
+          <rating (click)="rate(post._id);" [(ngModel)]="starsCount"
+                  [float]="true">
+          </rating>
+      </div>
+    </div>
+  </div>
+</div>  
+
     <div class="floorplan">
 <!--     <div class="search-background"> -->
 <!--             <img src="https://lh4.googleusercontent.com/-T4pmKmAS5D4/U0uihfPzEZI/AAAAAAAAA2c/sN0mjJS2bx4/w957-h374-no/141.jpg"> -->

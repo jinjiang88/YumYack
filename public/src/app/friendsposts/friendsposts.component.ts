@@ -23,9 +23,9 @@ starsCount: Number;
     .then((friends)=>this.friendsPosts=friends)
     .catch((err)=>console.log("theres an error"));
   }
-  rate(id){
+  rate(id, users_id){
     console.log(id);
-    this._friendsPostsService.rate({"id":id, "rate":this.starsCount})
+    this._friendsPostsService.rate({"id":id, "rate":this.starsCount, "users_id": users_id})
     .then((x)=>console.log("everything is gucci"))
     .catch((err)=>console.log("something went wrong with rating"))
   }
@@ -36,7 +36,6 @@ starsCount: Number;
       if(user.login == false){
         this._router.navigate(['/'])
       }else{
-        this._router.navigate(['editprofile'])
       }
     })
   }

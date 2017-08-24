@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'view/:id', component:ViewComponent},
   {path: 'friendsposts', component:FriendspostsComponent},
   {path: 'postview/:id', component:PostviewComponent},
-  {path: 'editProfile', component:EditProfileComponent},
+  {path: 'editprofile', component:EditProfileComponent},
   {path: 'preprofile', component:ProfilepicComponent},
 
 

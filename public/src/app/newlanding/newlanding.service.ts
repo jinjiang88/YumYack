@@ -29,6 +29,11 @@ export class NewlandingService {
     .map((response:Response)=> response.json())
     .toPromise();
   }
+  topcontrib(){
+    return this._http.get('/api/topcontrib')
+    .map((response:Response)=> response.json())
+    .toPromise();
+  }
 }
 
 

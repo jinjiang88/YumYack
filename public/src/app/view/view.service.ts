@@ -24,4 +24,9 @@ export class ViewService {
     .map((response:Response)=> response.json())
     .toPromise();
   }
+  getthisusersfriends(id){
+    return this._http.get('/api/getuserfriends', id)
+    .map((response:Response)=>response.json())
+    .toPromise();
+  }
 }

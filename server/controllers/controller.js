@@ -8,8 +8,21 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
+<<<<<<< HEAD
+
+
+
+const clientId = "ja63gfSYKpuf3EDg6CrmwA";
+const clientSecret = 'A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
+var salt = bcrypt.genSaltSync(10);
+
+
+
+
+=======
 const clientId="";
 const clientSecret='';
+>>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
 
 
 module.exports = {
@@ -168,6 +181,23 @@ module.exports = {
                 return res.json(savedPost);
             }
         })
+<<<<<<< HEAD
+    },
+
+    //6
+    current: (req, res) => {
+        if(!req.session.user){
+          return res.json({login:false})
+        }else{
+          return res.json({login:true,user:req.session.user});
+        }
+      },
+    //7
+    logout: (req, res) => {
+        req.session.destroy();
+        res.redirect('/')
+    },
+=======
    },
 
    //6
@@ -183,6 +213,7 @@ module.exports = {
     req.session.destroy();
     res.redirect('/')
   },
+>>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
 
 //8
    getAllFriends: (req,res)=> {
@@ -298,25 +329,105 @@ module.exports = {
   },
 
 
-//14
-  rate: (req, res)=>{
-      console.log("just got in rate")
-    Posts.findOne({_id:req.body.id},(err,post)=>{
-        if(err){
-            console.log("there was an error in rating")
-            res.sendStatus(500);
-        }else{
-            console.log("found the post")
-            let index;
-            let total=0;
-            let average=0;
-            let alreadyRated= false;
-            for(let x=0;x<post.userScores.length;x++){
-                if(post.userScores[x]==req.session.user._id){
-                    alreadyRated = true;
-                    index=x;
+
+    //14
+    rate: (req, res) => {
+        console.log("just got in rate")
+        Posts.findOne({
+            _id: req.body.id
+        }, (err, post) => {
+            if (err) {
+                console.log("there was an error in rating")
+                res.sendStatus(500);
+            } else {
+                console.log("found the post")
+                let index;
+                let total = 0;
+                let average = 0;
+                let alreadyRated = false;
+                for (let x = 0; x < post.userScores.length; x++) {
+                    if (post.userScores[x] == req.session.user._id) {
+                        alreadyRated = true;
+                        index = x;
+                    }
+                }
+                if (alreadyRated == false) {
+                    console.log("it has not been rated by the current user yet")
+                    post.userScores.push(req.session.user._id);
+                    post.score.push(req.body.rate)
+
+                    console.log("going to the loop now")
+                    for (let i = 0; i < post.score.length; i++) {
+                        total += post.score[i];
+                    }
+                    console.log(total)
+                    console.log(post.score.length)
+                    console.log(total / post.score.length)
+                    if (!post.score.length) {
+                        post.average = total / 1;
+                    } else {
+                        post.average = total / post.score.length;
+                    }
+                    post.save((err, savedPost) => {
+                        if (err) {
+                            console.log("something wrong with saving");
+                            console.log(err);
+                            res.sendStatus(500);
+                        } else {
+                            Users.findOne({_id: req.body.users_id}, (err,foundUser)=>{
+                                if(err){
+                                    console.log("There has been an error");
+                                    res.sendStatus(500);
+                                }else{
+                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
+                                    console.log("it successfully saved");
+                                    console.log(savedPost);
+                                    res.json(savedPost);
+                                }
+                            })
+
+                          
+                        }
+                    })
+                } else {
+                    console.log("it has been rated")
+                    //------------------need to learn to update in an array----------------                
+                    Posts.update({
+                        _id: req.body.id
+                    }, {
+                        $inc: {
+                            'score.$index': req.body.rate
+                        }
+                    });
+                    console.log("everything should be copacetic")
+                    res.json(post);
+
                 }
             }
+
+        })
+    },
+<<<<<<< HEAD
+=======
+
+//15
+    loadPost: (req,res)=>{
+        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+            if(err){
+                console.log("there has been an error in finding post", err);
+                res.status(500).send(err);
+            }else{
+                console.log("posts has been successfully found", posts);
+                res.json(posts);
+            }
+        })
+    },
+
+
+>>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
+    //16
+    topPost: (req, res) => {
+
             if(alreadyRated==false){
                 console.log("it has not been rated by the current user yet")
                 post.userScores.push(req.session.user._id);
@@ -370,6 +481,7 @@ module.exports = {
                      res.json(post);
             }
 
+
         
 
           }
@@ -388,23 +500,6 @@ module.exports = {
           })
       },
 //16
-      topPost:(req,res)=>{
-          
-      var mysort = { average: -1 };
-      Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
-          console.log("just before the erorr")
-          
-        if (err){
-            console.log("there has been an error in top posts");
-            console.log(err);
-            res.status(500).send(err);
-        } 
-        console.log("this is your topposts")
-        console.log(result);
-        res.json(result);
-
-      });
-      },
 
       getNumberOfStars: (req, res)=>{
           console.log("you just got in getNumberOfStars. No query yet")
@@ -515,17 +610,9 @@ module.exports = {
         })
       },
 
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-      },
+
+
+
 
       topPost:(req,res)=>{
       var mysort = { average: -1 };
@@ -556,6 +643,30 @@ module.exports = {
       }
     })  
   },
+
+  topcontrib:(request,response)=>{
+      Users.find({}).sort({yumyackscore:-1}).limit(6)
+      .exec(function(err,users){
+          if(err){
+              console.log(err)
+              return response.json(err);
+          }else{
+              console.log("something didnt go wrong")
+              return response.json(users)
+          }
+      })
+  },
+<<<<<<< HEAD
+  getuserfriends:(request,response)=>{
+    Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
+        if(err){
+            return response.json({error:true});
+        }else{
+            console.log(usersfriends,"KKKKKKKKKKKKKKKKKKKKKKKKK")
+            return response.json(usersfriends);
+        }
+    })
+=======
   getNotifications: (req, res)=> {
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
@@ -567,6 +678,7 @@ module.exports = {
           res.json(notifys);
         }
       })
+>>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
   },
 }
 ///check yourself before you reck yourself
