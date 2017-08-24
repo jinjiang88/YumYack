@@ -24,15 +24,15 @@
               
                 <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
                   <ul class="dropdown-menu">
-                    <li><a href="view/{{Notifications[Notifications.length-1].postedUser._id}}">{{Notifications[Notifications.length-1].notification}}</a></li>
+                    <li><a href="{{Notifications[Notifications.length-1].url}}">{{Notifications[Notifications.length-1].notification}}</a></li>
                     <br>
-                    <li><a href="view/{{Notifications[Notifications.length-2].postedUser._id}}">{{Notifications[Notifications.length-2].notification}}</a></li>
+                    <li><a href="{{Notifications[Notifications.length-2].url}}{{Notifications[Notifications.length-2].postedUser._id}}">{{Notifications[Notifications.length-2].notification}}</a></li>
                     <br>
-                    <li><a href="view/{{Notifications[Notifications.length-3].postedUser._id}}">{{Notifications[Notifications.length-3].notification}}</a></li>
+                    <li><a href="{{Notifications[Notifications.length-3].url}}{{Notifications[Notifications.length-3].postedUser._id}}">{{Notifications[Notifications.length-3].notification}}</a></li>
                     <br>
-                    <li><a href="view/{{Notifications[Notifications.length-4].postedUser._id}}">{{Notifications[Notifications.length-4].notification}}</a></li>
+                    <li><a href="{{Notifications[Notifications.length-4].url}}{{Notifications[Notifications.length-4].postedUser._id}}">{{Notifications[Notifications.length-4].notification}}</a></li>
                     <br>
-                    <li><a href="view/{{Notifications[Notifications.length-5].postedUser._id}}">{{Notifications[Notifications.length-5].notification}}</a></li>
+                    <li><a href="{{Notifications[Notifications.length-5].url}}{{Notifications[Notifications.length-5].postedUser._id}}">{{Notifications[Notifications.length-5].notification}}</a></li>
                   </ul>
                 </div>
 
@@ -372,7 +372,7 @@
 
                           	<label></label>
                         	<div class="controls">
-                        <input *ngIf="uploadedAPic" type="submit" value="Post" class="btn btn-primary">
+                        <input type="submit" value="Post" class="btn btn-primary">
                         	</div>
 
                         </div>   
