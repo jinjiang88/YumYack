@@ -10,16 +10,17 @@ import { Router } from '@angular/router';
 export class FriendslistComponent implements OnInit {
 
   constructor(private _friendsListService: FriendslistService, private _router:Router) { }
-  friends: Array<any>;
+  friendslist: Array<any>;
 
   ngOnInit() {
     this.current();
     this.getAllFriends();
+
   }
 
   getAllFriends(){
     this._friendsListService.getAllFriends()
-    .then( (friends) => this.friends=friends)
+    .then( (friends) => {this.friendslist=friends, console.log(this.friendslist);})
   		.catch( (err) => console.log(err))
 
   }
@@ -30,7 +31,6 @@ export class FriendslistComponent implements OnInit {
       if(user.login == false){
         this._router.navigate(['/'])
       }else{
-        this._router.navigate(['editprofile'])
       }
     })
   }
