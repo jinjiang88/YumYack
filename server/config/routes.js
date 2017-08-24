@@ -30,6 +30,7 @@ module.exports = app => {
 	app.post('/api/getnameusers', controller.getnameusers);
 	app.get('/api/createProfilePic', controller.createProfilePic);
 	app.get('/api/topcontrib', controller.topcontrib);
+	app.get('/api/getNotifications', controller.getNotifications);
 
 
 

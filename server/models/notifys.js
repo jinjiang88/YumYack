@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 
 let NotifySchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'Users'},
-    message: {type: String, required: [true, 'Notifications required']},
+    notification: {type: String, required: [true, 'Notifications required']},
+    postedUser: {type: Schema.Types.ObjectId, ref: 'Users'},
 }, {timestamps: true})
 
-mongoose.model('notify', NotifySchema);
+mongoose.model('Notifys', NotifySchema);

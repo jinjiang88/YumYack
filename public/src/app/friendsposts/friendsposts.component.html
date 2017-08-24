@@ -9,7 +9,7 @@
       
       <h6>{{post.user.username}}</h6>
   
-    <rating (click)="rate(post._id);" [(ngModel)]="starsCount"
+    <rating (click)="rate(post._id, post.user);" [(ngModel)]="starsCount"
             [float]="true">
     </rating>
 </div>  

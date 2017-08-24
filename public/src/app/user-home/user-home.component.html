@@ -20,19 +20,19 @@
           <li><a class="navlinks" href="/friendslist">Friends</a></li>
           <li class="thenotify">
               <div class="dropdown">
-              <div *ngIf= "currentUser; else other_content;">
+              <div *ngIf= "Notifications; else other_content;">
               
                 <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
                   <ul class="dropdown-menu">
-                    <li>{{currentUser.notification[currentUser.notification.length-1]}}</li>
+                    <li><a href="view/{{Notifications[Notifications.length-1].postedUser._id}}">{{Notifications[Notifications.length-1].notification}}</a></li>
                     <br>
-                    <li>{{currentUser.notification[currentUser.notification.length-2]}}</li>
+                    <li><a href="view/{{Notifications[Notifications.length-2].postedUser._id}}">{{Notifications[Notifications.length-2].notification}}</a></li>
                     <br>
-                    <li>{{currentUser.notification[currentUser.notification.length-3]}}</li>
+                    <li><a href="view/{{Notifications[Notifications.length-3].postedUser._id}}">{{Notifications[Notifications.length-3].notification}}</a></li>
                     <br>
-                    <li>{{currentUser.notification[currentUser.notification.length-4]}}</li>
+                    <li><a href="view/{{Notifications[Notifications.length-4].postedUser._id}}">{{Notifications[Notifications.length-4].notification}}</a></li>
                     <br>
-                    <li>{{currentUser.notification[currentUser.notification.length-5]}}</li>
+                    <li><a href="view/{{Notifications[Notifications.length-5].postedUser._id}}">{{Notifications[Notifications.length-5].notification}}</a></li>
                   </ul>
                 </div>
 
@@ -336,7 +336,7 @@
                             <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />
                           </div>
                 
-                           <button type="button" class="btn btn-success btn-s" (click)=" uploader.uploadAll(); uploadedAPic=false; " [disabled]="!uploader.getNotUploadedItems().length">
+                           <button type="button" class="btn btn-success btn-s" (click)=" uploader.uploadAll(); uploadedAPic=true; " [disabled]="!uploader.getNotUploadedItems().length">
                               <span class="glyphicon glyphicon-upload"></span> Upload Picture
                           </button>
                         </form>
@@ -372,7 +372,7 @@
 
                           	<label></label>
                         	<div class="controls">
-                        <input *ngIf="uploadedAPic" type="submit" value="Post" class="btn btn-primary">
+                        <input [disabled]="!uploadedAPic" type="submit" value="Post" class="btn btn-primary">
                         	</div>
 
                         </div>   

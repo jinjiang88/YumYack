@@ -59,7 +59,6 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     LandingPageComponent,
     ProfileComponent,
     TestComponent,
-
     NewlandingComponent,  
     FriendslistComponent,
     FindfriendsComponent,
