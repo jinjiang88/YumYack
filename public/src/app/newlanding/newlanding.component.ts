@@ -107,5 +107,10 @@ export class NewlandingComponent implements OnInit {
         }
       })
     }
+    topcontrib(){
+      this._newLandingService.topcontrib()
+      .then((user)=>{this.topcontrib = user})
+      .catch((err)=>{console.log(err)})
+    }
     
 }

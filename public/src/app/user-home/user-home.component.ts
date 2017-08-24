@@ -17,7 +17,7 @@ export class UserHomeComponent implements OnInit {
 
   friendsPosts: Array<Object>; //posts of user's friends
   uploadedAPic=false;
-
+  Notifications: Array<Object>; //user's notifications
   
 
   Stars: any; //number of accumulated stars
@@ -29,6 +29,7 @@ export class UserHomeComponent implements OnInit {
     this.getFriendsPosts();
     this.getNumberOfStars();
     this.uploadedAPic=false;
+    this.getnotifications();
   }
 
 
@@ -68,10 +69,15 @@ export class UserHomeComponent implements OnInit {
     if(user.login == false){
       this._router.navigate(['/'])
     }else{
-      this._router.navigate(['home'])
+      
     }
   })
 }
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>this.Notifications=notifications)
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
 
 
 }

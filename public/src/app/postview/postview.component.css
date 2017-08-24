@@ -1,5 +1,5 @@
 .image {
-    width:200px;
+    width:60%;
 }
 
 /* progress bar css */
@@ -32,9 +32,6 @@
 }
 .reqsheader{
   margin-top:10%;
-}
-.image{
-  width: 80%;
 }
 .dropbtn {
   /*background-color: #4CAF50;*/

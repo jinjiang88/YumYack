@@ -36,7 +36,6 @@ starsCount: Number;
       if(user.login == false){
         this._router.navigate(['/'])
       }else{
-        // this._router.navigate(['editprofile'])
       }
     })
   }
