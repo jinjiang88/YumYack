@@ -164,7 +164,9 @@ module.exports = {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
         let newPost = new Posts();
-        newPost.filename = req.session.filename;
+        if(req.session.filename){
+            newPost.filename = req.session.filename;
+        }
         newPost.user = req.session.user._id;
         newPost.name = req.body.name;
         newPost.description = req.body.description;
@@ -178,6 +180,7 @@ module.exports = {
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
+                req.session.filename=null;
                 return res.json(savedPost);
             }
         })
@@ -332,7 +335,7 @@ module.exports = {
 
     //14
     rate: (req, res) => {
-        console.log("just got in rate")
+        console.log(req.body.id, req.body.users_id)
         Posts.findOne({
             _id: req.body.id
         }, (err, post) => {
@@ -484,9 +487,8 @@ module.exports = {
 
         
 
-          }
-        })
-      },
+          },
+      
 //15
       loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{

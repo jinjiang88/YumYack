@@ -1,4 +1,4 @@
- <div class="navbar">
+<div class="navbar">
     <nav class="navbar navbar-default navbar-fixed-top thenav">
       <div class="container">
         <div class="navbar-header">
@@ -40,7 +40,7 @@
                     </ul>
                   </div>
   
-<<<<<<< HEAD
+
                   <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
                     <ul class="dropdown-menu">
                       <li><a href="#">HTML</a></li>
@@ -86,6 +86,7 @@
     </rating>
 </div>   -->
 
+
  <div class='container' style="margin-top:-120px;">
    <div class="row">
     <div *ngFor="let post of friendsPosts">
@@ -110,30 +111,40 @@
 </div>
 </div>
 
-<!-- please dont delete, these are my notes for progress bar -->
+<!-- =======================================================Container for all of your friends posts========================================= -->
 
-<!-- <div class="container"> -->
-  <!-- //.active class animates the progress bar -->
-  <!-- <div class="progress" [ngSwitch]="starsCount">
-    <div template="ngSwitchCase '3'"class="progress-bar progress-bar-striped active" role="progressbar-vertical" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-        {{starsCount}}
-    </div>
-
-    <div template="ngSwitchCase '4'"class="progress-bar progress-bar-striped active" role="progressbar-vertical" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-        {{starsCount}}
+<div class="container" *ngFor="let post of friendsPosts">
+  <div class="well">
+      <div class="media">
+      
+    		<img class="media-object" src="./../../assets/images/{{post.filename}}">
+  	
+  		<div class="media-body">
+    		<h4 class="media-heading">{{post.name}}</h4>
+          <p class="text-right">By {{post.user.username}}</p>
+          <p>{{post.description}}</p>
+          <ul class="list-inline list-unstyled">
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <li>|</li>
+            <li>
+               <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+            </li>
+            <li>|</li>
+            <li>
+            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+              <span><i class="fa fa-facebook-square"></i></span>
+              <span><i class="fa fa-twitter-square"></i></span>
+              <span><i class="fa fa-google-plus-square"></i></span>
+            </li>
+			</ul>
+       </div>
     </div>
   </div>
+
 </div>
-
- <div class="progress progress-bar-vertical">
-  <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="height: 60%;">
-    {{post.average}}
-  </div>
-</div> 
-    <br/><br/>
-  </div> -->
- <!-- <div class="progress progress-bar-vertical">
-  <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="height: 60%;">
-    {{post.average}}
-  </div>
-</div>  -->
