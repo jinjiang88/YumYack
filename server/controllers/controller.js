@@ -4,11 +4,11 @@ var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
 var Notifys = mongoose.model("Notifys");
 mongoose.promise = Promise
+bcrypt = require("bcryptjs")
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-<<<<<<< HEAD
 
 
 
@@ -19,10 +19,6 @@ var salt = bcrypt.genSaltSync(10);
 
 
 
-=======
-const clientId="";
-const clientSecret='';
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
 
 
 module.exports = {
@@ -184,23 +180,6 @@ module.exports = {
                 return res.json(savedPost);
             }
         })
-<<<<<<< HEAD
-    },
-
-    //6
-    current: (req, res) => {
-        if(!req.session.user){
-          return res.json({login:false})
-        }else{
-          return res.json({login:true,user:req.session.user});
-        }
-      },
-    //7
-    logout: (req, res) => {
-        req.session.destroy();
-        res.redirect('/')
-    },
-=======
    },
 
    //6
@@ -216,7 +195,6 @@ module.exports = {
     req.session.destroy();
     res.redirect('/')
   },
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
 
 //8
    getAllFriends: (req,res)=> {
@@ -410,24 +388,9 @@ module.exports = {
 
         })
     },
-<<<<<<< HEAD
-=======
-
-//15
-    loadPost: (req,res)=>{
-        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-            if(err){
-                console.log("there has been an error in finding post", err);
-                res.status(500).send(err);
-            }else{
-                console.log("posts has been successfully found", posts);
-                res.json(posts);
-            }
-        })
-    },
 
 
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
+
     //16
     topPost: (req, res) => {
 
@@ -658,7 +621,7 @@ module.exports = {
           }
       })
   },
-<<<<<<< HEAD
+
   getuserfriends:(request,response)=>{
     Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
         if(err){
@@ -668,7 +631,7 @@ module.exports = {
             return response.json(usersfriends);
         }
     })
-=======
+  },
   getNotifications: (req, res)=> {
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
@@ -680,7 +643,7 @@ module.exports = {
           res.json(notifys);
         }
       })
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
+
   },
 }
 ///check yourself before you reck yourself
