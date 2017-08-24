@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let PostSchema = new Schema({
 
     user: {type: Schema.Types.ObjectId, ref: 'Users'},  //id of user whom created the post
-    filename:{type: String, minlength: 6, required: [true, 'Url must be at least 6 characters!']}, //uploaded photos filename from assets/images
+    filename:{type: String, default: "placement.png"}, //uploaded photos filename from assets/images
     name: {type: String, minlength: 2, required: [true, 'Url must be at least 6 characters!']}, //name of food
     description: {type: String, minlength: 2, required: [true, 'Posts must be at least 2 characters!']}, //description of food
     origin: {type:String, required:[true,'You must select an origin']},//origin of food

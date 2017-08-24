@@ -26,7 +26,7 @@ starsCount: Number;
   rate(id, users_id){
     console.log(id);
     this._friendsPostsService.rate({"id":id, "rate":this.starsCount, "users_id": users_id})
-    .then((x)=>console.log("everything is gucci"))
+    .then((x)=>this._router.navigate(['/postview/'+id]))
     .catch((err)=>console.log("something went wrong with rating"))
   }
   current(){
@@ -36,7 +36,7 @@ starsCount: Number;
       if(user.login == false){
         this._router.navigate(['/'])
       }else{
-        this._router.navigate(['editprofile'])
+        // this._router.navigate(['editprofile'])
       }
     })
   }
