@@ -49,6 +49,11 @@ export class UserHomeService {
     .map((response:Response)=> response.json())
     .toPromise();
   }
+  getNotifications(){
+    return this._http.get('/api/getNotifications')
+    .map((response:Response)=>response.json())
+    .toPromise()
+  }
 
 }
 
