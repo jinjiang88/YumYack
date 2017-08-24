@@ -8,21 +8,19 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-<<<<<<< HEAD
 
 
 
-const clientId = "ja63gfSYKpuf3EDg6CrmwA";
-const clientSecret = 'A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
+
 var salt = bcrypt.genSaltSync(10);
 
 
 
 
-=======
+
 const clientId="";
 const clientSecret='';
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
+
 
 
 module.exports = {
