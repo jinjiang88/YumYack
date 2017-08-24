@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Users = mongoose.model("Users");
 var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
+var Notifys = mongoose.model("Notifys");
 mongoose.promise = Promise
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
@@ -249,8 +250,14 @@ module.exports = {
                           if(err){
                             res.status(500).send(err);
                           }else{
-                        user.notification.push(req.session.user.username+" has subscribed to you.")
-                        res.json(savedUser);
+                          user.notification.push(req.session.user.username+" has subscribed to you.")
+                          user.save();
+                          var newnotify = new Notifys();
+                          newnotify.notification = req.session.user.username+" has subscribed to you.";
+                          newnotify.user = user;
+                          newnotify.postedUser = req.session.user;
+                          newnotify.save();
+                          res.json(savedUser);
                       }
                     })
                     }
@@ -586,6 +593,18 @@ module.exports = {
         return res.json(data); 
       }
     })  
+  },
+  getNotifications: (req, res)=> {
+    Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
+    {
+      if (err){
+            console.log("there has been an error in top posts");
+            console.log(err);
+            res.status(500).send(err);
+        }else{
+          res.json(notifys);
+        }
+      })
   },
 }
 ///check yourself before you reck yourself
