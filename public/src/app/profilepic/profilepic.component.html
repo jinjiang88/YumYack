@@ -74,7 +74,7 @@
                                     </td>
                                     <td nowrap>
                                         <button type="button" class="btn btn-success btn-xs"
-                                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                                (click)="item.upload(); hitupload=true" [disabled]="item.isReady || item.isUploading || item.isSuccess">
                                             <span class="glyphicon glyphicon-upload"></span> Upload
                                         </button>
                                         <button type="button" class="btn btn-warning btn-xs"
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-success btn-s"
-                                        (click)=" uploader.uploadAll();  " [disabled]="!uploader.getNotUploadedItems().length">
+                                        (click)=" uploader.uploadAll(); hitupload=true" [disabled]="!uploader.getNotUploadedItems().length">
                                     <span class="glyphicon glyphicon-upload"></span> Upload all
                                 </button>
                                 <button type="button" class="btn btn-warning btn-s"
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-<button (click)="createProfilePic();">Post</button>
-<button [routerLink]=" ['/home'] ">Not Now</button>
+<button type="button" class="btn btn-success btn-s"(click)="createProfilePic();" [disabled]="!hitupload">Post</button>
+<button type="button" class="btn btn-danger btn-s" [routerLink]=" ['/home'] ">Not Now</button>
 </div>
 </div>
