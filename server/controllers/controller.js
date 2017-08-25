@@ -12,6 +12,8 @@ var yelp = require('yelp-fusion');
 
 var salt = bcrypt.genSaltSync(10);
 
+<<<<<<< HEAD
+=======
 
 const clientId="";
 const clientSecret='';
@@ -20,6 +22,7 @@ const clientSecret='';
 
 
 
+>>>>>>> 8e9d65d87ffb2d56abc3056aca227c7da6a9731b
 module.exports = {
 //1
     getAllUsers: function(req, res) {
@@ -175,6 +178,10 @@ module.exports = {
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
+                Users.find({_id: req.sesssion.user._id}, (err, founduser)=>{
+                    founduser.allposts.push(savedPost._id);
+                    founduser.save();
+                });
                 req.session.filename=null;
                 return res.json(savedPost);
             }
@@ -245,12 +252,16 @@ module.exports = {
           if(err){
               res.status(500).send(err);
           }else{
+
               console.log(user);
               let check = false;
               for(let x=0;x<user.friends.length; x++){
                 if(user.friends[x] == req.body.id){
                     check = true;
                 }
+              }
+              if(req.body.id == req.session.user._id){
+                  check = true;
               }
               if(check){
                   res.sendStatus(500);
@@ -261,6 +272,7 @@ module.exports = {
                         console.log(err);
                         res.sendStatus(500);
                     }else{
+                        
                          Users.findOne({_id:req.body.id}, (err,user)=>{
                           if(err){
                             res.status(500).send(err);
