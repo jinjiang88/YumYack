@@ -32,8 +32,9 @@ module.exports = app => {
 	app.get('/api/topcontrib', controller.topcontrib);
 	app.get('/api/getNotifications', controller.getNotifications);
 	app.get('/api/getuserfriends',controller.getuserfriends);
-    // app.post('/api/editprofile', controller.editProfile);
+  app.post('/api/editprofile', controller.editProfile);
 	app.post('/api/getuserposts', controller.getUserPosts);
+
 
 
 }

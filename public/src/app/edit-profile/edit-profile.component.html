@@ -1,11 +1,80 @@
 
+<div class="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top thenav">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="navlinks"  href="/home" id="home">Home</a></li>
+          <li style="margin-top:3.5%;"><div class="dropdown">
+              <span class="dropbtn" style="color:grey;">Friends</span>
+              <div class="dropdown-content">
+                <a href="/friendsposts">Friends Posts</a>
+                <a href="/search">Find Friends</a>
+                <a href="/friendslist">All Friends</a>
+              </div>
+            </div></li>
+          <li><a class="navlinks"  href="/">My posts</a></li>
+          <li class="thenotify">
+              <div class="dropdown">
+              <div *ngIf= "Notifications; else other_content;">
+              
+                <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                  <ul class="dropdown-menu">
+                    <li><a href="{{Notifications[Notifications.length-1].url}}">{{Notifications[Notifications.length-1].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-2].url}}{{Notifications[Notifications.length-2].postedUser._id}}">{{Notifications[Notifications.length-2].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-3].url}}{{Notifications[Notifications.length-3].postedUser._id}}">{{Notifications[Notifications.length-3].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-4].url}}{{Notifications[Notifications.length-4].postedUser._id}}">{{Notifications[Notifications.length-4].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-5].url}}{{Notifications[Notifications.length-5].postedUser._id}}">{{Notifications[Notifications.length-5].notification}}</a></li>
+                  </ul>
+                </div>
 
+                <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
+                  <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                  </ng-template>
+                </div>                
+            </li>
+          <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+
+          <li>
+            <div class="dropdown" *ngIf = "currentUser">
+              <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+              <div class="dropdown-content">
+                <a href="/editprofile">Edit profile</a>
+                <a href="/view/{{currentUser._id}}">Profile</a>
+                <a [routerLink]="['/friendsposts']">Settings</a>
+                <a href="/logout">Log Out</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<button type="button" class="btn btn-danger btn-s" [routerLink]=" ['/preprofile'] ">Edit Profile Picture</button>
 <div class="container">
   <h1>Edit Profile</h1>
   <hr>
   <div class="row">
     <!-- left column -->
-    <div class="col-md-3">
+<!--     <div class="col-md-3">
       <div class="text-center">
 
         <form>
@@ -21,11 +90,11 @@
        
 
       </div>
-    </div>
+    </div> -->
 
     <!-- edit form column -->
     <div class="col-md-9 personal-info">
-      <div class="alert alert-info alert-dismissable">
+<!--       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a>
         <i class="fa fa-coffee"></i>
 
@@ -33,40 +102,40 @@
           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
         </div>
 
-      </div>
+      </div> -->
       <h3>Personal info</h3>
 <!-- =====================================================Personal Info Form======================================================== -->
-      <form class="form-horizontal" role="form" *ngIf="currentUser" (submit)="editProfile()">
+      <form class="form-horizontal" role="form" *ngIf="currentUser" (submit)="editProfileComponent()" >
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" [(ngModel)]="currentUser.fname" name="fname" ngModel>
+            <input class="form-control" type="text" [(ngModel)]="currentUser.fname" name="fname">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label" >Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" [(ngModel)]="currentUser.lname" name="lname" ngModel>
+            <input class="form-control" type="text" [(ngModel)]="currentUser.lname" name="lname">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label" >Email:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" [(ngModel)]="currentUser.email" name="email" ngModel>
+            <input class="form-control" type="text" [(ngModel)]="currentUser.email" name="email">
           </div>
         </div>
        
         <div class="form-group">
           <label class="col-md-3 control-label">Username:</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" [(ngModel)]="currentUser.username" name="username" ngModel>
+            <input class="form-control" type="text" [(ngModel)]="currentUser.username" name="username">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-3 control-label">City:</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" [(ngModel)]="currentUser.city" name="city" ngModel>
+            <input class="form-control" type="text" [(ngModel)]="currentUser.city" name="city">
           </div>
         </div>
 
@@ -78,30 +147,30 @@
           </div>
         </div>
 
-        <div class="form-group">
+<!--         <div class="form-group">
           <label class="col-md-3 control-label" ngModel>Password:</label>
           <div class="col-md-8">
-            <input class="form-control" type="password" value="" name="password" ngModel >
+            <input class="form-control" type="password" [(ngModel)]="currentUser.password" name="password" ngModel >
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password:</label>
           <div class="col-md-8">
-            <input class="form-control" type="password" value="" name="confirmPassword" >
+            <input class="form-control" type="password" [(ngModel)]="currentUser.password" name="confirmPassword" >
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <input type="button" class="btn btn-primary" value="Save Changes">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
             <span></span>
             <input type="reset" class="btn btn-default" value="Cancel">
           </div>
         </div>
       </form>
     </div>
-  </div>
-</div>
+<!--   </div>
+</div> -->
 <!-- =====================================================Personal Info Form======================================================== -->
 <!--       <form class="form-horizontal" role="form" #formData="ngForm" (submit)="editProfile(formData)">
         <div class="form-group">
