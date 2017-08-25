@@ -632,6 +632,7 @@ module.exports = {
         console.log(err);
         return res.sendStatus(500)
       }else{
+        req.session.filename = null;
         console.log(data);
         return res.json(data); 
       }
