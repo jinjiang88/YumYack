@@ -31,5 +31,5 @@ module.exports = app => {
 	app.get('/api/createProfilePic', controller.createProfilePic);
 	app.get('/api/topcontrib', controller.topcontrib);
 	app.get('/api/getNotifications', controller.getNotifications);
-
+	app.get('/api/getuserfriends',controller.getuserfriends);
 }

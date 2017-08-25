@@ -8,21 +8,8 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-<<<<<<< HEAD
-
-
-
-const clientId = "ja63gfSYKpuf3EDg6CrmwA";
-const clientSecret = 'A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
-var salt = bcrypt.genSaltSync(10);
-
-
-
-
-=======
 const clientId="";
 const clientSecret='';
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
 
 
 module.exports = {
@@ -181,23 +168,7 @@ module.exports = {
                 return res.json(savedPost);
             }
         })
-<<<<<<< HEAD
-    },
 
-    //6
-    current: (req, res) => {
-        if(!req.session.user){
-          return res.json({login:false})
-        }else{
-          return res.json({login:true,user:req.session.user});
-        }
-      },
-    //7
-    logout: (req, res) => {
-        req.session.destroy();
-        res.redirect('/')
-    },
-=======
    },
 
    //6
@@ -213,7 +184,7 @@ module.exports = {
     req.session.destroy();
     res.redirect('/')
   },
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
+
 
 //8
    getAllFriends: (req,res)=> {
@@ -305,8 +276,8 @@ module.exports = {
             if(err){
                 res.status(500).send("There was an error find user. User may not be logged in")
             }else{
-                console.log("we got the current user")
-                console.log(user)
+                // console.log("we got the current user")
+                // console.log(user)
                 res.json(user);
             }
         })
@@ -316,12 +287,12 @@ module.exports = {
   getFriendsPosts: (req,res)=>{
     Posts.find({'user': {$in: req.session.user.friends}}).populate('user').exec((err,friendsPosts)=>{
         if(err){
-            console.log("something went wrong with the query on getFriendsPosts controller")
-            console.log(err);
+            // console.log("something went wrong with the query on getFriendsPosts controller")
+            // console.log(err);
             res.status(500).send(err);
         }else{
-            console.log("this is all your friends posts")
-            console.log(friendsPosts);
+            // console.log("this is all your friends posts")
+            // console.log(friendsPosts);
             res.json(friendsPosts);
         }
     })
@@ -373,11 +344,12 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                            Users.findOne({_id: req.body.users_id}, (err,foundUser)=>{
+                            Users.findOne({_id: req.body.user._id}, (err,foundUser)=>{
                                 if(err){
                                     console.log("There has been an error");
                                     res.sendStatus(500);
                                 }else{
+                                    console.log(foundUser,"******************")
                                     foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
                                     console.log("it successfully saved");
                                     console.log(savedPost);
@@ -406,8 +378,6 @@ module.exports = {
 
         })
     },
-<<<<<<< HEAD
-=======
 
 //15
     loadPost: (req,res)=>{
@@ -422,8 +392,6 @@ module.exports = {
         })
     },
 
-
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
     //16
     topPost: (req, res) => {
 
@@ -468,33 +436,20 @@ module.exports = {
 
         
 
-          }
-        })
-      },
-//15
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-      },
+          },
+
 //16
 
       getNumberOfStars: (req, res)=>{
-          console.log("you just got in getNumberOfStars. No query yet")
+        //   console.log("you just got in getNumberOfStars. No query yet")
           Posts.find({user: req.session.user._id}, (err, posts)=>{
               if(err){
-                  console.log("theres been an error for the query of posts in getNumberOf Stars", err);
+                //   console.log("theres been an error for the query of posts in getNumberOf Stars", err);
                   res.status(500).send(err)
               }else{
                   if(posts){
-                      console.log("here are the posts for the stars")
-                      console.log(posts)
+                    //   console.log("here are the posts for the stars")
+                    //   console.log(posts)
                     if(posts[0]){
                         let five = 0;
                         let four = 0;
@@ -542,15 +497,15 @@ module.exports = {
                                 }
                         }
                         }
-                        console.log("here are your number of stars");
-                        console.log(five,four,three,two,one + " total:", total);
+                        // console.log("here are your number of stars");
+                        // console.log(five,four,three,two,one + " total:", total);
                         res.json({"one":one, "two":two, "three":three, "four": four, "five":five, "total":total})
 
 
 
 
                     }else{
-                        console.log("there was no posts[0].score")
+                        // console.log("there was no posts[0].score")
                         res.status(500).send("there are no posts yet")
                     }
 
@@ -640,8 +595,8 @@ module.exports = {
           }
       })
   },
-<<<<<<< HEAD
   getuserfriends:(request,response)=>{
+      console.log("+++++++++++++++++++++++++",request.body)
     Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
         if(err){
             return response.json({error:true});
@@ -650,19 +605,18 @@ module.exports = {
             return response.json(usersfriends);
         }
     })
-=======
+},
   getNotifications: (req, res)=> {
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
       if (err){
-            console.log("there has been an error in top posts");
-            console.log(err);
+            // console.log("there has been an error in top posts");
+            // console.log(err);
             res.status(500).send(err);
         }else{
           res.json(notifys);
         }
       })
->>>>>>> 5425cc4677a6de7efa19f619f7c7956a5a96ae99
   },
 }
 ///check yourself before you reck yourself

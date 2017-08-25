@@ -14,7 +14,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a class="navlinks"  href="/home" id="home">Home</a></li>
             <li style="margin-top:3.5%;"><div class="dropdown">
-                <span class="dropbtn" style="color:grey;">Friends</span>
+                <span class="dropbtn" style="color:grey;">Friends v</span>
                 <div class="dropdown-content">
                   <a href="/friendsposts">Friends Posts</a>
                   <a href="/search">Find Friends</a>
@@ -39,8 +39,7 @@
                       <li>{{currentUser.notification[currentUser.notification.length-5]}}</li>
                     </ul>
                   </div>
-  
-<<<<<<< HEAD
+
                   <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
                     <ul class="dropdown-menu">
                       <li><a href="#">HTML</a></li>
@@ -101,9 +100,9 @@
           <!-- <a  class="outerimage" href="/postview/{{post._id}}"><img class="image" src="./../../assets/images/{{post.filename}}"/></a> -->
             <br/>
             <!-- <h6>{{post.user.username}}</h6> -->
-          <!-- <rating (click)="rate(post._id);" [(ngModel)]="starsCount"
+          <rating (click)="rate(post._id);" [(ngModel)]="starsCount"
                   [float]="true">
-          </rating> -->
+          </rating>
       </div>
     </div>
   </div>
