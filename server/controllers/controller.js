@@ -436,65 +436,65 @@ module.exports = {
     },
 
     //16
-    topPost: (req, res) => {
+//     topPost: (req, res) => {
 
-            if(alreadyRated==false){
-                console.log("it has not been rated by the current user yet")
-                post.userScores.push(req.session.user._id);
-                post.score.push(req.body.rate)
+//             if(alreadyRated==false){
+//                 console.log("it has not been rated by the current user yet")
+//                 post.userScores.push(req.session.user._id);
+//                 post.score.push(req.body.rate)
             
-                console.log("going to the loop now")
-               for(let i=0;i<post.score.length;i++){
-                    total+=post.score[i];
-                }
-                console.log(total)
-                console.log(post.score.length)
-                console.log(total/post.score.length)
-                if(!post.score.length){
-                    post.average=total/1;
-                }else{
-                    post.average=total/post.score.length;
-                }
-                post.save((err,savedPost)=>{
-                    if(err){
-                        console.log("something wrong with saving");
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-                        console.log("it successfully saved")
-                        console.log(savedPost);
-                        Users.findOne({_id:savedPost.user}, (err,user)=>{
-                              if(err){
-                                res.status(500).send(err);
-                              }else{
-                              user.notification.push(req.session.user.username+" has rated your post.")
-                              user.save();
-                              var newnotify = new Notifys();
-                              newnotify.notification = req.session.user.username+" has rated your post.";
-                              newnotify.user = user;
-                              newnotify.url = "postview/"+post._id;
-                              newnotify.postedUser = req.session.user;
-                              newnotify.save();
-                              console.log(newnotify +"-----------------");
-                          }
-                        })
-                        res.json(savedPost);
-                    }
-                })
-                }else{
-                console.log("it has been rated")
-//------------------need to learn to update in an array----------------                
-                Posts.update({_id:req.body.id}, {$inc:
-                     { 
-                     'score.$index': req.body.rate}});
-                     console.log("everything should be copacetic")
-                     res.json(post);
-            }
+//                 console.log("going to the loop now")
+//                for(let i=0;i<post.score.length;i++){
+//                     total+=post.score[i];
+//                 }
+//                 console.log(total)
+//                 console.log(post.score.length)
+//                 console.log(total/post.score.length)
+//                 if(!post.score.length){
+//                     post.average=total/1;
+//                 }else{
+//                     post.average=total/post.score.length;
+//                 }
+//                 post.save((err,savedPost)=>{
+//                     if(err){
+//                         console.log("something wrong with saving");
+//                         console.log(err);
+//                         res.sendStatus(500);
+//                     }else{
+//                         console.log("it successfully saved")
+//                         console.log(savedPost);
+//                         Users.findOne({_id:savedPost.user}, (err,user)=>{
+//                               if(err){
+//                                 res.status(500).send(err);
+//                               }else{
+//                               user.notification.push(req.session.user.username+" has rated your post.")
+//                               user.save();
+//                               var newnotify = new Notifys();
+//                               newnotify.notification = req.session.user.username+" has rated your post.";
+//                               newnotify.user = user;
+//                               newnotify.url = "postview/"+post._id;
+//                               newnotify.postedUser = req.session.user;
+//                               newnotify.save();
+//                               console.log(newnotify +"-----------------");
+//                           }
+//                         })
+//                         res.json(savedPost);
+//                     }
+//                 })
+//                 }else{
+//                 console.log("it has been rated")
+// //------------------need to learn to update in an array----------------                
+//                 Posts.update({_id:req.body.id}, {$inc:
+//                      { 
+//                      'score.$index': req.body.rate}});
+//                      console.log("everything should be copacetic")
+//                      res.json(post);
+//             }
 
 
         
 
-          },
+//           },
 
       getNumberOfStars: (req, res)=>{
         //   console.log("you just got in getNumberOfStars. No query yet")
