@@ -8,7 +8,9 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-var bcrypt= require('bcryptjs')
+
+
+var bcrypt= require('bcryptjs');
 
 var salt = bcrypt.genSaltSync(10);
 
@@ -351,7 +353,7 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                            Users.findOne({_id: req.body.user._id}, (err,foundUser)=>{
+                            Users.findOne({_id: savedPost.user}, (err,foundUser)=>{
                                 if(err){
                                     console.log("There has been an error");
                                     res.sendStatus(500);
@@ -360,6 +362,21 @@ module.exports = {
                                     foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
                                     console.log("it successfully saved");
                                     console.log(savedPost);
+                                    Users.findOne({_id:savedPost.user}, (err,user)=>{
+                                      if(err){
+                                        res.status(500).send(err);
+                                      }else{
+                                        user.notification.push(req.session.user.username+" has rated your post.")
+                                        user.save();
+                                        var newnotify = new Notifys();
+                                        newnotify.notification = req.session.user.username+" has rated your post.";
+                                        newnotify.user = user;
+                                        newnotify.url = "postview/"+post._id;
+                                        newnotify.postedUser = req.session.user;
+                                        newnotify.save();
+                                        console.log(newnotify +"-----------------");
+                                      }
+                                    })
                                     res.json(savedPost);
                                 }
                             })
@@ -370,15 +387,66 @@ module.exports = {
                 } else {
                     console.log("it has been rated")
                     //------------------need to learn to update in an array----------------                
-                    Posts.update({
-                        _id: req.body.id
-                    }, {
-                        $inc: {
-                            'score.$index': req.body.rate
+                    // Posts.update({
+                    //     _id: req.body.id
+                    // }, {
+                    //     $inc: {
+                    //         'score.$index': req.body.rate
+                    //     }
+                    // });
+                    // console.log("everything should be copacetic")
+                    // res.json(post);
+                    post.userScores[index] = req.session.user._id;
+                    post.score[index] = (req.body.rate)
+                    console.log("going to the loop now")
+                    for (let i = 0; i < post.score.length; i++) {
+                        total += post.score[i];
+                    }
+                    console.log(total)
+                    console.log(post.score.length)
+                    console.log(total / post.score.length)
+                    if (!post.score.length) {
+                        post.average = total / 1;
+                    } else {
+                        post.average = total / post.score.length;
+                    }
+                    post.save((err, savedPost) => {
+                        if (err) {
+                            console.log("something wrong with saving");
+                            console.log(err);
+                            res.sendStatus(500);
+                        } else {
+                            Users.findOne({_id: savedPost.user}, (err,foundUser)=>{
+                                if(err){
+                                    console.log("There has been an error");
+                                    res.sendStatus(500);
+                                }else{
+                                    console.log(foundUser,"******************")
+                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
+                                    console.log("it successfully saved");
+                                    console.log(savedPost);
+                                    Users.findOne({_id:savedPost.user}, (err,user)=>{
+                                      if(err){
+                                        res.status(500).send(err);
+                                      }else{
+                                        user.notification.push(req.session.user.username+" has rated your post.")
+                                        user.save();
+                                        var newnotify = new Notifys();
+                                        newnotify.notification = req.session.user.username+" has rated your post.";
+                                        newnotify.user = user;
+                                        newnotify.url = "postview/"+post._id;
+                                        newnotify.postedUser = req.session.user;
+                                        newnotify.save();
+                                        console.log(newnotify +"-----------------");
+                                      }
+                                    })
+                                    res.json(savedPost);
+                                }
+                            })
+
+                          
                         }
-                    });
-                    console.log("everything should be copacetic")
-                    res.json(post);
+                    })
 
                 }
             }
@@ -400,65 +468,65 @@ module.exports = {
     },
 
     //16
-    topPost: (req, res) => {
+//     topPost: (req, res) => {
 
-            if(alreadyRated==false){
-                console.log("it has not been rated by the current user yet")
-                post.userScores.push(req.session.user._id);
-                post.score.push(req.body.rate)
+//             if(alreadyRated==false){
+//                 console.log("it has not been rated by the current user yet")
+//                 post.userScores.push(req.session.user._id);
+//                 post.score.push(req.body.rate)
             
-                console.log("going to the loop now")
-               for(let i=0;i<post.score.length;i++){
-                    total+=post.score[i];
-                }
-                console.log(total)
-                console.log(post.score.length)
-                console.log(total/post.score.length)
-                if(!post.score.length){
-                    post.average=total/1;
-                }else{
-                    post.average=total/post.score.length;
-                }
-                post.save((err,savedPost)=>{
-                    if(err){
-                        console.log("something wrong with saving");
-                        console.log(err);
-                        res.sendStatus(500);
-                    }else{
-                        console.log("it successfully saved")
-                        console.log(savedPost);
-                        Users.findOne({_id:savedPost.user}, (err,user)=>{
-                              if(err){
-                                res.status(500).send(err);
-                              }else{
-                              user.notification.push(req.session.user.username+" has rated your post.")
-                              user.save();
-                              var newnotify = new Notifys();
-                              newnotify.notification = req.session.user.username+" has rated your post.";
-                              newnotify.user = user;
-                              newnotify.url = "postview/"+post._id;
-                              newnotify.postedUser = req.session.user;
-                              newnotify.save();
-                              console.log(newnotify +"-----------------");
-                          }
-                        })
-                        res.json(savedPost);
-                    }
-                })
-                }else{
-                console.log("it has been rated")
-//------------------need to learn to update in an array----------------                
-                Posts.update({_id:req.body.id}, {$inc:
-                     { 
-                     'score.$index': req.body.rate}});
-                     console.log("everything should be copacetic")
-                     res.json(post);
-            }
+//                 console.log("going to the loop now")
+//                for(let i=0;i<post.score.length;i++){
+//                     total+=post.score[i];
+//                 }
+//                 console.log(total)
+//                 console.log(post.score.length)
+//                 console.log(total/post.score.length)
+//                 if(!post.score.length){
+//                     post.average=total/1;
+//                 }else{
+//                     post.average=total/post.score.length;
+//                 }
+//                 post.save((err,savedPost)=>{
+//                     if(err){
+//                         console.log("something wrong with saving");
+//                         console.log(err);
+//                         res.sendStatus(500);
+//                     }else{
+//                         console.log("it successfully saved")
+//                         console.log(savedPost);
+//                         Users.findOne({_id:savedPost.user}, (err,user)=>{
+//                               if(err){
+//                                 res.status(500).send(err);
+//                               }else{
+//                               user.notification.push(req.session.user.username+" has rated your post.")
+//                               user.save();
+//                               var newnotify = new Notifys();
+//                               newnotify.notification = req.session.user.username+" has rated your post.";
+//                               newnotify.user = user;
+//                               newnotify.url = "postview/"+post._id;
+//                               newnotify.postedUser = req.session.user;
+//                               newnotify.save();
+//                               console.log(newnotify +"-----------------");
+//                           }
+//                         })
+//                         res.json(savedPost);
+//                     }
+//                 })
+//                 }else{
+//                 console.log("it has been rated")
+// //------------------need to learn to update in an array----------------                
+//                 Posts.update({_id:req.body.id}, {$inc:
+//                      { 
+//                      'score.$index': req.body.rate}});
+//                      console.log("everything should be copacetic")
+//                      res.json(post);
+//             }
 
 
         
 
-          },
+//           },
 
       getNumberOfStars: (req, res)=>{
         //   console.log("you just got in getNumberOfStars. No query yet")
@@ -638,6 +706,28 @@ module.exports = {
           res.json(notifys);
         }
       })
+  },
+
+  editProfile: (req, res) => {
+    Users.update({_id: req.session.user._id}, req.body, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(data);
+      }
+    })
+},
+  getUserPosts : (req, res)=>{
+    Posts.find({_id: req.body.id}).populate("user").exec((err,foundPost)=>{
+        if(err){
+            console.log("there awas an error", err)
+            res.sendStatus(500);
+        }else{
+            console.log("posts of that user has been found")
+            res.json(foundPost);
+        }
+    })
   },
 }
 ///check yourself before you reck yourself

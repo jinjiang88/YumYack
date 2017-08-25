@@ -48,8 +48,13 @@ export class EditProfileComponent implements OnInit {
     })
   }
 
-  editProfileComponent(formData){
-    this._editProfileService.editProfile(formData.value)
+  // editProfileComponent(formData){
+  //   this._editProfileService.editProfile(formData.value)
+  //   .then((profile)=> this._router.navigate(['/home']))
+  //   .catch((error)=>console.log("Edit was unsuccessful"))
+  // }
+  editProfileComponent(){
+    this._editProfileService.editProfile(this.currentUser)
     .then((profile)=> this._router.navigate(['/home']))
     .catch((error)=>console.log("Edit was unsuccessful"))
   }
