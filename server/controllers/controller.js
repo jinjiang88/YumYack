@@ -8,8 +8,24 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
+<<<<<<< HEAD
 const clientId="";
 const clientSecret='';
+=======
+
+
+
+
+var salt = bcrypt.genSaltSync(10);
+
+
+
+
+
+const clientId="";
+const clientSecret='';
+
+>>>>>>> c38b05936cd452b8faffc384a1e156d98759086c
 
 
 module.exports = {
@@ -151,7 +167,9 @@ module.exports = {
        console.log(req.session.filename);
        console.log(req.body.name,req.body.description,req.body.origin,req.session.user);
         let newPost = new Posts();
-        newPost.filename = req.session.filename;
+        if(req.session.filename){
+            newPost.filename = req.session.filename;
+        }
         newPost.user = req.session.user._id;
         newPost.name = req.body.name;
         newPost.description = req.body.description;
@@ -165,6 +183,7 @@ module.exports = {
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
+                req.session.filename=null;
                 return res.json(savedPost);
             }
         })
@@ -257,6 +276,7 @@ module.exports = {
                           var newnotify = new Notifys();
                           newnotify.notification = req.session.user.username+" has subscribed to you.";
                           newnotify.user = user;
+                          newnotify.url = "view/"+req.session.user._id;
                           newnotify.postedUser = req.session.user;
                           newnotify.save();
                           res.json(savedUser);
@@ -302,7 +322,7 @@ module.exports = {
 
     //14
     rate: (req, res) => {
-        console.log("just got in rate")
+        console.log(req.body.id, req.body.users_id)
         Posts.findOne({
             _id: req.body.id
         }, (err, post) => {
@@ -420,6 +440,21 @@ module.exports = {
                     }else{
                         console.log("it successfully saved")
                         console.log(savedPost);
+                        Users.findOne({_id:savedPost.user}, (err,user)=>{
+                              if(err){
+                                res.status(500).send(err);
+                              }else{
+                              user.notification.push(req.session.user.username+" has rated your post.")
+                              user.save();
+                              var newnotify = new Notifys();
+                              newnotify.notification = req.session.user.username+" has rated your post.";
+                              newnotify.user = user;
+                              newnotify.url = "postview/"+post._id;
+                              newnotify.postedUser = req.session.user;
+                              newnotify.save();
+                              console.log(newnotify +"-----------------");
+                          }
+                        })
                         res.json(savedPost);
                     }
                 })
@@ -437,7 +472,23 @@ module.exports = {
         
 
           },
+<<<<<<< HEAD
 
+=======
+      
+//15
+      loadPost: (req,res)=>{
+          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+              if(err){
+                  console.log("there has been an error in finding post", err);
+                  res.status(500).send(err);
+              }else{
+                  console.log("posts has been successfully found", posts);
+                  res.json(posts);
+              }
+          })
+      },
+>>>>>>> c38b05936cd452b8faffc384a1e156d98759086c
 //16
 
       getNumberOfStars: (req, res)=>{
