@@ -8,7 +8,7 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-var bcrypt= require()
+let bcrypt = require('bcryptjs');
 
 var salt = bcrypt.genSaltSync(10);
 
@@ -351,7 +351,7 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                            Users.findOne({_id: req.body.user._id}, (err,foundUser)=>{
+                            Users.findOne({_id: req.body.users._id}, (err,foundUser)=>{
                                 if(err){
                                     console.log("There has been an error");
                                     res.sendStatus(500);
