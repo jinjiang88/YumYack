@@ -8,7 +8,7 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-var bcrypt= require()
+var bcrypt= require('bcryptjs');
 
 var salt = bcrypt.genSaltSync(10);
 
