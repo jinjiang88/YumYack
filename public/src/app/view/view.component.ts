@@ -78,8 +78,10 @@ export class ViewComponent implements OnInit {
     })
   }
   getuserposts(){
-    this._viewService.getuserposts(this.id)
+    console.log("here it is guys!")
+    this._viewService.getuserposts({id:this.id})
     .then((posts)=>{
+      console.log(posts,"hhhhhhhhhhhhhhhhhhhhhhhh")
       this.userposts=posts
     })
     .catch((err)=>{console.log(err)})

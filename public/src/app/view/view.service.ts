@@ -30,8 +30,10 @@ export class ViewService {
   //   .toPromise();
   // }
   getuserposts(id){
+    console.log("this is the id",id)
     return this._http.post('/api/getuserposts', id)
     .map((response:Response)=>response.json())
     .toPromise();
   }
+
 }
