@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EditProfileService } from './edit-profile.service';
-
+import { UserHomeService } from '../user-home/user-home.service';
 import { Router } from '@angular/router'
 
 import { FileUploader } from 'ng2-file-upload';
@@ -15,10 +15,11 @@ import { FileUploader } from 'ng2-file-upload';
 export class EditProfileComponent implements OnInit {
 
   currentUser:any;
+  Notifications: Array<Object>; //user's notifications
 
-  public uploader:FileUploader = new FileUploader({url:'http://localhost:8000/upload'});
 
-  constructor(private _editProfileService:EditProfileService, private _router:Router ) { }
+
+  constructor(private _editProfileService:EditProfileService, private _userHomeService: UserHomeService, private _router:Router ) { }
 
 
   
@@ -26,7 +27,7 @@ export class EditProfileComponent implements OnInit {
 
 
     this.getCurrentUser();
-
+    this.getnotifications();
     this.current()
 
   }
@@ -54,9 +55,15 @@ export class EditProfileComponent implements OnInit {
   //   .catch((error)=>console.log("Edit was unsuccessful"))
   // }
   editProfileComponent(){
+    console.log("you are now in editprofile component")
+    console.log(this.currentUser)
     this._editProfileService.editProfile(this.currentUser)
     .then((profile)=> this._router.navigate(['/home']))
     .catch((error)=>console.log("Edit was unsuccessful"))
   }
-
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>this.Notifications=notifications)
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
 }

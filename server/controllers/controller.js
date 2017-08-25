@@ -195,7 +195,7 @@ module.exports = {
 
 //8
    getAllFriends: (req,res)=> {
-        Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
+        Users.findOne({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
             if(err){
                 console.log("************this is the error***************",err, "**********************************")
                 res.status(500).send(err);
@@ -705,12 +705,14 @@ module.exports = {
   },
 
   editProfile: (req, res) => {
-    Users.update({_id: req.session.user._id}, req.body, {filename: req.session.filename}, (err, data)=> {
+    console.log("you are in the editProfile")
+    Users.update({_id: req.session.user._id}, req.body, (err, profile)=> {
       if(err){
         console.log(err);
         return res.sendStatus(500)
       }else{
-        return res.json(data);
+        console.log(profile);
+        return res.json(profile);
       }
     })
 },
