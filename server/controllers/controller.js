@@ -348,25 +348,25 @@ module.exports = {
                             console.log("something wrong with saving");
                             console.log(err);
                             res.sendStatus(500);
-                          } else {
-                            Users.findOne({_id:savedPost.user}, (err,user)=>{
-                              if(err){
-                                res.status(500).send(err);
-                              }else{
-                                user.notification.push(req.session.user.username+" has rated your post.")
-                                user.save();
-                                var newnotify = new Notifys();
-                                newnotify.notification = req.session.user.username+" has rated your post.";
-                                newnotify.user = user;
-                                newnotify.url = "postview/"+post._id;
-                                newnotify.postedUser = req.session.user;
-                                newnotify.save();
-                                console.log(newnotify +"-----------------");
-                              }
-                            })
-                            
-                          }
-                        })
+                        } else {
+                          Users.findOne({_id:savedPost.user}, (err,user)=>{
+                            if(err){
+                              res.status(500).send(err);
+                            }else{
+                              user.notification.push(req.session.user.username+" has rated your post.")
+                              user.save();
+                              var newnotify = new Notifys();
+                              newnotify.notification = req.session.user.username+" has rated your post.";
+                              newnotify.user = user;
+                              newnotify.url = "postview/"+post._id;
+                              newnotify.postedUser = req.session.user;
+                              newnotify.save();
+                              console.log(newnotify +"-----------------");
+                              res.json(savedPost);
+                            }
+                          })
+                        }
+                      })
                 } else {
                     console.log("it has been rated")
                     //------------------need to learn to update in an array----------------                
