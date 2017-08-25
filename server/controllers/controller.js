@@ -12,17 +12,15 @@ var yelp = require('yelp-fusion');
 
 var salt = bcrypt.genSaltSync(10);
 
-<<<<<<< HEAD
-=======
 
-const clientId="";
-const clientSecret='';
+const clientId="ja63gfSYKpuf3EDg6CrmwA";
+const clientSecret='A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
 
 
 
 
 
->>>>>>> 8e9d65d87ffb2d56abc3056aca227c7da6a9731b
+
 module.exports = {
 //1
     getAllUsers: function(req, res) {
@@ -178,13 +176,25 @@ module.exports = {
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
-                Users.find({_id: req.sesssion.user._id}, (err, founduser)=>{
-                    founduser.allposts.push(savedPost._id);
-                    founduser.save();
+                Users.findOne({_id: req.session.user._id}, (error, founduser)=>{
+                    if(error){
+                        console.log("there was an error")
+                        res.sendStatus(500);
+                    }else{
+                        if(founduser){
+                            console.log(founduser)
+                            founduser.allposts.push(savedPost._id);
+                            founduser.save();
+                        }else{
+                            res.sendStatus(501);
+                        }
+                    
+                    }
                 });
                 req.session.filename=null;
                 return res.json(savedPost);
             }
+            
         })
 
     },
@@ -470,7 +480,7 @@ module.exports = {
           },
 
 //15
-      : (req,res)=>{
+      loadPost: (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
               if(err){
                   console.log("there has been an error in finding post", err);
@@ -480,6 +490,7 @@ module.exports = {
                   res.json(posts);
               }
           })
+        },
 
 //16
 
@@ -555,7 +566,8 @@ module.exports = {
 
 
                   }
-              }
+                }
+            
           })
         },
 
