@@ -639,5 +639,15 @@ module.exports = {
         }
       })
   },
+  editProfile: (req, res) => {
+    Users.update({_id: req.session.user._id}, req.body, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(data);
+      }
+    })  
+  },
 }
 ///check yourself before you reck yourself
