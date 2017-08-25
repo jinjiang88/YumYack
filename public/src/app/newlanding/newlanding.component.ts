@@ -17,7 +17,7 @@ export class NewlandingComponent implements OnInit {
   topPosts:any;
   recentPosts:Array<Object>
   loginval=""
-
+  topcontribs=[]
 
   thebar={
     'textcolor':"white",
@@ -37,10 +37,11 @@ export class NewlandingComponent implements OnInit {
     this.current();
     this.getRecentPosts();
     this.gettopPosts();
+    this.topcontrib();
   }
 
   public imageSources: string[] = [
-       './../../assests/images/file-1502355578835.jpg',
+       './../../assets/images/facepic.jpg',
    'http://lorempixel.com/400/200/sports/',
      'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/'
@@ -109,7 +110,9 @@ export class NewlandingComponent implements OnInit {
     }
     topcontrib(){
       this._newLandingService.topcontrib()
-      .then((user)=>{this.topcontrib = user})
+      .then((user)=>{
+        console.log(user,"/////////////////////////////")
+        this.topcontribs = user})
       .catch((err)=>{console.log(err)})
     }
     

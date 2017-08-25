@@ -636,11 +636,6 @@ module.exports = {
                 }
         })
       },
-
-
-
-
-
       topPost:(req,res)=>{
       var mysort = { average: -1 };
       Posts.find({}).populate('user').sort(mysort).exec(function(err, result) {
@@ -673,12 +668,13 @@ module.exports = {
   },
 
   topcontrib:(request,response)=>{
-      Users.find({}).sort({yumyackscore:-1}).limit(6)
+      Users.find({}).sort({yumyackscore:1}).limit(6)
       .exec(function(err,users){
           if(err){
               console.log(err)
               return response.json(err);
           }else{
+              console.log(users,"11111111111111111111111111")
               console.log("something didnt go wrong")
               return response.json(users)
           }
@@ -719,15 +715,18 @@ module.exports = {
     })
 },
   getUserPosts : (req, res)=>{
-    Posts.find({_id: req.body.id}).populate("user").exec((err,foundPost)=>{
+      console.log(req.body.id, "applesapplesapples")
+    Posts.find({user: req.body.id}).populate("user").exec((err,foundPost)=>{
         if(err){
             console.log("there awas an error", err)
             res.sendStatus(500);
         }else{
-            console.log("posts of that user has been found")
+            
+            console.log("posts of that user has been found", foundPost)
             res.json(foundPost);
         }
     })
   },
+
 }
 ///check yourself before you reck yourself
