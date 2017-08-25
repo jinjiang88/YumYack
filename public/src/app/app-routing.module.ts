@@ -31,10 +31,10 @@ const routes: Routes = [
   {path: 'landing', component: LandingPageComponent},//old landing page (unused)
   {path: 'home', component: UserHomeComponent },//user hub controller
   {path: 'profile', component:ProfileComponent},//old profile component (unused)
-  {path: 'create', component:TestComponent},
-  {path: 'friendslist', component: FriendslistComponent},
-  {path: 'search', component: FindfriendsComponent},
-  {path: 'test', component:TestComponent},
+  {path: 'create', component:TestComponent},//a separate page of creating posts
+  {path: 'friendslist', component: FriendslistComponent},//pages of list of your friends  
+  {path: 'search', component: FindfriendsComponent},//search friends
+  {path: 'test', component:TestComponent}, // 
   {path:'newlanding', component: NewlandingComponent},
   {path: 'posts', component:UserPostsComponent},
   {path: 'view/:id', component:ViewComponent},
