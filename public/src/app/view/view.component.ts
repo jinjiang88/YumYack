@@ -23,12 +23,14 @@ export class ViewComponent implements OnInit {
   friendcount:Number;
   starsCount:5;
   postcount:Number;
+  userposts=[];
 
   ngOnInit() {
     this._activatedRoute.params.subscribe((param)=>{
     this.id = param.id;
       this.current();
       this.getUser();
+      this.getuserposts();
     })
     this.componentnumber = 2;
     // console.log(this.friendslist,"$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -54,11 +56,11 @@ export class ViewComponent implements OnInit {
   		.then( User => this._router.navigate(['/friendslist']) )
   		.catch( err => console.log(err))
   }
-  getthisusersfriends(){
-    this._viewService.getthisusersfriends({id:this.id})
-    .then((friends)=>{this.friendslist = friends})
-    .catch((err)=>console.log(err))
-  }
+  // getthisusersfriends(){
+  //   this._viewService.getthisusersfriends({id:this.id})
+  //   .then((friends)=>{this.friendslist = friends})
+  //   .catch((err)=>console.log(err))
+  // }
 
   typeof(){
     console.log(typeof this.starsCount)
@@ -71,9 +73,16 @@ export class ViewComponent implements OnInit {
       if(user.login == false){
         this._router.navigate(['/'])
       }else{
-        this.getthisusersfriends()
+        // this.getthisusersfriends()
       }
     })
+  }
+  getuserposts(){
+    this._viewService.getuserposts(this.id)
+    .then((posts)=>{
+      this.userposts=posts
+    })
+    .catch((err)=>{console.log(err)})
   }
 
   overviewclicked(){
