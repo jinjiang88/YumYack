@@ -10,12 +10,19 @@ var yelp = require('yelp-fusion');
 // var n = require('nonce')();
 // var request = require('request');
 
-
-
-const clientId = "ja63gfSYKpuf3EDg6CrmwA";
-const clientSecret = 'A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
 var salt = bcrypt.genSaltSync(10);
 
+<<<<<<< HEAD
+=======
+
+const clientId="";
+const clientSecret='';
+
+
+
+
+
+>>>>>>> 8e9d65d87ffb2d56abc3056aca227c7da6a9731b
 module.exports = {
 //1
     getAllUsers: function(req, res) {
@@ -179,21 +186,25 @@ module.exports = {
                 return res.json(savedPost);
             }
         })
-   },
 
-   //6
-  current: (req, res) => {
-    if(!req.session.user){
-      return res.json({login:false})
-    }else{
-      return res.json({login:true,user:req.session.user});
-    }
-  },
-//7
-  logout: (req, res)=> {
-    req.session.destroy();
-    res.redirect('/')
-  },
+    },
+
+    //6
+    current: (req, res) => {
+        if(!req.session.user){
+          return res.json({login:false})
+        }else{
+          return res.json({login:true,user:req.session.user});
+        }
+      },
+    //7
+    logout: (req, res) => {
+        req.session.destroy();
+        res.redirect('/')
+    },
+
+
+
 
 //8
    getAllFriends: (req,res)=> {
@@ -291,8 +302,8 @@ module.exports = {
             if(err){
                 res.status(500).send("There was an error find user. User may not be logged in")
             }else{
-                console.log("we got the current user")
-                console.log(user)
+                // console.log("we got the current user")
+                // console.log(user)
                 res.json(user);
             }
         })
@@ -302,12 +313,12 @@ module.exports = {
   getFriendsPosts: (req,res)=>{
     Posts.find({'user': {$in: req.session.user.friends}}).populate('user').exec((err,friendsPosts)=>{
         if(err){
-            console.log("something went wrong with the query on getFriendsPosts controller")
-            console.log(err);
+            // console.log("something went wrong with the query on getFriendsPosts controller")
+            // console.log(err);
             res.status(500).send(err);
         }else{
-            console.log("this is all your friends posts")
-            console.log(friendsPosts);
+            // console.log("this is all your friends posts")
+            // console.log(friendsPosts);
             res.json(friendsPosts);
         }
     })
@@ -359,21 +370,24 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                            Users.findOne({_id: req.body.users_id}, (err,foundUser)=>{
-                                if(err){
-                                    console.log("There has been an error");
-                                    res.sendStatus(500);
-                                }else{
-                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
-                                    console.log("it successfully saved");
-                                    console.log(savedPost);
-                                    res.json(savedPost);
-                                }
-                            })
-
-                          
+                          Users.findOne({_id:savedPost.user}, (err,user)=>{
+                            if(err){
+                              res.status(500).send(err);
+                            }else{
+                              user.notification.push(req.session.user.username+" has rated your post.")
+                              user.save();
+                              var newnotify = new Notifys();
+                              newnotify.notification = req.session.user.username+" has rated your post.";
+                              newnotify.user = user;
+                              newnotify.url = "postview/"+post._id;
+                              newnotify.postedUser = req.session.user;
+                              newnotify.save();
+                              console.log(newnotify +"-----------------");
+                              res.json(savedPost);
+                            }
+                          })
                         }
-                    })
+                      })
                 } else {
                     console.log("it has been rated")
                     //------------------need to learn to update in an array----------------                
@@ -392,7 +406,6 @@ module.exports = {
 
         })
     },
-
 
 
     //16
@@ -455,9 +468,9 @@ module.exports = {
         
 
           },
-      
+
 //15
-      loadPost: (req,res)=>{
+      : (req,res)=>{
           Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
               if(err){
                   console.log("there has been an error in finding post", err);
@@ -467,19 +480,19 @@ module.exports = {
                   res.json(posts);
               }
           })
-      },
+
 //16
 
       getNumberOfStars: (req, res)=>{
-          console.log("you just got in getNumberOfStars. No query yet")
+        //   console.log("you just got in getNumberOfStars. No query yet")
           Posts.find({user: req.session.user._id}, (err, posts)=>{
               if(err){
-                  console.log("theres been an error for the query of posts in getNumberOf Stars", err);
+                //   console.log("theres been an error for the query of posts in getNumberOf Stars", err);
                   res.status(500).send(err)
               }else{
                   if(posts){
-                      console.log("here are the posts for the stars")
-                      console.log(posts)
+                    //   console.log("here are the posts for the stars")
+                    //   console.log(posts)
                     if(posts[0]){
                         let five = 0;
                         let four = 0;
@@ -527,15 +540,15 @@ module.exports = {
                                 }
                         }
                         }
-                        console.log("here are your number of stars");
-                        console.log(five,four,three,two,one + " total:", total);
+                        // console.log("here are your number of stars");
+                        // console.log(five,four,three,two,one + " total:", total);
                         res.json({"one":one, "two":two, "three":three, "four": four, "five":five, "total":total})
 
 
 
 
                     }else{
-                        console.log("there was no posts[0].score")
+                        // console.log("there was no posts[0].score")
                         res.status(500).send("there are no posts yet")
                     }
 
@@ -627,6 +640,7 @@ module.exports = {
   },
 
   getuserfriends:(request,response)=>{
+      console.log("+++++++++++++++++++++++++",request.body)
     Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
         if(err){
             return response.json({error:true});
@@ -636,12 +650,14 @@ module.exports = {
         }
     })
   },
-  getNotifications: (req, res)=> {
+
+ getNotifications: (req, res)=> {
+
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
       if (err){
-            console.log("there has been an error in top posts");
-            console.log(err);
+            // console.log("there has been an error in top posts");
+            // console.log(err);
             res.status(500).send(err);
         }else{
           res.json(notifys);

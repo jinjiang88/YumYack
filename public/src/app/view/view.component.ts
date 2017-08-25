@@ -19,14 +19,15 @@ export class ViewComponent implements OnInit {
   User: Array<Object>;
   id = "";
   friendslist=[]
-
-
+  score:any;
+  friendcount:Number;
   starsCount:5;
+  postcount:Number;
 
   ngOnInit() {
+    this._activatedRoute.params.subscribe((param)=>{
+    this.id = param.id;
       this.current();
-    	this._activatedRoute.params.subscribe((param)=>{
-      this.id = param.id;
       this.getUser();
     })
     this.componentnumber = 2;
@@ -36,7 +37,14 @@ export class ViewComponent implements OnInit {
     getUser(){
     console.log(this.id);
   	this._viewService.getUser({id:this.id})
-  		.then( User => this.User = User )
+  		.then( User => {
+        this.User = User;
+        this.friendcount=User[0].friends.length;
+        this.postcount = User[0].allposts.length;
+        console.log(User,"((((((((((((((((")
+        this.score = User[0].yumyackscore;
+        
+      } )
   		.catch( err => console.log(err))
   }
 
