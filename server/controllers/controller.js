@@ -9,8 +9,8 @@ var yelp = require('yelp-fusion');
 // var n = require('nonce')();
 // var request = require('request');
 
-var bcrypt= require('bcryptjs');
 
+var bcrypt= require('bcryptjs');
 
 var salt = bcrypt.genSaltSync(10);
 
