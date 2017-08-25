@@ -79,7 +79,9 @@
    
       
       <hr>
-      
+      <div *ngIf='currentUser'>
+          <img id="profilePic" src="../../assets/images/{{currentUser.filename}}">
+        </div>
       <ul class="list-unstyled">
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
           <h5>Settings <i class="glyphicon glyphicon-chevron-down"></i></h5>
@@ -289,9 +291,7 @@
           	</div><!--/col-->
         	<div class="col-md-6">
 
-           <div *ngIf='currentUser'>
-             <img src="../../assets/images/{{currentUser.filename}}">
-           </div>
+          
            <br>
 				<div class="panel panel-default" >
                   <div class="panel-heading" ><h4>Notices</h4></div>
