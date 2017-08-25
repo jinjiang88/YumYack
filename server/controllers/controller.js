@@ -8,25 +8,12 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-<<<<<<< HEAD
-const clientId="";
-const clientSecret='';
-=======
-
-
-
+var bcrypt= require("bcryptjs")
 
 var salt = bcrypt.genSaltSync(10);
 
-
-
-
-
 const clientId="";
 const clientSecret='';
-
->>>>>>> c38b05936cd452b8faffc384a1e156d98759086c
-
 
 module.exports = {
 //1
@@ -236,11 +223,12 @@ module.exports = {
   },
 //10
   getUser: (req, res)=>{
+      console.log("poop")
       Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
         if(err){
             res.status(500).send(err);
         }else{
-            console.log(user);
+            console.log(user,"-------------------------------------");
             res.json(user);
         }
       })
@@ -472,24 +460,6 @@ module.exports = {
         
 
           },
-<<<<<<< HEAD
-
-=======
-      
-//15
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-      },
->>>>>>> c38b05936cd452b8faffc384a1e156d98759086c
-//16
 
       getNumberOfStars: (req, res)=>{
         //   console.log("you just got in getNumberOfStars. No query yet")

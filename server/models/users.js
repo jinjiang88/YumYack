@@ -16,6 +16,7 @@ let UserSchema = new Schema({
     notification: [{type: String, required: false}],
     allposts: [{type: Schema.Types.ObjectId, ref: 'Posts'}],
     yumyackscore: {type:Number, default:0},
+    intro:{type:String, default:"Lets try some crazy foods!"}
 }, {timestamps: true})
 
 mongoose.model('Users', UserSchema);
