@@ -4,6 +4,7 @@ var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
 var Notifys = mongoose.model("Notifys");
 mongoose.promise = Promise
+bcrypt = require("bcryptjs")
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
@@ -11,8 +12,10 @@ var yelp = require('yelp-fusion');
 
 var salt = bcrypt.genSaltSync(10);
 
+
 const clientId="";
 const clientSecret='';
+
 
 
 
@@ -176,6 +179,7 @@ module.exports = {
                 return res.json(savedPost);
             }
         })
+
     },
 
     //6
@@ -191,6 +195,7 @@ module.exports = {
         req.session.destroy();
         res.redirect('/')
     },
+
 
 
 
@@ -390,18 +395,6 @@ module.exports = {
         })
     },
 
-//15
-    loadPost: (req,res)=>{
-        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-            if(err){
-                console.log("there has been an error in finding post", err);
-                res.status(500).send(err);
-            }else{
-                console.log("posts has been successfully found", posts);
-                res.json(posts);
-            }
-        })
-    },
 
     //16
     topPost: (req, res) => {
@@ -645,7 +638,9 @@ module.exports = {
         }
     })
   },
+
  getNotifications: (req, res)=> {
+
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
       if (err){
@@ -656,6 +651,7 @@ module.exports = {
           res.json(notifys);
         }
       })
+
   },
 }
 ///check yourself before you reck yourself
