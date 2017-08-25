@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class FriendslistComponent implements OnInit {
 
   constructor(private _friendsListService: FriendslistService, private _router:Router) { }
-  friendslist: Array<any>;
+  friendslist: any;
 
   ngOnInit() {
     this.current();

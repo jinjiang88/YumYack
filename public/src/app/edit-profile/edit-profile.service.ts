@@ -16,9 +16,9 @@ export class EditProfileService {
   }
 
 
-  editProfile(formData){
-    return this._http.post('/api/editprofile', formData)
-    .map((response:Response)=> response.json())
+  editProfile(profile){
+    return this._http.post('/api/editprofile', profile)
+    .map((profile:Response)=> profile.json())
     .toPromise()
 
   }

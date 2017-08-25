@@ -18,6 +18,9 @@ export class NewlandingComponent implements OnInit {
   recentPosts:Array<Object>
   loginval=""
   topcontribs=[]
+  navbar = 'url(../../assets/images/logo2.png)';
+  test=false;
+
 
   thebar={
     'textcolor':"white",
@@ -41,7 +44,8 @@ export class NewlandingComponent implements OnInit {
   }
 
   public imageSources: string[] = [
-       './../../assets/images/facepic.jpg',
+
+   './../../assets/images/file-1502355578835.jpg',
    'http://lorempixel.com/400/200/sports/',
      'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/'
@@ -67,6 +71,7 @@ export class NewlandingComponent implements OnInit {
       this.thebar.top = '-25px',
       this.thebar.height2 = '30px',
       this.thebar.pad = '25px'
+      this.navbar = 'url(../../assets/images/logo1.png)'
 
     }
 
