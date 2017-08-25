@@ -18,7 +18,7 @@ export class UserHomeComponent implements OnInit {
   friendsPosts: Array<Object>; //posts of user's friends
   uploadedAPic=false;
   Notifications: Array<Object>; //user's notifications
-  
+  score:any;
 
   Stars: any; //number of accumulated stars
   constructor(private _userHomeService: UserHomeService, private _router: Router) { }
@@ -69,7 +69,7 @@ export class UserHomeComponent implements OnInit {
     if(user.login == false){
       this._router.navigate(['/'])
     }else{
-      
+      this.score=user.score;
     }
   })
 }
