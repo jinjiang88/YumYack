@@ -708,18 +708,16 @@ module.exports = {
       })
   },
 
-  // editProfile: (req, res) => {
-  //   Users.update({_id: req.session.user._id}, req.body, {filename: req.session.filename}, (err, data)=> {
-  //     if(err){
-  //       console.log(err);
-  //       return res.sendStatus(500)
-  //     }else{
-  //       return res.json(data);
-  //     }
-  //   })  
-
-  // },
-
+  editProfile: (req, res) => {
+    Users.update({_id: req.session.user._id}, req.body, {filename: req.session.filename}, (err, data)=> {
+      if(err){
+        console.log(err);
+        return res.sendStatus(500)
+      }else{
+        return res.json(data);
+      }
+    })
+},
   getUserPosts : (req, res)=>{
     Posts.find({_id: req.body.id}).populate("user").exec((err,foundPost)=>{
         if(err){
