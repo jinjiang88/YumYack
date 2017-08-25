@@ -31,8 +31,7 @@ export class ViewComponent implements OnInit {
       this.getUser();
     })
     this.componentnumber = 2;
-
-    this.getUser();
+    // console.log(this.friendslist,"$$$$$$$$$$$$$$$$$$$$$$$$$$")
   }
     getUser(){
     console.log(this.id);
@@ -43,7 +42,8 @@ export class ViewComponent implements OnInit {
         this.postcount = User[0].allposts.length;
         console.log(User,"((((((((((((((((")
         this.score = User[0].yumyackscore;
-        
+        this.friendslist=User[0].friends;
+        console.log(User[0].friends,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       } )
   		.catch( err => console.log(err))
   }

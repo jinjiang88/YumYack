@@ -4,23 +4,16 @@ var Posts = mongoose.model("Posts");
 var Images = mongoose.model("Images");
 var Notifys = mongoose.model("Notifys");
 mongoose.promise = Promise
-bcrypt = require("bcryptjs")
 var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
+var bcrypt= require()
 
 var salt = bcrypt.genSaltSync(10);
 
-
-const clientId="ja63gfSYKpuf3EDg6CrmwA";
-const clientSecret='A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
-
-
-
-
-
-
+const clientId="";
+const clientSecret='';
 module.exports = {
 //1
     getAllUsers: function(req, res) {
@@ -176,44 +169,26 @@ module.exports = {
                 return res.status(500).send(errors="something went wrong", errors);
             }else{
                 console.log("this is the saved newPost", savedPost);
-                Users.findOne({_id: req.session.user._id}, (error, founduser)=>{
-                    if(error){
-                        console.log("there was an error")
-                        res.sendStatus(500);
-                    }else{
-                        if(founduser){
-                            console.log(founduser)
-                            founduser.allposts.push(savedPost._id);
-                            founduser.save();
-                        }else{
-                            res.sendStatus(501);
-                        }
-                    
-                    }
-                });
                 req.session.filename=null;
                 return res.json(savedPost);
             }
-            
         })
 
-    },
+   },
 
-    //6
-    current: (req, res) => {
-        if(!req.session.user){
-          return res.json({login:false})
-        }else{
-          return res.json({login:true,user:req.session.user});
-        }
-      },
-    //7
-    logout: (req, res) => {
-        req.session.destroy();
-        res.redirect('/')
-    },
-
-
+   //6
+  current: (req, res) => {
+    if(!req.session.user){
+      return res.json({login:false})
+    }else{
+      return res.json({login:true,user:req.session.user});
+    }
+  },
+//7
+  logout: (req, res)=> {
+    req.session.destroy();
+    res.redirect('/')
+  },
 
 
 //8
@@ -247,11 +222,12 @@ module.exports = {
   },
 //10
   getUser: (req, res)=>{
+      console.log("poop")
       Users.find({_id: req.body.id}).populate('friends').exec( (err, user)=>{
         if(err){
             res.status(500).send(err);
         }else{
-            console.log(user);
+            console.log(user,"-------------------------------------");
             res.json(user);
         }
       })
@@ -262,16 +238,12 @@ module.exports = {
           if(err){
               res.status(500).send(err);
           }else{
-
               console.log(user);
               let check = false;
               for(let x=0;x<user.friends.length; x++){
                 if(user.friends[x] == req.body.id){
                     check = true;
                 }
-              }
-              if(req.body.id == req.session.user._id){
-                  check = true;
               }
               if(check){
                   res.sendStatus(500);
@@ -282,7 +254,6 @@ module.exports = {
                         console.log(err);
                         res.sendStatus(500);
                     }else{
-                        
                          Users.findOne({_id:req.body.id}, (err,user)=>{
                           if(err){
                             res.status(500).send(err);
@@ -380,24 +351,22 @@ module.exports = {
                             console.log(err);
                             res.sendStatus(500);
                         } else {
-                          Users.findOne({_id:savedPost.user}, (err,user)=>{
-                            if(err){
-                              res.status(500).send(err);
-                            }else{
-                              user.notification.push(req.session.user.username+" has rated your post.")
-                              user.save();
-                              var newnotify = new Notifys();
-                              newnotify.notification = req.session.user.username+" has rated your post.";
-                              newnotify.user = user;
-                              newnotify.url = "postview/"+post._id;
-                              newnotify.postedUser = req.session.user;
-                              newnotify.save();
-                              console.log(newnotify +"-----------------");
-                              res.json(savedPost);
-                            }
-                          })
+                            Users.findOne({_id: req.body.user._id}, (err,foundUser)=>{
+                                if(err){
+                                    console.log("There has been an error");
+                                    res.sendStatus(500);
+                                }else{
+                                    console.log(foundUser,"******************")
+                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
+                                    console.log("it successfully saved");
+                                    console.log(savedPost);
+                                    res.json(savedPost);
+                                }
+                            })
+
+                          
                         }
-                      })
+                    })
                 } else {
                     console.log("it has been rated")
                     //------------------need to learn to update in an array----------------                
@@ -417,6 +386,18 @@ module.exports = {
         })
     },
 
+//15
+    loadPost: (req,res)=>{
+        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+            if(err){
+                console.log("there has been an error in finding post", err);
+                res.status(500).send(err);
+            }else{
+                console.log("posts has been successfully found", posts);
+                res.json(posts);
+            }
+        })
+    },
 
     //16
     topPost: (req, res) => {
@@ -478,21 +459,6 @@ module.exports = {
         
 
           },
-
-//15
-      loadPost: (req,res)=>{
-          Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
-              if(err){
-                  console.log("there has been an error in finding post", err);
-                  res.status(500).send(err);
-              }else{
-                  console.log("posts has been successfully found", posts);
-                  res.json(posts);
-              }
-          })
-        },
-
-//16
 
       getNumberOfStars: (req, res)=>{
         //   console.log("you just got in getNumberOfStars. No query yet")
@@ -566,8 +532,7 @@ module.exports = {
 
 
                   }
-                }
-            
+              }
           })
         },
 
@@ -651,7 +616,6 @@ module.exports = {
           }
       })
   },
-
   getuserfriends:(request,response)=>{
       console.log("+++++++++++++++++++++++++",request.body)
     Users.findOne({id:request.body._id}).populate('friends').exec((err,usersfriends)=>{
@@ -662,10 +626,8 @@ module.exports = {
             return response.json(usersfriends);
         }
     })
-  },
-
- getNotifications: (req, res)=> {
-
+},
+  getNotifications: (req, res)=> {
     Notifys.find({user:req.session.user}).populate('postedUser').exec( function(err, notifys)
     {
       if (err){
@@ -676,7 +638,6 @@ module.exports = {
           res.json(notifys);
         }
       })
-
   },
 }
 ///check yourself before you reck yourself

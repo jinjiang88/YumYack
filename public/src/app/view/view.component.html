@@ -40,22 +40,22 @@
         <div class="row therow">
           <!-- user profile picture -->
           <div class="col-md-4 as">
-            <img class="profilepic" src="../../assets/images/selfie-craze.jpg" alt="">
+            <img class="profilepic" src="../../assets/images/{{User[0].filename}}" alt="">
           </div>
           <!-- user profile details -->
           <div class="col-md-5 rightside">
             <h2 class="accountdeetsname">{{User[0].fname}} {{User[0].lname}}</h2>
             <p class="accountdeets">{{User[0].city}}, {{User[0].state}}</p>
             <img class="profileicons" src="../../assets/images/friendscolor.png" alt=""><span>{{friendcount}} Friends</span><img class="profileicons" src="../../assets/images/cameraicon2.png" alt=""><span>{{postcount}} Posts</span><img class="profileicons" src="../../assets/images/rating.png" alt=""><span>{{User[0].yumyackscore}} YackScore</span>
-            <p class="accountdeets">"I just love to try new and interesting foods!"</p>
-            <p class="accountdeets">YackScore: 500</p>
+            <p class="accountdeets">"{{User[0].intro}}"</p>
+            <p class="username">Username: {{User[0].username}}</p>
           </div>
           <div class="col-md-3">
             <div class="pagenav profileactions">
               <div style="cursor:pointer;" class="profileoptions">
-                <img style="width:10%; margin-right:5%;" src="../../assets/images/addfriend.png" alt=""><span class="overview">Add Friend</span>
+                <!-- <img style="width:10%; margin-right:5%;" src="../../assets/images/addfriend.png" alt=""><span class="overview">Add Friend</span> -->
               </div>
-            <div  style="cursor:pointer;" class="profileoptions">
+            <div  (click)="addFriend()" style="cursor:pointer;" class="profileoptions">
               <img style="width:10%; margin-right:5%;" src="../../assets/images/follow.png" alt=""><span class="friendstext">Follow</span>
             </div>
             <div style="cursor:pointer;" class="profileoptions">
@@ -102,39 +102,21 @@
                 </div>
               </div>
             </div>
+
               <div *ngIf="componentnumber==2" class="Friends">
                 <h3>Friends</h3>
                     <!-- for loop of friend objects here -->
-                    <div class="col-md-4">
+                    <div *ngFor="let friend of User[0].friends" class="col-md-4">
                       <div class="col-md-3">
-                          <img src="../../assets/images/noimage.png" alt="">
+                          <img style="width:40px;" src="../../assets/images/{{friend.filename}}" alt="">
                       </div>
                       <div class="col-md-9">
-                        <h6 class="friendname">Reuben B.</h6>
-                        <h6 class="location">Long Beach, CA</h6>
-                        <h6>score 3 posts 4</h6>
+                        <h6 class="friendname">{{friend.fname}} {{friend.lname}}</h6>
+                        <h6 class="location">{{friend.city}}, {{friend.state}}</h6>
+                        <h6>score {{friend.yumyackscore}} posts {{friend.posts}}</h6>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="col-md-3">
-                            <img src="../../assets/images/noimage.png" alt="">
-                        </div>
-                        <div class="col-md-9">
-                          <h6 class="friendname">Reuben S.</h6>
-                          <h6 class="location">Long Beach, CA</h6>
-                          <h6>score 3 posts 4</h6>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="col-md-3">
-                              <img src="../../assets/images/noimage.png" alt="">
-                          </div>
-                          <div class="col-md-9">
-                            <h6 class="friendname">Caesar S.</h6>
-                            <h6 class="location">Long Beach, CA</h6>
-                            <h6>score 3 posts 4</h6>
-                          </div>
-                        </div>
+                      
                 <!-- end of the friend object for loop -->
               </div>
           </div>
@@ -244,7 +226,7 @@
       </div>
       </div>-->
 
-<div class="container">
+<!-- <div class="container">
  
   <div > 
     
@@ -262,7 +244,7 @@
     </form>
 
 
-</div>
+</div> -->
 
 
 
@@ -270,10 +252,10 @@
 
 
 
-<div class="container">
+<!-- <div class="container"> -->
  
  
-    <!-- rating with half stars -->
+    <!-- rating with half stars
     <rating (click)="typeof();" [(ngModel)]="starsCount"
             [float]="true">
     </rating>
@@ -282,5 +264,5 @@
  
  
 
-</div>
+</div> -->
 
