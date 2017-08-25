@@ -370,15 +370,51 @@ module.exports = {
                 } else {
                     console.log("it has been rated")
                     //------------------need to learn to update in an array----------------                
-                    Posts.update({
-                        _id: req.body.id
-                    }, {
-                        $inc: {
-                            'score.$index': req.body.rate
+                    // Posts.update({
+                    //     _id: req.body.id
+                    // }, {
+                    //     $inc: {
+                    //         'score.$index': req.body.rate
+                    //     }
+                    // });
+                    // console.log("everything should be copacetic")
+                    // res.json(post);
+                    post.userScores[index] = req.session.user._id;
+                    post.score[index] = (req.body.rate)
+                    console.log("going to the loop now")
+                    for (let i = 0; i < post.score.length; i++) {
+                        total += post.score[i];
+                    }
+                    console.log(total)
+                    console.log(post.score.length)
+                    console.log(total / post.score.length)
+                    if (!post.score.length) {
+                        post.average = total / 1;
+                    } else {
+                        post.average = total / post.score.length;
+                    }
+                    post.save((err, savedPost) => {
+                        if (err) {
+                            console.log("something wrong with saving");
+                            console.log(err);
+                            res.sendStatus(500);
+                        } else {
+                            Users.findOne({_id: req.body.users._id}, (err,foundUser)=>{
+                                if(err){
+                                    console.log("There has been an error");
+                                    res.sendStatus(500);
+                                }else{
+                                    console.log(foundUser,"******************")
+                                    foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
+                                    console.log("it successfully saved");
+                                    console.log(savedPost);
+                                    res.json(savedPost);
+                                }
+                            })
+
+                          
                         }
-                    });
-                    console.log("everything should be copacetic")
-                    res.json(post);
+                    })
 
                 }
             }
@@ -638,6 +674,20 @@ module.exports = {
           res.json(notifys);
         }
       })
+  },
+
+
+
+  getUserPosts : (req, res)=>{
+    Posts.find({_id: req.body.id}).populate("user").exec((err,foundPost)=>{
+        if(err){
+            console.log("there awas an error", err)
+            res.sendStatus(500);
+        }else{
+            console.log("posts of that user has been found")
+            res.json(foundPost);
+        }
+    })
   },
 }
 ///check yourself before you reck yourself
