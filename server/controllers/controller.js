@@ -195,7 +195,7 @@ module.exports = {
 
 //8
    getAllFriends: (req,res)=> {
-        Users.find({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
+        Users.findOne({_id: req.session.user._id}).populate('friends').exec( (err, user)=>{
             if(err){
                 console.log("************this is the error***************",err, "**********************************")
                 res.status(500).send(err);
