@@ -360,6 +360,21 @@ module.exports = {
                                     foundUser.notification.push(req.session.user.username, "has rated your post of", savedPost.name, "with", req.body.rate )
                                     console.log("it successfully saved");
                                     console.log(savedPost);
+                                    Users.findOne({_id:savedPost.user}, (err,user)=>{
+                                      if(err){
+                                        res.status(500).send(err);
+                                      }else{
+                                        user.notification.push(req.session.user.username+" has rated your post.")
+                                        user.save();
+                                        var newnotify = new Notifys();
+                                        newnotify.notification = req.session.user.username+" has rated your post.";
+                                        newnotify.user = user;
+                                        newnotify.url = "postview/"+post._id;
+                                        newnotify.postedUser = req.session.user;
+                                        newnotify.save();
+                                        console.log(newnotify +"-----------------");
+                                      }
+                                    })
                                     res.json(savedPost);
                                 }
                             })
