@@ -83,56 +83,27 @@
           <img id="profilePic" src="../../assets/images/{{currentUser.filename}}">
         </div>
       <ul class="list-unstyled">
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
-          <h5>Settings <i class="glyphicon glyphicon-chevron-down"></i></h5>
+        <li class="nav-header"> <a data-toggle="collapse" data-target="#userMenu">
+          <h5>Navagation <i class="glyphicon glyphicon-chevron-down"></i></h5>
           </a>
-            <ul class="list-unstyled collapse in" id="userMenu">
-                <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-            </ul>
-        </li>
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
-          <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
-          </a>
-        
-            <ul class="list-unstyled collapse" id="menu2">
-                <li><a href="#">Information & Stats</a>
-                </li>
-                <li><a href="#">Views</a>
-                </li>
-                <li><a href="#">Requests</a>
-                </li>
-                <li><a href="#">Timetable</a>
-                </li>
-                <li><a href="#">Alerts</a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-header">
-        <a href="#" data-toggle="collapse" data-target="#menu3">
-          <h5>Social Media <i class="glyphicon glyphicon-chevron-right"></i></h5>
-          </a>
-        
-            <ul class="list-unstyled collapse" id="menu3">
-                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Twitter</a></li>
+            <ul class="list-unstyled collapse in" id="userMenu" *ngIf = "currentUser">
+                <li class="active"> <a href="/home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                <li><a href="/friendsposts"><i class="glyphicon glyphicon-envelope"></i> Friends Posts</a></li>
+                <li><a href="/search"><i class="glyphicon glyphicon-cog"></i> Find Friends</a></li>
+                <li><a href="/friendslist"><i class="glyphicon glyphicon-comment"></i> All Friends</a></li>
+                <li><a href="/view/{{currentUser._id}}"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                <li><a href="/editprofile"><i class="glyphicon glyphicon-flag"></i> Edit Profile</a></li>
+                <li><a href="/logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
             </ul>
         </li>
       </ul>
            
       <hr>
       
-      <a href="#"><strong><i class="glyphicon glyphicon-link"></i> Resources</strong></a>  
-      
+
       <hr>
       
-      <ul class="nav nav-pills nav-stacked">
+      <ul style="opacity:0;"class="nav nav-pills nav-stacked">
         <li class="nav-header"></li>
         <li><a href="#"><i class="glyphicon glyphicon-list"></i> Layouts & Templates</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-briefcase"></i> Toolbox</a></li>
@@ -143,7 +114,7 @@
       </ul>
       
       <hr>
-      <ul class="nav nav-stacked">
+      <ul style="opacity:0;" class="nav nav-stacked">
         <li class="active"><a href="http://bootply.com" title="The Bootstrap Playground" target="ext">Playground</a></li>
         <li><a href="/tagged/bootstrap-3">Bootstrap 3</a></li>
         <li><a href="/61518" title="Bootstrap 3 Panel">Panels</a></li>
@@ -167,30 +138,6 @@
           
             <!-- center left--> 
           <div class="col-md-6">
-        <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
-              
-              <hr>
-              
-              <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-primary col-sm-3">
-                  <i class="glyphicon glyphicon-plus"></i><br>
-                  Service
-                </a>
-                <a href="#" class="btn btn-primary col-sm-3">
-                  <i class="glyphicon glyphicon-cloud"></i><br>
-                  Cloud
-                </a>
-                <a href="#" class="btn btn-primary col-sm-3">
-                  <i class="glyphicon glyphicon-cog"></i><br>
-                  Tools
-                </a>
-                <a href="#" class="btn btn-primary col-sm-3">
-                  <i class="glyphicon glyphicon-question-sign"></i><br>
-                  Help
-                </a>
-              </div>
-              
-              <hr>
               
               <div *ngIf='Stars' class="panel panel-default">
                   <div class="panel-heading"><h4>Stars Graph Report</h4></div>
@@ -241,7 +188,7 @@
         <hr>              
 
         <!--tabs-->
-              <div class="container">
+              <div class="container" style="opacity:0;">
                 <div class="col-md-4">
                 <ul class="nav nav-tabs" id="myTab">
                   <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -276,7 +223,7 @@
 
 
               
-              <div class="panel panel-default">
+              <div class="panel panel-default" style="opacity:0;">
                   <div class="panel-heading"><h4>New Requests</h4></div>
                   <div class="panel-body">
                     <div class="list-group">
@@ -393,7 +340,7 @@
                   </div><!--/panel content-->
                 </div><!--/panel-->
               
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="opacity:0;">
                   <div class="panel-heading"><div class="panel-title"><h4>Engagement</h4></div></div>
                   <div class="panel-body">  
                     <div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive"></div>
@@ -408,11 +355,10 @@
       
       <hr>
       
-      <a href="#"><strong><i class="glyphicon glyphicon-comment"></i> Discussions</strong></a>  
       
       <hr>
       
-      <div class="row">
+      <div class="row" style="opacity:0;">
         <div class="col-md-12">
           <ul class="list-group">
             <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(3 mins ago)</small> The 3rd page reports don't contain any links. Does anyone know why..</a></li>
@@ -429,9 +375,7 @@
 </div>
 <!-- /Main -->
 
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
-
-<div class="modal" id="addWidgetModal">
+<div class="modal" id="addWidgetModal" style="opacity:0;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

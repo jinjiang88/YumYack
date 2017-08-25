@@ -2,10 +2,20 @@ img {
   width:110px;
   height: 170px;
     }
+.search-background img {
+    width: 100%;
+    height: 100%;
+    position: static;
+}
+.search-background{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .searchcover{
   overflow: hidden;
   width: 800px;
   display: inline-block;
+
 
 }
 .checkbox{
@@ -19,17 +29,20 @@ img {
   width: 50%;
   margin: 0 auto;
   display: inline-block;
+  position: absolute;
+  top: 90px;
+  float: top;
 }
 #username{
   width: 50%;
   margin-left: 470px;
   vertical-align: top;
+  position: absolute;
+  top: 90px;
+  float: top;
   
 }
 /*new background*/
-.search-background img {
-    width: 100%;
-}
 .well-searchbox {
   min-height: 20px;
   min-width: 400px;
@@ -56,8 +69,9 @@ img {
   width: 300px;
 }
 .floorplan{
-  background: url(../../assets/images/restaurantimage.jpg) 100% fixed; 
-  min-height: 750px;
+  background: url(../../assets/images/japanese.jpg) 100% fixed; 
+  height: 800px;
+  width: 1000px;
   background-repeat: no-repeat;
 }
 .navbar-static-top {
