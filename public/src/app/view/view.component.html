@@ -46,9 +46,11 @@
           <div class="col-md-5 rightside">
             <h2 class="accountdeetsname">{{User[0].fname}} {{User[0].lname}}</h2>
             <p class="accountdeets">{{User[0].city}}, {{User[0].state}}</p>
-            <img class="profileicons" src="../../assets/images/friendscolor.png" alt=""><span>{{friendcount}} Friends</span>
+
+            <img class="profileicons" src="../../assets/images/friendscolor.png" alt=""><span>   {{friendcount}} Friends</span>
             <img class="profileicons" src="../../assets/images/cameraicon2.png" alt=""><span>{{postcount}} Posts</span>
             <img class="profileicons" src="../../assets/images/rating.png" alt=""><span>{{User[0].yumyackscore}} YackScore</span>
+
             <p class="accountdeets">"{{User[0].intro}}"</p>
             <p class="username">Username: {{User[0].username}}</p>
           </div>
@@ -90,18 +92,15 @@
             <div *ngIf="componentnumber == 1" class="recent_posts">
               <div class="postheader">
                 <h3>Recent Posts</h3>
-                <div class="col-md-12 rightpost">
-                  <img class="postimage" src="../../assets/images/noimage.png" alt="">
-                  <p class="posttext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div *ngFor="let post of userposts">
+                  <div class="col-md-12 rightpost">
+                    <img class="postimage" src="../../assets/images/{{post.filename}}" alt="">
+                    <p class="posttext">Title: <a href="/postview/{{post._id}}">{{post.name}}</a></p>
+                    <p class="postdesc">Description: {{post.description}}</p>
+                    <p class="postorigin">Place of Origin: {{post.origin}}</p>
+                  </div>
                 </div>
-                <div class="col-md-12 rightpost">
-                  <img class="postimage" src="../../assets/images/noimage.png" alt="">
-                  <p class="posttext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="col-md-12 rightpost">
-                  <img class="postimage" src="../../assets/images/noimage.png" alt="">
-                  <p class="posttext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
+                  
               </div>
             </div>
 
@@ -113,7 +112,7 @@
                           <img style="width:40px;" src="../../assets/images/{{friend.filename}}" alt="">
                       </div>
                       <div class="col-md-9">
-                        <h6 class="friendname">{{friend.fname}} {{friend.lname}}</h6>
+                        <h6 class="friendname"><a href="/view/{{friend._id}}">{{friend.fname}} {{friend.lname}}</a></h6>
                         <h6 class="location">{{friend.city}}, {{friend.state}}</h6>
                         <h6>score {{friend.yumyackscore}} posts {{friend.posts}}</h6>
                       </div>
