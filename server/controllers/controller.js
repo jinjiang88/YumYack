@@ -8,13 +8,12 @@ var yelp = require('yelp-fusion');
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
-var bcrypt= require("bcryptjs")
+var bcrypt= require()
 
 var salt = bcrypt.genSaltSync(10);
 
 const clientId="";
 const clientSecret='';
-
 module.exports = {
 //1
     getAllUsers: function(req, res) {
