@@ -46,9 +46,6 @@ export class NewlandingComponent implements OnInit {
   }
 
   public imageSources: string[] = [
-
-
-   './../../assets/images/file-1502355578835.jpg',
    'http://lorempixel.com/400/200/sports/',
      'http://lorempixel.com/400/200/',
    'http://lorempixel.com/400/200/sports/'
