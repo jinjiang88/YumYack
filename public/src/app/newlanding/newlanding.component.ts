@@ -17,7 +17,9 @@ export class NewlandingComponent implements OnInit {
   topPosts:any;
   recentPosts:Array<Object>
   loginval=""
+
   topcontribs=[]
+
   navbar = 'url(../../assets/images/logo2.png)';
   test=false;
 

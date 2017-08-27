@@ -101,6 +101,7 @@ footer {
   cursor: pointer;
   height: 60px;
   width:60px;
+  margin-top:30px;
 }
 .dropdown {
   position: relative;
@@ -375,4 +376,193 @@ background-color: #151e35;
   height: 100%;
   opacity:1;
 
+}
+.testimonial footer {
+  padding-top: 12px;
+}
+.testimonial.classic footer:before {
+display: block;
+content: "";
+width: 30px;
+height: 4px;
+margin: 10px auto 15px auto;
+}
+
+@media screen and (max-width: 768px) {
+.probootstrap-footer {
+  padding: 2em 0;
+}
+}
+.probootstrap-footer h3 {
+font-size: 18px;
+letter-spacing: .2em;
+text-transform: uppercase;
+color: #ffffff;
+}
+.probootstrap-footer .probootstrap-footer-widget {
+margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+.probootstrap-footer .probootstrap-footer-widget {
+  margin-bottom: 20px;
+}
+}
+
+.probootstrap-footer-social {
+padding: 0;
+margin: 0;
+}
+
+.probootstrap-footer-social.right {
+text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+.probootstrap-footer-social.right {
+  text-align: left;
+}
+}
+
+.probootstrap-footer-social li {
+display: inline;
+padding: 0;
+margin: 0;
+list-style: none;
+}
+
+.probootstrap-footer-social li a {
+padding: 10px;
+font-size: 22px;
+}
+
+.probootstrap-footer-social li:first-child > a {
+padding-left: 0;
+}
+.probootstrap-footer[_ngcontent-c1] {
+  background-size: cover;
+  background: #000000;
+  padding: 7em 0;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 50px;
+}
+.appstore{
+  width: 100px;
+}
+.probootstrap-copyright[_ngcontent-c1] {
+  background: #262626;
+  padding: 20px 0;
+}
+.footers{
+bottom: 0;
+width: 100%;
+height: 200px;
+background-color: #151e35;
+}
+#home {
+  color: #FFA33E;
+}
+
+#addpost {
+    height: 30px;
+    width:30px;
+
+}
+#notify{
+    margin-top: 18%;
+    width: 50px;
+}
+.thenotify{
+  /* width: 5%; */
+}
+.friendspost{
+ 
+}
+.probootstrap-section-bg.overlay:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.probootstrap-section-bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 7em 0;
+  position: relative;
+  height: 600px;
+}
+@media screen and (max-width: 768px) {
+  .probootstrap-section-bg {
+    padding: 3em 0;
+    height: 300px;
+  }
+}
+.testimonial footer {
+  padding-top: 12px;
+}
+.testimonial.classic footer:before {
+display: block;
+content: "";
+width: 30px;
+height: 4px;
+margin: 10px auto 15px auto;
+}
+
+@media screen and (max-width: 768px) {
+.probootstrap-footer {
+  padding: 2em 0;
+}
+}
+.probootstrap-footer h3 {
+font-size: 18px;
+letter-spacing: .2em;
+text-transform: uppercase;
+color: #ffffff;
+}
+.probootstrap-footer .probootstrap-footer-widget {
+margin-bottom: 0;
+}
+@media screen and (max-width: 768px) {
+.probootstrap-footer .probootstrap-footer-widget {
+  margin-bottom: 20px;
+}
+}
+
+.probootstrap-footer-social {
+padding: 0;
+margin: 0;
+}
+
+.probootstrap-footer-social.right {
+text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+.probootstrap-footer-social.right {
+  text-align: left;
+}
+}
+
+.probootstrap-footer-social li {
+display: inline;
+padding: 0;
+margin: 0;
+list-style: none;
+}
+
+.probootstrap-footer-social li a {
+padding: 10px;
+font-size: 22px;
+}
+
+.probootstrap-footer-social li:first-child > a {
+padding-left: 0;
+}
+.probootstrap-footer[_ngcontent-c1] {
+  background-size: cover;
+  background: #000000;
+  padding: 7em 0;
+  color: rgba(255, 255, 255, 0.7);
 }

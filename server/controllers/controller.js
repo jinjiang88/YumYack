@@ -14,8 +14,8 @@ var bcrypt= require('bcryptjs');
 
 var salt = bcrypt.genSaltSync(10);
 
-const clientId="";
-const clientSecret='';
+const clientId="ja63gfSYKpuf3EDg6CrmwA";
+const clientSecret='A1Z4fCBMJVQS2OsmH1tbnZjm63v7LqCaxq9RP1Zhitwna3PChqbG32H0Gc006dnz';
 module.exports = {
 //1
     getAllUsers: function(req, res) {
