@@ -3,6 +3,7 @@ import { ProfileService } from './profile.service'
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,11 +15,13 @@ export class ProfileComponent implements OnInit {
   friendsbuttcolor="none";
   postsbuttcolor="none";
 
+
   constructor(private _profileService:ProfileService, private _router:Router) { }
 
   ngOnInit() {
     this.current();
     this.componentnumber = 2;
+
   }
 
   overviewclicked(){
@@ -51,5 +54,4 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-
 }
