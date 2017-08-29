@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FindfriendsService } from './findfriends.service';
 import { Router } from '@angular/router';
+import { UserHomeService } from '../user-home/user-home.service';
 
 @Component({
   selector: 'app-findfriends',
@@ -15,11 +16,16 @@ export class FindfriendsComponent implements OnInit {
   username: string;
   fname: string;
   lname: string;
-  constructor(private _findFriendsService: FindfriendsService, private _router:Router) { }
+  Notifications: Array<Object>; //user's notifications
+  currentUser: any; //current user
+
+  constructor(private _userHomeService: UserHomeService, private _findFriendsService: FindfriendsService, private _router:Router) { }
 
   ngOnInit() {
     this.current()
     this.getallusers();
+    this.getCurrentUser();
+    this.getnotifications();
   }
 
     getallusers(){
@@ -53,4 +59,20 @@ export class FindfriendsComponent implements OnInit {
         }
       })
     }
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>{
+      this.Notifications=notifications
+
+    })
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
+  //gets current user for the hub
+  getCurrentUser(){ // grabs current logged user
+    this._userHomeService.getCurrentUser()
+    .then( (user)=>this.currentUser=user)
+    .catch( (err)=>console.log(err));
+
+    
+  }
 }

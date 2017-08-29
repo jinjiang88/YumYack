@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from  '@angular/router';
 import { PostviewService } from './postview.service';
+import { UserHomeService } from '../user-home/user-home.service';
 
 @Component({
   selector: 'app-postview',
@@ -11,16 +12,18 @@ export class PostviewComponent implements OnInit {
   id:String;
   post:object;
   yelpdata:object[];
-
-  constructor(private _activatedRoute:ActivatedRoute, private _router:Router,private _postViewService:PostviewService) { }
+  Notifications: Array<Object>; //user's notifications
+  currentUser: any; //current user
+  constructor(private _userHomeService: UserHomeService, private _activatedRoute:ActivatedRoute, private _router:Router,private _postViewService:PostviewService) { }
 
   ngOnInit() {
     this.current();
     this._activatedRoute.params.subscribe( (param)=>{
       this.id=param.id;
     })
-
+    this.getCurrentUser();
     this.loadPost();
+    this.getnotifications();
   }
 
   loadPost(){
@@ -44,5 +47,18 @@ export class PostviewComponent implements OnInit {
       }else{
       }
     })
+  }
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>this.Notifications=notifications)
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
+  //gets current user for the hub
+  getCurrentUser(){ // grabs current logged user
+    this._userHomeService.getCurrentUser()
+    .then( (user)=>this.currentUser=user)
+    .catch( (err)=>console.log(err));
+
+    
   }
 }

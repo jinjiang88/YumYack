@@ -265,7 +265,7 @@ module.exports = {
                           var newnotify = new Notifys();
                           newnotify.notification = req.session.user.username+" has subscribed to you.";
                           newnotify.user = user;
-                          newnotify.url = "view/"+req.session.user._id;
+                          newnotify.url = "view/"+req.session._id;
                           newnotify.postedUser = req.session.user;
                           newnotify.save();
                           res.json(savedUser);
@@ -611,6 +611,7 @@ module.exports = {
                 console.log("something is wrong in the controller with findbyuser")
                 res.status(500).send(err);
             }else if(someUser){
+                    console.log(someUser, "+++++++++++++++");
                     res.json(someUser);
                    
                 }
@@ -627,6 +628,7 @@ module.exports = {
                 console.log("something is wrong in the controller with findbyuser")
                 res.status(500).send(err);
             }else if(nameusers){
+                    console.log(nameusers, "++++++++++++++++++++++");
                     res.json(nameusers);
                    
                 }
