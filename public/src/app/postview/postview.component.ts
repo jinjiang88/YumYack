@@ -10,7 +10,7 @@ import { UserHomeService } from '../user-home/user-home.service';
 })
 export class PostviewComponent implements OnInit {
   id:String;
-  post:object;
+  post: Array<any>;
   yelpdata:object[];
   Notifications: Array<Object>; //user's notifications
   currentUser: any; //current user
@@ -60,5 +60,14 @@ export class PostviewComponent implements OnInit {
     .catch( (err)=>console.log(err));
 
     
+  }
+  createComment(formData, post_id){
+    console.log(formData.value);
+    this._postViewService.createComment(formData.value, post_id)
+      .then( () => {
+        this.loadPost();
+      })
+      .catch( err => console.log(err))
+    formData.reset();
   }
 }

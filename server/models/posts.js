@@ -11,6 +11,7 @@ let PostSchema = new Schema({
     userScores: [{type: Schema.Types.ObjectId, ref: 'Users'}], //id of users that rated
     score: Array, //scores that corresponds to _userScores
     average: {type: Number, default:0},//the average of all user scores
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comments'}],
 
 }, {timestamps: true})
 
