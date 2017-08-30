@@ -23,5 +23,9 @@ export class PostviewService {
     .map((response:Response)=> response.json())
     .toPromise();
   }
-  
+  createComment(comment, id){
+    return this._http.post('/api/comments/' + id, comment)
+    .map( (response:Response) => response.json())
+      .toPromise()
+  }
 }
