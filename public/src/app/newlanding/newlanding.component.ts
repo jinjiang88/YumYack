@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+// import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { NewlandingService } from './newlanding.service';
 
 @Component({
@@ -45,11 +45,11 @@ export class NewlandingComponent implements OnInit {
     this.topcontrib();
   }
 
-  public imageSources: string[] = [
-   'http://lorempixel.com/400/200/sports/',
-     'http://lorempixel.com/400/200/',
-   'http://lorempixel.com/400/200/sports/'
-    ];
+//   public imageSources: string[] = [
+//    'http://lorempixel.com/400/200/sports/',
+//      'http://lorempixel.com/400/200/',
+//    'http://lorempixel.com/400/200/sports/'
+//     ];
 
     public config: ICarouselConfig = {
       verifyBeforeLoad: true,
