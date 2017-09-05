@@ -51,15 +51,15 @@ export class NewlandingComponent implements OnInit {
 //    'http://lorempixel.com/400/200/sports/'
 //     ];
 
-    public config: ICarouselConfig = {
-      verifyBeforeLoad: true,
-      log: false,
-      animation: true,
-      animationType: AnimationConfig.SLIDE,
-      autoplay: true,
-      autoplayDelay: 2000,
-      stopAutoplayMinWidth: 768
-    };
+    // public config: ICarouselConfig = {
+    //   verifyBeforeLoad: true,
+    //   log: false,
+    //   animation: true,
+    //   animationType: AnimationConfig.SLIDE,
+    //   autoplay: true,
+    //   autoplayDelay: 2000,
+    //   stopAutoplayMinWidth: 768
+    // };
 
     scroll(){
       this.thebar.textcolor="black",

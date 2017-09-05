@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+// import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { LandingPageService } from './landing-page.service';
 import { Router } from '@angular/router'
 
@@ -19,22 +19,22 @@ users: any;
     // this.getCurrentUser();
   }
 thebar="red";
-public imageSources: string[] = [
-     'http://lorempixel.com/400/200/',
- 'http://lorempixel.com/400/200/sports/',
-   'http://lorempixel.com/400/200/',
- 'http://lorempixel.com/400/200/sports/'
-  ];
+// public imageSources: string[] = [
+//      'http://lorempixel.com/400/200/',
+//  'http://lorempixel.com/400/200/sports/',
+//    'http://lorempixel.com/400/200/',
+//  'http://lorempixel.com/400/200/sports/'
+//   ];
 
-  public config: ICarouselConfig = {
-    verifyBeforeLoad: true,
-    log: false,
-    animation: true,
-    animationType: AnimationConfig.SLIDE,
-    autoplay: true,
-    autoplayDelay: 2000,
-    stopAutoplayMinWidth: 768
-  };
+  // public config: ICarouselConfig = {
+  //   verifyBeforeLoad: true,
+  //   log: false,
+  //   animation: true,
+  //   animationType: AnimationConfig.SLIDE,
+  //   autoplay: true,
+  //   autoplayDelay: 2000,
+  //   stopAutoplayMinWidth: 768
+  // };
   checkingaverage(){
     this.averaging()
   }
