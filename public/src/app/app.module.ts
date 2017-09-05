@@ -14,7 +14,7 @@ import { RegisterService } from './register/register.service';
 import { LandingPageService } from './landing-page/landing-page.service';
 import { UserHomeService } from './user-home/user-home.service';
 import { NewlandingService } from './newlanding/newlanding.service';
-import { CarouselModule } from 'angular4-carousel';
+// import { CarouselModule } from 'angular4-carousel';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TestService } from './test/test.service';
 
@@ -73,7 +73,7 @@ import { ProfilepicService } from './profilepic/profilepic.service';
     BrowserModule,
     AppRoutingModule,
     HttpModule, FormsModule,
-    CarouselModule,
+//     CarouselModule,
     FileUploadModule,
     RatingModule,
 
