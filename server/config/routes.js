@@ -35,5 +35,6 @@ module.exports = app => {
 
   	app.post('/api/editprofile', controller.editProfile);
 	app.post('/api/getuserposts', controller.getUserPosts);
+	app.post('/api/comments/:post_id', controller.createComment);
 
 }

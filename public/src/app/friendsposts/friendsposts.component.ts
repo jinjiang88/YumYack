@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FriendspostsService } from './friendsposts.service';
 import { RatingModule } from 'ng2-rating';
 import { Router } from '@angular/router';
+import { UserHomeService } from '../user-home/user-home.service';
 
 @Component({
   selector: 'app-friendsposts',
@@ -11,11 +12,15 @@ import { Router } from '@angular/router';
 export class FriendspostsComponent implements OnInit {
 friendsPosts: any;
 starsCount: Number;
-  constructor(private _friendsPostsService: FriendspostsService, private _router:Router) { }
+Notifications: Array<Object>; //user's notifications
+currentUser: any; //current user
+  constructor(private _userHomeService: UserHomeService, private _friendsPostsService: FriendspostsService, private _router:Router) { }
 
   ngOnInit() {
     this.current();
     this.getFriendsPosts();
+    this.getCurrentUser();
+    this.getnotifications();
   }
 
     getFriendsPosts(){
@@ -39,5 +44,20 @@ starsCount: Number;
       }
     })
   }
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>{
+      this.Notifications=notifications
 
+    })
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
+  //gets current user for the hub
+  getCurrentUser(){ // grabs current logged user
+    this._userHomeService.getCurrentUser()
+    .then( (user)=>this.currentUser=user)
+    .catch( (err)=>console.log(err));
+
+    
+  }
 }

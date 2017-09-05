@@ -1,60 +1,64 @@
 <div class="navbar">
-    <nav class="navbar navbar-default navbar-fixed-top thenav">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
-          <ul class="nav navbar-nav navbar-right">
-
-            <li><a class="navlinks"  href="/home" id="home">Home</a></li>
-            <li><a class="navlinks" href="/search">Find Friends</a></li>
-            <li><a class="navlinks" href="/friendslist">Friends</a></li>
-            <li>
-                <div class="dropdown">
-                <div *ngIf= "isValid; else other_content;">
-                
-                  <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
-                    <ul class="dropdown-menu">
-                      <li><a href="#">HTML</a></li>
-                      <li><a href="#">CSS</a></li>
-                      <li><a href="#">JavaScript</a></li>
-                    </ul>
-                  </div>
-
-                  <ng-template #other_content><img id="notify" class="btn dropdown-toggle" type="button"  data-toggle="dropdown" src="../../assets/images/notification.png">
-                    <ul class="dropdown-menu">
-                      <li><a href="#">HTML</a></li>
-                      <li><a href="#">CSS</a></li>
-                      <li><a href="#">JavaScript</a></li>
-                    </ul>
-                    </ng-template>
-                  </div>                
-              </li>
-            <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
-
-            <li>
-              <div class="dropdown">
-                <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
-                <div class="dropdown-content">
-                  <a href="/home">Account Overview</a>
-                  <a href="/home">Profile</a>
-                  <a [routerLink]="['/friendsposts']">Settings</a>
-                  <a href="/logout">Log Out</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-default navbar-fixed-top thenav">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-    </nav>
-  </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <h3 style="vertical-align:top; display:inline-block;">YumYack</h3>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="navlinks"  href="/home" id="home">Home</a></li>
+          <li style="margin-top:3.5%;"><div class="dropdown">
+              <span class="dropbtn" style="color:grey;">Friends</span>
+              <div class="dropdown-content">
+                <a href="/friendsposts">Friends Posts</a>
+                <a href="/search">Find Friends</a>
+                <a href="/friendslist">All Friends</a>
+              </div>
+            </div></li>
+          <li><a class="navlinks"  href="/">My posts</a></li>
+          <li class="thenotify">
+              <div class="dropdown">
+              <div *ngIf= "Notifications;">
+              
+                <img id="notify" class="btn dropdown-toggle" type="button" data-toggle="dropdown" src="../../assets/images/notification-flat.png">
+                  <ul class="dropdown-menu">
+                    <li><a href="{{Notifications[Notifications.length-1].url}}">{{Notifications[Notifications.length-1].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-2].url}}{{Notifications[Notifications.length-2].postedUser._id}}">{{Notifications[Notifications.length-2].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-3].url}}{{Notifications[Notifications.length-3].postedUser._id}}">{{Notifications[Notifications.length-3].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-4].url}}{{Notifications[Notifications.length-4].postedUser._id}}">{{Notifications[Notifications.length-4].notification}}</a></li>
+                    <br>
+                    <li><a href="{{Notifications[Notifications.length-5].url}}{{Notifications[Notifications.length-5].postedUser._id}}">{{Notifications[Notifications.length-5].notification}}</a></li>
+                  </ul>
+                </div>
+                </div>                
+            </li>
+          <li><a class="navlinks" href="/create"><img id="addpost" src="../../assets/images/add post.png" alt=""></a></li>
+
+          <li>
+            <div class="dropdown" *ngIf = "currentUser">
+              <img class="dropbtn" src="../../assets/images/portrait.png" alt="">
+              <div class="dropdown-content">
+                <a href="/editprofile">Edit profile</a>
+                <a href="/view/{{currentUser._id}}">Profile</a>
+                <a [routerLink]="['/friendsposts']">Settings</a>
+                <a href="/logout">Log Out</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 <div class="container">
   <div >
     <img class="image" src="./../../assets/images/{{post.filename}}"/>
@@ -62,9 +66,21 @@
     <div class="detailsbox">
       <h2 class="postname">{{post.name}}</h2>
       <p class="postusername">By: {{post.user.username}}</p>
-   
+   {{post.comments.comment}}
       <p class="postorigin">Origin:{{post.origin}}</p>
+      <div *ngIf="post.comments">
+      <div *ngFor="let comment of post.comments">
+        <h6><a href="view/{{comment._user._id}}">{{comment._user.username}}</a> - {{comment.createdAt | date: 'mediumDate'}}</h6>
+        <p>{{comment.comment}}</p>
+      </div>
+      </div>
+      <form (submit)="createComment(formData, post._id)" #formData="ngForm">
+        <input type="text" name="comment" ngModel>
+        <input type="submit" value="Comment">
+      </form>
+      
     </div>
+
       <!-- progress bar ======================================================-->
       <div class="progress progress-bar-vertical">
         <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" [style.height]="post.average*20 +'%'">

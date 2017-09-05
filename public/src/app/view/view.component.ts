@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ViewService } from './view.service';
 import {RatingModule} from "ng2-rating";
+import { UserHomeService } from '../user-home/user-home.service';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class ViewComponent implements OnInit {
   overviewbuttcolor="none";
   friendsbuttcolor="none";
   postsbuttcolor="none";
+  Notifications: Array<Object>; //user's notifications
+  currentUser: any; //current user
 
-  constructor(private _activatedRoute: ActivatedRoute, private _viewService: ViewService, private _router: Router) { }
+  constructor(private _userHomeService: UserHomeService, private _activatedRoute: ActivatedRoute, private _viewService: ViewService, private _router: Router) { }
   User: Array<Object>;
   id = "";
   friendslist=[]
@@ -31,6 +34,8 @@ export class ViewComponent implements OnInit {
       this.current();
       this.getUser();
       this.getuserposts();
+      this.getCurrentUser();
+      this.getnotifications();
     })
     this.componentnumber = 2;
     // console.log(this.friendslist,"$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -106,5 +111,21 @@ export class ViewComponent implements OnInit {
     this.overviewbuttcolor="white"
     this.friendsbuttcolor="white"
     this.postsbuttcolor= "white"
+  }
+  getnotifications(){
+    this._userHomeService.getNotifications()
+    .then((notifications) =>{
+      this.Notifications=notifications
+
+    })
+    .catch((err)=>console.log("there has been an error catching notifications")) 
+  }
+  //gets current user for the hub
+  getCurrentUser(){ // grabs current logged user
+    this._userHomeService.getCurrentUser()
+    .then( (user)=>this.currentUser=user)
+    .catch( (err)=>console.log(err));
+
+    
   }
 }

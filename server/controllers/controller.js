@@ -5,6 +5,7 @@ var Images = mongoose.model("Images");
 var Notifys = mongoose.model("Notifys");
 mongoose.promise = Promise
 var yelp = require('yelp-fusion');
+var Comments = mongoose.model("Comments");
 // var oauthSignature = require('oauth-signature');
 // var n = require('nonce')();
 // var request = require('request');
@@ -55,7 +56,7 @@ module.exports = {
 
     yelpsearch:(request,response)=>{
         var keyword= request.body.posttitle.name;
-        console.log("here is the resquest.body",request.body.posttitle.name, "###############################")
+        // console.log("here is the resquest.body",request.body.posttitle.name, "###############################")
         const searchRequest={
             term:keyword,
             location:'los angeles',
@@ -65,7 +66,7 @@ module.exports = {
             const client = yelp.client(data.jsonBody.access_token);
             // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
             client.search(searchRequest).then(data=>{
-                console.log(data.jsonBody)
+                // console.log(data.jsonBody)
                 if(data.jsonBody.businesses){
                     return response.json(data.jsonBody.businesses)
                 }else{
@@ -73,7 +74,7 @@ module.exports = {
                 }
             })
             .catch(e=>{
-                console.log(e)
+                // console.log(e)
             })
         })
       },
@@ -265,7 +266,7 @@ module.exports = {
                           var newnotify = new Notifys();
                           newnotify.notification = req.session.user.username+" has subscribed to you.";
                           newnotify.user = user;
-                          newnotify.url = "view/"+req.session.user._id;
+                          newnotify.url = "view/"+req.session._id;
                           newnotify.postedUser = req.session.user;
                           newnotify.save();
                           res.json(savedUser);
@@ -456,7 +457,7 @@ module.exports = {
 
 //15
     loadPost: (req,res)=>{
-        Posts.findOne({_id: req.body.id}).populate('user').exec( (err, posts)=>{
+        Posts.findOne({_id: req.body.id}).populate('user').populate({path: 'comments', populate: {path: '_user'}}).exec( (err, posts)=>{
             if(err){
                 console.log("there has been an error in finding post", err);
                 res.status(500).send(err);
@@ -611,6 +612,7 @@ module.exports = {
                 console.log("something is wrong in the controller with findbyuser")
                 res.status(500).send(err);
             }else if(someUser){
+                    console.log(someUser, "+++++++++++++++");
                     res.json(someUser);
                    
                 }
@@ -627,6 +629,7 @@ module.exports = {
                 console.log("something is wrong in the controller with findbyuser")
                 res.status(500).send(err);
             }else if(nameusers){
+                    console.log(nameusers, "++++++++++++++++++++++");
                     res.json(nameusers);
                    
                 }
@@ -729,6 +732,51 @@ module.exports = {
         }
     })
   },
-
+  createComment: (req, res) => {
+    if(!req.session.user){
+      return res.sendStatus(401);
+    }
+    Posts.findOne({_id: req.params.post_id}, (err, post)=>{ 
+      if(err){
+        console.log(err);
+        return res.sendStatus(500);
+      }else{
+        // console.log('The message is', message);
+        let comment = new Comments({comment: req.body.comment});
+        comment._user = req.session.user._id;
+        comment.save( (err, savedComment)=>{
+          if(err){
+            console.log(err);
+            return;
+          }else{
+            console.log("Inside of saved comment the message is", post);
+            post.comments.push(savedComment);
+            post.save( (err, savedPost)=>{
+              if(err){
+                console.log(err);
+                return;
+              }                                        
+              Users.findOne({_id:savedPost.user}, (err,user)=>{
+                if(err){
+                  res.status(500).send(err);
+                }else{
+                  user.notification.push(req.session.user.username+" commented on your post.")
+                  user.save();
+                  var newnotify = new Notifys();
+                  newnotify.notification = req.session.user.username+" commented on your post.";
+                  newnotify.user = user;
+                  newnotify.url = "postview/"+post._id;
+                  newnotify.postedUser = req.session.user;
+                  newnotify.save();
+                  console.log(newnotify +"-----------------");
+                }
+              })
+              return res.json(savedPost);
+            })
+          }
+        })
+      }
+    })
+  },
 }
 ///check yourself before you reck yourself
