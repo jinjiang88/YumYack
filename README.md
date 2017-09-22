@@ -25,10 +25,13 @@ Mongod
 NPM 
 Angular-CLI // "ng build w" 
 nodemon
+
 Contributors
 
-Jin Jiang 
+Jin Jiang
+
 Caesar Shia
+
 Reuben Bagtas
 
 //Please feel free to leave feedback!
